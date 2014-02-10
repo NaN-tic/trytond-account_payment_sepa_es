@@ -1,0 +1,15 @@
+# 
+msgid ""
+msgstr "Content-Type: text/plain; charset=utf-8\n"
+
+msgctxt "error:account.payment.group:"
+msgid "No creditor identifier for party \"%s\"."
+msgstr "No s'ha definit la identificació del creditor per al tercer \"%s\"."
+
+msgctxt "error:party.party:"
+msgid "Invalid creditor identifier \"%s\" for party \"%s\"."
+msgstr "Identificació del creditor invàlid \"%s\" per al tercer \"%s\"."
+
+msgctxt "view:party.party:"
+msgid "Calculate"
+msgstr "Calcula"
