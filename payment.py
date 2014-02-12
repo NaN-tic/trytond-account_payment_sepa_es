@@ -4,6 +4,7 @@
 # the full copyright notices and license terms.
 from trytond.pool import PoolMeta
 from trytond.pyson import Eval
+from trytond.transaction import Transaction
 
 __all__ = ['Journal', 'Group']
 __metaclass__ = PoolMeta
@@ -59,4 +60,5 @@ class Group:
                 self.journal.party.sepa_creditor_identifier):
             self.raise_user_error('no_creditor_identifier',
                 self.journal.party.rec_name)
-        super(Group, self).process_sepa()
+        with Transaction().set_context(suffix=self.journal.suffix):
+            super(Group, self).process_sepa()

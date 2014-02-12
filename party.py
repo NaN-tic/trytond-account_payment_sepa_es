@@ -3,6 +3,7 @@
 from trytond.pool import PoolMeta
 from trytond.model import ModelView
 from trytond.pyson import Eval, Bool
+from trytond.transaction import Transaction
 from stdnum.iso7064 import mod_97_10
 #at_02 is pending to be included on python-stdnum.
 #See: https://github.com/arthurdejong/python-stdnum/pull/5
@@ -50,3 +51,10 @@ class Party:
             party.sepa_creditor_identifier = (party.vat_country + check_sum +
                 'ZZZ' + party.vat_number)
             party.save()
+
+    def get_sepa_creditor_identifier_used(self, name):
+        res = super(Party, self).get_sepa_creditor_identifier_used(name)
+        suffix = Transaction().context.get('suffix', None)
+        if suffix:
+            res = res[:4] + suffix + res[7:]
+        return res
