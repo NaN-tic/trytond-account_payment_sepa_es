@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The COPYRIGHT file at the top level of this repository contains the full
+      copyright notices and license terms. -->
+<tryton>
+    <data>
+        <record id="view_account_payment_sepa_configuration_view_form"
+                model="ir.ui.view">
+            <field name="name">configuration_form</field>
+            <field name="model">account.payment.sepa.configuration</field>
+            <field name="type">form</field>
+        </record>
+        <record model="ir.sequence.type" id="sequence_type_mandate">
+            <field name="name">Mandate</field>
+            <field name="code">account.payment.sepa.mandate</field>
+        </record>
+
+        <record model="ir.action.act_window"
+                id="act_payment_sepa_configuration_form">
+            <field name="name">Mandate</field>
+            <field name="res_model">account.payment.sepa.configuration</field>
+        </record>
+        <record model="ir.action.act_window.view"
+            id="act_stock_configuration_form_view1">
+            <field name="sequence" eval="1"/>
+            <field name="view"
+                ref="view_account_payment_sepa_configuration_view_form"/>
+            <field name="act_window"
+                ref="act_payment_sepa_configuration_form"/>
+        </record>
+
+        <menuitem parent="bank.menu_banking" name="Configuration"
+            id="menu_mandate_configuration" sequence="1"/>
+        <record model="ir.ui.menu-res.group"
+            id="menu_mandate_configuration_group_account_admin">
+            <field name="menu" ref="menu_mandate_configuration"/>
+            <field name="group" ref="account.group_account_admin"/>
+        </record>
+        <menuitem parent="menu_mandate_configuration"
+            action="act_payment_sepa_configuration_form"
+            id="menu_mandate_configuration_form" icon="tryton-list"/>
+
+        <record model="ir.sequence.type-res.group"
+            id="sequence_type_mandate_group_admin">
+            <field name="sequence_type" ref="sequence_type_mandate"/>
+            <field name="group" ref="res.group_admin"/>
+        </record>
+        <record model="ir.sequence.type-res.group"
+            id="sequence_type_mandate_group_stock_admin">
+            <field name="sequence_type" ref="sequence_type_mandate"/>
+            <field name="group" ref="account.group_account_admin"/>
+        </record>
+
+        <record model="ir.model.access" id="access_config_account_admin">
+            <field name="model"
+                search="[('model', '=', 'account.payment.sepa.configuration')]"/>
+            <field name="group" ref="account.group_account_admin"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_delete" eval="True"/>
+        </record>
+        <record model="ir.sequence" id="sequence_mandate">
+                <field name="name">Mandate</field>
+                <field name="code">account.payment.sepa.mandate</field>
+        </record>
+    </data>
+</tryton>

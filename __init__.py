@@ -10,4 +10,7 @@ def register():
         Journal,
         Group,
         Party,
+        Mandate,
+        CompanyConfiguration,
+        Configuration,
         module='account_payment_sepa_es', type_='model')

@@ -3,12 +3,116 @@ msgid ""
 msgstr "Content-Type: text/plain; charset=utf-8\n"
 
 msgctxt "error:account.payment.group:"
+msgid ""
+"Invalid payment date %s for payment \"%s\". Payment's date must be greather "
+"or equal than today."
+msgstr ""
+"La fecha de pago \"%s\" del pago \"%s\" es invalida. La fecha de pago debe "
+"ser superior o igual a hoy."
+
+msgctxt "error:account.payment.group:"
 msgid "No creditor identifier for party \"%s\"."
 msgstr "Se debe definir una identificación del creditor para el tercero \"%s\"."
 
 msgctxt "error:party.party:"
 msgid "Invalid creditor identifier \"%s\" for party \"%s\"."
 msgstr "Identificador del creditor \"%s\" invalido para el tercero \"%s\"."
+
+msgctxt "field:account.payment.sepa.configuration,create_date:"
+msgid "Create Date"
+msgstr "Fecha de creación"
+
+msgctxt "field:account.payment.sepa.configuration,create_uid:"
+msgid "Create User"
+msgstr "Usuario de creación"
+
+msgctxt "field:account.payment.sepa.configuration,id:"
+msgid "ID"
+msgstr "Identificador"
+
+msgctxt "field:account.payment.sepa.configuration,mandate_sequence:"
+msgid "Mandate Sequence"
+msgstr "Sequencia mandatos"
+
+msgctxt "field:account.payment.sepa.configuration,rec_name:"
+msgid "Name"
+msgstr "Nombre"
+
+msgctxt "field:account.payment.sepa.configuration,write_date:"
+msgid "Write Date"
+msgstr "Fecha modificación"
+
+msgctxt "field:account.payment.sepa.configuration,write_uid:"
+msgid "Write User"
+msgstr "Usuario modificación"
+
+msgctxt "field:account.payment.sepa.configuration.company,company:"
+msgid "Company"
+msgstr "Empresa"
+
+msgctxt "field:account.payment.sepa.configuration.company,create_date:"
+msgid "Create Date"
+msgstr "Fecha de creación"
+
+msgctxt "field:account.payment.sepa.configuration.company,create_uid:"
+msgid "Create User"
+msgstr "Usuario de creación"
+
+msgctxt "field:account.payment.sepa.configuration.company,id:"
+msgid "ID"
+msgstr "Identificador"
+
+msgctxt "field:account.payment.sepa.configuration.company,mandate_sequence:"
+msgid "Mandate Sequence"
+msgstr "Sequencia mandatos"
+
+msgctxt "field:account.payment.sepa.configuration.company,rec_name:"
+msgid "Name"
+msgstr "Nombre"
+
+msgctxt "field:account.payment.sepa.configuration.company,write_date:"
+msgid "Write Date"
+msgstr "Fecha modificación"
+
+msgctxt "field:account.payment.sepa.configuration.company,write_uid:"
+msgid "Write User"
+msgstr "Usuario modificación"
+
+msgctxt "field:party.party,sepa_creditor_identifier_used:"
+msgid "SEPA Creditot Identifier Used"
+msgstr "Indentificador de creditor utilitzado"
+
+msgctxt "model:account.payment.sepa.configuration,name:"
+msgid "Mandate Configuration"
+msgstr "Configuración de mandatos "
+
+msgctxt "model:account.payment.sepa.configuration.company,name:"
+msgid "Mandate Company Configuration"
+msgstr "Configuración de mandatos por empresa"
+
+msgctxt "model:ir.action,name:act_payment_sepa_configuration_form"
+msgid "Mandate"
+msgstr "Mandato"
+
+msgctxt "model:ir.sequence,name:sequence_mandate"
+msgid "Mandate"
+msgstr "Mandato"
+
+msgctxt "model:ir.sequence.type,name:sequence_type_mandate"
+msgid "Mandate"
+msgstr "Mandato"
+
+msgctxt "model:ir.ui.menu,name:menu_mandate_configuration"
+msgid "Configuration"
+msgstr "Configuración"
+
+msgctxt "model:ir.ui.menu,name:menu_mandate_configuration_form"
+msgid "Mandate"
+msgstr "Mandato"
+
+msgctxt "view:account.payment.sepa.configuration:"
+msgid "Mandate Configuration"
+msgstr "Configuración de mandatos "
 
 msgctxt "view:party.party:"
 msgid "Calculate"
