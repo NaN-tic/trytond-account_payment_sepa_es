@@ -7,7 +7,7 @@ from trytond.pool import Pool, PoolMeta
 from trytond.pyson import Eval
 from trytond.transaction import Transaction
 
-__all__ = ['Journal', 'Group', 'Mandate', 'Configuration',
+__all__ = ['Journal', 'Group', 'Payment', 'Mandate', 'Configuration',
     'CompanyConfiguration']
 __metaclass__ = PoolMeta
 
@@ -74,6 +74,20 @@ class Group:
                         payment.rec_name))
         with Transaction().set_context(suffix=self.journal.suffix):
             super(Group, self).process_sepa()
+
+
+class Payment:
+    __name__ = 'account.payment'
+
+    @classmethod
+    def __setup__(cls):
+        super(Payment, cls).__setup__()
+        if 'state' not in cls.sepa_mandate.depends:
+            cls.sepa_mandate.depends.append('state')
+        cls.sepa_mandate.states.update({
+                'readonly': ~Eval('state').in_(['draft', 'approved']),
+                'invisible': Eval('state').in_(['draft', 'approved']),
+                })
 
 
 class Mandate:

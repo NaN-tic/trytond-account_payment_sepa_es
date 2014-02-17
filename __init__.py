@@ -9,6 +9,7 @@ def register():
     Pool.register(
         Journal,
         Group,
+        Payment,
         Party,
         Mandate,
         CompanyConfiguration,
