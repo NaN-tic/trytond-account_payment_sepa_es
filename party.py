@@ -46,6 +46,8 @@ class Party:
     @ModelView.button
     def calculate_sepa_creditor_identifier(cls, parties):
         for party in parties:
+            if not party.vat_country or not party.vat_number:
+                continue
             number = _to_base10(party.vat_country + '00ZZZ' + party.vat_number)
             check_sum = mod_97_10.calc_check_digits(number[:-2])
             party.sepa_creditor_identifier = (party.vat_country + check_sum +
