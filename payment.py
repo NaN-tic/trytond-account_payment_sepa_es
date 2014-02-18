@@ -7,8 +7,8 @@ from trytond.pool import Pool, PoolMeta
 from trytond.pyson import Eval
 from trytond.transaction import Transaction
 
-__all__ = ['Journal', 'Group', 'Payment', 'Mandate', 'Configuration',
-    'CompanyConfiguration']
+__all__ = ['Journal', 'Group', 'Payment', 'ProcessPaymentStart', 'Mandate',
+    'Configuration', 'CompanyConfiguration']
 __metaclass__ = PoolMeta
 
 
@@ -45,6 +45,9 @@ class Group:
     @classmethod
     def __setup__(cls):
         super(Group, cls).__setup__()
+        cls.join.states.update({
+                'invisible': Eval('process_method') == 'sepa',
+                })
         cls._error_messages.update({
                 'no_creditor_identifier': ('No creditor identifier for party'
                     ' "%s".'),
@@ -88,6 +91,18 @@ class Payment:
                 'readonly': ~Eval('state').in_(['draft', 'approved']),
                 'invisible': Eval('state').in_(['draft', 'approved']),
                 })
+
+
+class ProcessPaymentStart:
+    __name__ = 'account.payment.process.start'
+
+    @classmethod
+    def __setup__(cls):
+        super(ProcessPaymentStart, cls).__setup__()
+        cls.join.states.update({
+                'invisible': Eval('process_method') == 'sepa',
+                })
+
 
 
 class Mandate:

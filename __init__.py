@@ -10,6 +10,7 @@ def register():
         Journal,
         Group,
         Payment,
+        ProcessPaymentStart,
         Party,
         Mandate,
         CompanyConfiguration,
