@@ -12,27 +12,35 @@ msgstr ""
 
 msgctxt "error:account.payment.group:"
 msgid "No creditor identifier for party \"%s\"."
-msgstr "No s'ha definit la identificació del creditor per al tercer \"%s\"."
+msgstr "No s'ha definit l'identificador del creditor per al tercer \"%s\"."
 
 msgctxt "error:party.party:"
 msgid "Invalid creditor identifier \"%s\" for party \"%s\"."
-msgstr "Identificació del creditor invàlid \"%s\" per al tercer \"%s\"."
+msgstr "L'identificador del creditor \"%s\" no és vàlid  per al tercer \"%s\"."
+
+msgctxt "field:account.payment.group,process_method:"
+msgid "Process Method"
+msgstr "Mètode de procés"
+
+msgctxt "field:account.payment.process.start,process_method:"
+msgid "Process Method"
+msgstr "Mètode de procés"
 
 msgctxt "field:account.payment.sepa.configuration,create_date:"
 msgid "Create Date"
-msgstr "Data de creació"
+msgstr "Data creació"
 
 msgctxt "field:account.payment.sepa.configuration,create_uid:"
 msgid "Create User"
-msgstr "Usuari de creació"
+msgstr "Usuari creació"
 
 msgctxt "field:account.payment.sepa.configuration,id:"
 msgid "ID"
-msgstr "Identificador"
+msgstr "ID"
 
 msgctxt "field:account.payment.sepa.configuration,mandate_sequence:"
 msgid "Mandate Sequence"
-msgstr "Seqüencia mandats"
+msgstr "Seqüència mandats"
 
 msgctxt "field:account.payment.sepa.configuration,rec_name:"
 msgid "Name"
@@ -52,19 +60,19 @@ msgstr "Empresa"
 
 msgctxt "field:account.payment.sepa.configuration.company,create_date:"
 msgid "Create Date"
-msgstr "Data de creació"
+msgstr "Data creació"
 
 msgctxt "field:account.payment.sepa.configuration.company,create_uid:"
 msgid "Create User"
-msgstr "Usuari de creació"
+msgstr "Usuari creació"
 
 msgctxt "field:account.payment.sepa.configuration.company,id:"
 msgid "ID"
-msgstr "Identificador"
+msgstr "ID"
 
 msgctxt "field:account.payment.sepa.configuration.company,mandate_sequence:"
 msgid "Mandate Sequence"
-msgstr "Seqüencia mandats"
+msgstr "Seqüència mandats"
 
 msgctxt "field:account.payment.sepa.configuration.company,rec_name:"
 msgid "Name"
@@ -77,10 +85,6 @@ msgstr "Data modificació"
 msgctxt "field:account.payment.sepa.configuration.company,write_uid:"
 msgid "Write User"
 msgstr "Usuari modificació"
-
-msgctxt "field:party.party,sepa_creditor_identifier_used:"
-msgid "SEPA Creditot Identifier Used"
-msgstr "Identificador del creditor SEPA utilitzat"
 
 msgctxt "model:account.payment.sepa.configuration,name:"
 msgid "Mandate Configuration"
