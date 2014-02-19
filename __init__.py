@@ -16,3 +16,6 @@ def register():
         CompanyConfiguration,
         Configuration,
         module='account_payment_sepa_es', type_='model')
+    Pool.register(
+        PayLine,
+        module='account_payment', type_='wizard')

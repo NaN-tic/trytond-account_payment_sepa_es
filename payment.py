@@ -7,8 +7,8 @@ from trytond.pool import Pool, PoolMeta
 from trytond.pyson import Eval
 from trytond.transaction import Transaction
 
-__all__ = ['Journal', 'Group', 'Payment', 'ProcessPaymentStart', 'Mandate',
-    'Configuration', 'CompanyConfiguration']
+__all__ = ['Journal', 'Group', 'Payment', 'ProcessPaymentStart', 'PayLine',
+    'Mandate', 'Configuration', 'CompanyConfiguration']
 __metaclass__ = PoolMeta
 
 
@@ -85,12 +85,15 @@ class Payment:
     @classmethod
     def __setup__(cls):
         super(Payment, cls).__setup__()
+        cls.sepa_mandate.domain.append(('state', '=', 'validated'))
+        cls.sepa_mandate.domain.append(
+            ('account_number', '=', Eval('bank_account'))
+            )
+        cls.sepa_mandate.states.update({
+                'readonly': Eval('state') != 'draft',
+                })
         if 'state' not in cls.sepa_mandate.depends:
             cls.sepa_mandate.depends.append('state')
-        cls.sepa_mandate.states.update({
-                'readonly': ~Eval('state').in_(['draft', 'approved']),
-                'invisible': Eval('state').in_(['draft', 'approved']),
-                })
 
 
 class ProcessPaymentStart:
@@ -103,6 +106,24 @@ class ProcessPaymentStart:
                 'invisible': Eval('process_method') == 'sepa',
                 })
 
+
+class PayLine:
+    __name__ = 'account.move.line.pay'
+
+    def get_payment(self, line):
+        payment = super(PayLine, self).get_payment(line)
+        if not line.party or not line.bank_account:
+            return payment
+        for account_number in line.bank_account.numbers:
+            if account_number.type == 'iban':
+                break
+        else:
+            return payment
+        for mandate in line.party.sepa_mandates:
+            if mandate.is_valid and mandate.account_number == account_number:
+                payment.sepa_mandate = mandate
+                break
+        return payment
 
 
 class Mandate:
