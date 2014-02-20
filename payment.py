@@ -7,8 +7,8 @@ from trytond.pool import Pool, PoolMeta
 from trytond.pyson import Eval
 from trytond.transaction import Transaction
 
-__all__ = ['Journal', 'Group', 'Payment', 'ProcessPaymentStart', 'PayLine',
-    'Mandate', 'Configuration', 'CompanyConfiguration']
+__all__ = ['Journal', 'Group', 'Payment', 'PayLine', 'Mandate',
+    'Configuration', 'CompanyConfiguration']
 __metaclass__ = PoolMeta
 
 
@@ -19,11 +19,14 @@ class Journal:
     def __setup__(cls):
         super(Journal, cls).__setup__()
         cls.party.states.update({
-                'required': ~Eval('process_method').in_(['manual', 'sepa']),
+                'required': ~Eval('process_method').in_(['manual', 'sepa_core',
+                    'sepa_b2b', 'sepa_trf', 'sepa_chk']),
                 })
         cls.bank_account.states.update({
-                'required': ~Eval('process_method').in_(['manual', 'sepa']),
-                'invisible': Eval('process_method') == 'sepa',
+                'required': ~Eval('process_method').in_(['manual', 'sepa_core',
+                    'sepa_b2b', 'sepa_trf', 'sepa_chk']),
+                'invisible': Eval('process_method').in_(['sepa_core',
+                    'sepa_b2b', 'sepa_trf', 'sepa_chk']),
                 })
 
     @staticmethod
@@ -46,7 +49,8 @@ class Group:
     def __setup__(cls):
         super(Group, cls).__setup__()
         cls.join.states.update({
-                'invisible': Eval('process_method') == 'sepa',
+                'invisible': Eval('process_method').in_(['sepa_core',
+                    'sepa_b2b', 'sepa_trf', 'sepa_chk']),
                 })
         cls._error_messages.update({
                 'no_creditor_identifier': ('No creditor identifier for party'
@@ -75,7 +79,8 @@ class Group:
             if payment.date < today:
                 self.raise_user_error('invalid_payment_date', (payment.date,
                         payment.rec_name))
-        with Transaction().set_context(suffix=self.journal.suffix):
+        with Transaction().set_context(suffix=self.journal.suffix,
+            process_method=self.journal.process_method):
             super(Group, self).process_sepa()
 
 
@@ -94,17 +99,6 @@ class Payment:
                 })
         if 'state' not in cls.sepa_mandate.depends:
             cls.sepa_mandate.depends.append('state')
-
-
-class ProcessPaymentStart:
-    __name__ = 'account.payment.process.start'
-
-    @classmethod
-    def __setup__(cls):
-        super(ProcessPaymentStart, cls).__setup__()
-        cls.join.states.update({
-                'invisible': Eval('process_method') == 'sepa',
-                })
 
 
 class PayLine:

@@ -57,6 +57,10 @@ class Party:
     def get_sepa_creditor_identifier_used(self, name):
         res = super(Party, self).get_sepa_creditor_identifier_used(name)
         suffix = Transaction().context.get('suffix', None)
+        method = Transaction().context.get('process_method', None)
         if suffix:
-            res = res[:4] + suffix + res[7:]
+            if method in ("sepa_core", "sepa_b2b"):
+                res = res[:4] + suffix + res[7:]
+            elif method in ("sepa_trf", "sepa_chk"):
+                res = res[7:] + suffix
         return res
