@@ -86,6 +86,10 @@ msgctxt "field:account.payment.sepa.configuration.company,write_uid:"
 msgid "Write User"
 msgstr "Usuario modificación"
 
+msgctxt "field:party.party,sepa_creditor_identifier_used:"
+msgid "SEPA Creditot Identifier Used"
+msgstr "Identificador creditor SEPA utilizado"
+
 msgctxt "model:account.payment.sepa.configuration,name:"
 msgid "Mandate Configuration"
 msgstr "Configuración de mandatos "
