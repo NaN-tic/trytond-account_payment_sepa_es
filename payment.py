@@ -95,15 +95,6 @@ class Payment:
         if 'state' not in cls.sepa_mandate.depends:
             cls.sepa_mandate.depends.append('state')
 
-    @property
-    def sepa_end_to_end_id(self):
-        identification = super(Payment, self).sepa_end_to_end_id
-        if self.line and self.line.origin:
-            origin = self.line.origin.rec_name
-            if not origin in identification:
-                identification = origin + ' ' + identification
-        return identification
-
 
 class ProcessPaymentStart:
     __name__ = 'account.payment.process.start'
