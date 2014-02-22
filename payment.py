@@ -92,7 +92,7 @@ class Payment:
         super(Payment, cls).__setup__()
         cls.sepa_mandate.domain.append(('state', '=', 'validated'))
         cls.sepa_mandate.domain.append(
-            ('account_number', '=', Eval('bank_account'))
+            ('account_number.account', '=', Eval('bank_account'))
             )
         cls.sepa_mandate.states.update({
                 'readonly': Eval('state') != 'draft',
