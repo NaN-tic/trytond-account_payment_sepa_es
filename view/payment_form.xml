@@ -3,8 +3,7 @@
 this repository contains the full copyright notices and license terms. -->
 <data>
     <xpath
-        expr="/form/notebook/page[@id='description']/field[@name='description']"
-        position="after">
+        expr="/form/field[@name='date']" position="after">
         <label name="sepa_mandate"/>
         <field name="sepa_mandate"/>
     </xpath>
