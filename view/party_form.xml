@@ -5,6 +5,6 @@
     <xpath
         expr="/form/notebook/page[@id='accounting']/field[@name='sepa_creditor_identifier']"
         position="after">
-        <button name="calculate_sepa_creditor_identifier" string="Calculate"/>
+        <button name="calculate_sepa_creditor_identifier" string="Calculate" colspan="2"/>
     </xpath>
 </data>
