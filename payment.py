@@ -2,6 +2,7 @@
 # This file is part of account_payment_sepa_es module for Tryton.
 # The COPYRIGHT file at the top level of this repository contains
 # the full copyright notices and license terms.
+from itertools import groupby
 from trytond.model import ModelSingleton, ModelView, ModelSQL, fields
 from trytond.pool import Pool, PoolMeta
 from trytond.pyson import Eval
@@ -48,10 +49,6 @@ class Group:
     @classmethod
     def __setup__(cls):
         super(Group, cls).__setup__()
-        cls.join.states.update({
-                'invisible': Eval('process_method').in_(['sepa_core',
-                    'sepa_b2b', 'sepa_trf', 'sepa_chk']),
-                })
         cls._error_messages.update({
                 'no_creditor_identifier': ('No creditor identifier for party'
                     ' "%s".'),
@@ -59,6 +56,40 @@ class Group:
                     ' "%s". Payment\'s date must be greather or equal than '
                     'today.'),
                 })
+
+    def __getattribute__(self, name):
+        if name == 'payments' and Transaction().context.get('join_payments'):
+            cache_name = 'payments_used_cache'
+            res = getattr(self, cache_name, None)
+            if not res:
+                res = self.get_payments_used()
+                setattr(self, cache_name, res)
+            return res
+        return super(Group, self).__getattribute__(name)
+
+    def get_payments_used(self):
+        def keyfunc(x):
+            return (x.currency, x.party, x.sepa_bank_account_number)
+
+        res = []
+        with Transaction().set_context(join_payments=False):
+            payments = sorted(self.payments, key=keyfunc)
+            for key, grouped in groupby(payments, keyfunc):
+                amount = 0
+                date = None
+                end_to_end_id = ''
+                for payment in grouped:
+                    amount += payment.amount
+                    end_to_end_id += payment.sepa_end_to_end_id + ','
+                    if not date or payment.date > date:
+                        date = payment.date
+
+                payment.amount = amount
+                payment.line = None
+                payment.description = end_to_end_id[:-1][:35]
+                payment.date = date
+                res.append(payment)
+        return res
 
     @property
     def sepa_initiating_party(self):
@@ -80,7 +111,7 @@ class Group:
                 self.raise_user_error('invalid_payment_date', (payment.date,
                         payment.rec_name))
         with Transaction().set_context(suffix=self.journal.suffix,
-            process_method=self.journal.process_method):
+                process_method=self.journal.process_method):
             super(Group, self).process_sepa()
 
 
