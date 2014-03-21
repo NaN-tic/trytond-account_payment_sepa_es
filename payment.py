@@ -125,6 +125,7 @@ class Payment:
         cls.sepa_mandate.domain.append(
             ('account_number.account', '=', Eval('bank_account'))
             )
+        cls.sepa_mandate.depends.append('bank_account')
         cls.sepa_mandate.states.update({
                 'readonly': Eval('state') != 'draft',
                 })
@@ -137,6 +138,8 @@ class PayLine:
 
     def get_payment(self, line):
         payment = super(PayLine, self).get_payment(line)
+        if not hasattr(line, 'bank_account'):
+            return payment
         if not line.party or not line.bank_account:
             return payment
         for account_number in line.bank_account.numbers:
