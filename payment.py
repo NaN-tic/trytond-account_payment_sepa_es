@@ -132,6 +132,14 @@ class Payment:
         if 'state' not in cls.sepa_mandate.depends:
             cls.sepa_mandate.depends.append('state')
 
+    @property
+    def sepa_bank_account_number(self):
+        if self.bank_account:
+            for number in self.bank_account.numbers:
+                if number.type == 'iban':
+                    return number
+        return super(Payment, self).sepa_bank_account_number()
+
 
 class PayLine:
     __name__ = 'account.move.line.pay'
