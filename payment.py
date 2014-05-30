@@ -2,6 +2,9 @@
 # This file is part of account_payment_sepa_es module for Tryton.
 # The COPYRIGHT file at the top level of this repository contains
 # the full copyright notices and license terms.
+import os
+import genshi
+import genshi.template
 from itertools import groupby
 from trytond.model import ModelSingleton, ModelView, ModelSQL, fields
 from trytond.pool import Pool, PoolMeta
@@ -41,6 +44,11 @@ class Journal:
     @staticmethod
     def default_sepa_receivable_flavor():
         return 'pain.008.001.02'
+
+
+loader = genshi.template.TemplateLoader(
+    os.path.join(os.path.dirname(__file__), 'template'),
+    auto_reload=True)
 
 
 class Group:
@@ -94,6 +102,19 @@ class Group:
     @property
     def sepa_initiating_party(self):
         return self.journal.party or self.company.party
+
+    def get_sepa_template(self):
+        '''Use a different SEPA template to group receivable payments with same
+           planned date and same sequence type in mandates'''
+        if self.kind == 'payable' or not self.planned_date:
+            return super(Group, self).get_sepa_template()
+        sequence_type = None
+        for payment in self.payments:
+            if not sequence_type:
+                sequence_type = payment.sepa_mandate.sequence_type
+            elif sequence_type != payment.sepa_mandate.sequence_type:
+                return super(Group, self).get_sepa_template()      
+        return loader.load('%s.xml' % self.journal.sepa_receivable_flavor)
 
     def process_sepa(self):
         pool = Pool()
