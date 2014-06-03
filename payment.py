@@ -159,7 +159,7 @@ class Payment:
             for number in self.bank_account.numbers:
                 if number.type == 'iban':
                     return number
-        return super(Payment, self).sepa_bank_account_number()
+        return super(Payment, self).sepa_bank_account_number
 
 
 class PayLine:
