@@ -105,15 +105,18 @@ class Group:
 
     def get_sepa_template(self):
         '''Use a different SEPA template to group receivable payments with same
-           planned date and same sequence type in mandates'''
-        if self.kind == 'payable' or not self.planned_date:
+           date and same sequence type of their mandates'''
+        if self.kind == 'payable':
             return super(Group, self).get_sepa_template()
+        date = None
         sequence_type = None
         for payment in self.payments:
-            if not sequence_type:
+            if not date:
+                date = payment.date
                 sequence_type = payment.sepa_mandate.sequence_type
-            elif sequence_type != payment.sepa_mandate.sequence_type:
-                return super(Group, self).get_sepa_template()      
+            elif (date != payment.date or
+                    sequence_type != payment.sepa_mandate.sequence_type):
+                return super(Group, self).get_sepa_template()
         return loader.load('%s.xml' % self.journal.sepa_receivable_flavor)
 
     def process_sepa(self):
