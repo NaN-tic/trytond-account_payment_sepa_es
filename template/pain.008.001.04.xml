@@ -40,7 +40,7 @@ this repository contains the full copyright notices and license terms. -->
                 <SeqTp>${group.payments[0].sepa_mandate.sequence_type}</SeqTp>
                 <!-- CtgyPurp -->
             </PmtTpInf>
-            <ReqdColltnDt>${group.planned_date.isoformat()}</ReqdColltnDt>
+            <ReqdColltnDt>${group.payments[0].date.isoformat()}</ReqdColltnDt>
             <Cdtr>
                 ${PartyIdentification(group.company.party)}
             </Cdtr>
