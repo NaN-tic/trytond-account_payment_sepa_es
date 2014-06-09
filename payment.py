@@ -29,6 +29,37 @@ class Journal:
                 'invisible': Eval('process_method').in_(['sepa_core',
                     'sepa_b2b', 'sepa_trf', 'sepa_chk']),
                 })
+        cls.sepa_bank_account_number.states.update({
+                'required': Eval('process_method').in_(['sepa_core',
+                    'sepa_b2b', 'sepa_trf', 'sepa_chk']),
+                'invisible': ~Eval('process_method').in_(['sepa_core',
+                    'sepa_b2b', 'sepa_trf', 'sepa_chk']),
+                })
+        cls.sepa_payable_flavor.states.update({
+                'required': Eval('process_method').in_(['sepa_trf',
+                    'sepa_chk']),
+                'invisible': ~Eval('process_method').in_(['sepa_trf',
+                    'sepa_chk'])
+                })
+        cls.sepa_receivable_flavor.states.update({
+                'required': Eval('process_method').in_(['sepa_core',
+                    'sepa_b2b']),
+                'invisible': ~Eval('process_method').in_(['sepa_core',
+                    'sepa_b2b'])
+                })
+
+        sepa_method = ('sepa_core', 'SEPA Core Direct Debit')
+        if sepa_method not in cls.process_method.selection:
+            cls.process_method.selection.append(sepa_method)
+        sepa_method = ('sepa_b2b', 'SEPA B2B Direct Debit')
+        if sepa_method not in cls.process_method.selection:
+            cls.process_method.selection.append(sepa_method)
+        sepa_method = ('sepa_trf', 'SEPA Credit Transfer')
+        if sepa_method not in cls.process_method.selection:
+            cls.process_method.selection.append(sepa_method)
+        sepa_method = ('sepa_chk', 'SEPA Credit Check')
+        if sepa_method not in cls.process_method.selection:
+            cls.process_method.selection.append(sepa_method)
 
     @staticmethod
     def default_suffix():
@@ -42,9 +73,26 @@ class Journal:
     def default_sepa_receivable_flavor():
         return 'pain.008.001.02'
 
+    @property
+    def sepa_method(self):
+        if self.process_method == "sepa_core":
+            return "CORE"
+        elif self.process_method == "sepa_b2b":
+            return "B2B"
+        elif self.process_method == "sepa_trf":
+            return "TRF"
+        elif self.process_method == "sepa_chk":
+            return "CHK"
+        else:
+            return ""
+
 
 class Group:
     __name__ = 'account.payment.group'
+    sepa_file = fields.Function(fields.Binary('SEPA File',
+            filename='sepa_filename', states={
+            'invisible': ~Eval('sepa_file'),
+            }), 'get_sepa_file')
 
     @classmethod
     def __setup__(cls):
@@ -66,6 +114,12 @@ class Group:
                 setattr(self, cache_name, res)
             return res
         return super(Group, self).__getattribute__(name)
+
+    def get_sepa_file(self, name):
+        if self.sepa_message:
+            return buffer(self.sepa_message.encode('utf-8'))
+        else:
+            return ""
 
     def get_payments_used(self):
         def keyfunc(x):
@@ -94,6 +148,18 @@ class Group:
     @property
     def sepa_initiating_party(self):
         return self.journal.party or self.company.party
+
+    def process_sepa_core(self):
+        self.process_sepa()
+
+    def process_sepa_b2b(self):
+        self.process_sepa()
+
+    def process_sepa_trf(self):
+        self.process_sepa()
+
+    def process_sepa_chk(self):
+        self.process_sepa()
 
     def process_sepa(self):
         pool = Pool()
@@ -131,6 +197,19 @@ class Payment:
                 })
         if 'state' not in cls.sepa_mandate.depends:
             cls.sepa_mandate.depends.append('state')
+
+    @property
+    def sepa_charge_bearer(self):
+        return 'SLEV'
+
+    @property
+    def sepa_end_to_end_id(self):
+        if self.line and self.line.origin:
+            return self.line.origin.rec_name[:35]
+        elif self.description:
+            return self.description[:35]
+        else:
+            return super(Payment, self).sepa_end_to_end_id()
 
     @property
     def sepa_bank_account_number(self):
@@ -182,6 +261,9 @@ class Mandate:
             cls.write([mandate], {
                     'identification': identification,
                     })
+
+    def get_rec_name(self, name):
+        return self.identification or unicode(self.id)
 
 
 class CompanyConfiguration(ModelSQL):
