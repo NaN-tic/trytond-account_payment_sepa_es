@@ -102,6 +102,11 @@ msgctxt "model:ir.action,name:act_payment_sepa_configuration_form"
 msgid "Mandate"
 msgstr "Mandato"
 
+msgctxt ""
+"model:ir.action.act_window.domain,name:act_move_line_form_domain_payable_mandate"
+msgid "Payable with Mandate"
+msgstr "A pagar con mandato"
+
 msgctxt "model:ir.sequence,name:sequence_mandate"
 msgid "Mandate"
 msgstr "Mandato"
