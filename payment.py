@@ -2,6 +2,9 @@
 # This file is part of account_payment_sepa_es module for Tryton.
 # The COPYRIGHT file at the top level of this repository contains
 # the full copyright notices and license terms.
+import os
+import genshi
+import genshi.template
 from itertools import groupby
 from trytond.model import ModelSingleton, ModelView, ModelSQL, fields
 from trytond.pool import Pool, PoolMeta
@@ -87,6 +90,11 @@ class Journal:
             return ""
 
 
+loader = genshi.template.TemplateLoader(
+    os.path.join(os.path.dirname(__file__), 'template'),
+    auto_reload=True)
+
+
 class Group:
     __name__ = 'account.payment.group'
     sepa_file = fields.Function(fields.Binary('SEPA File',
@@ -148,6 +156,22 @@ class Group:
     @property
     def sepa_initiating_party(self):
         return self.journal.party or self.company.party
+
+    def get_sepa_template(self):
+        '''Use a different SEPA template to group receivable payments with same
+           date and same sequence type of their mandates'''
+        if self.kind == 'payable':
+            return super(Group, self).get_sepa_template()
+        date = None
+        sequence_type = None
+        for payment in self.payments:
+            if not date:
+                date = payment.date
+                sequence_type = payment.sepa_mandate.sequence_type
+            elif (date != payment.date or
+                    sequence_type != payment.sepa_mandate.sequence_type):
+                return super(Group, self).get_sepa_template()
+        return loader.load('%s.xml' % self.journal.sepa_receivable_flavor)
 
     def process_sepa_core(self):
         self.process_sepa()
@@ -217,7 +241,7 @@ class Payment:
             for number in self.bank_account.numbers:
                 if number.type == 'iban':
                     return number
-        return super(Payment, self).sepa_bank_account_number()
+        return super(Payment, self).sepa_bank_account_number
 
 
 class PayLine:
