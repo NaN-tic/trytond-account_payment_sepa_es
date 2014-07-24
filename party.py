@@ -1,7 +1,7 @@
 #The COPYRIGHT file at the top level of this repository contains the full
 #copyright notices and license terms.
 from trytond.pool import PoolMeta
-from trytond.model import ModelView
+from trytond.model import ModelView, fields
 from trytond.pyson import Eval, Bool
 from trytond.transaction import Transaction
 from stdnum.iso7064 import mod_97_10
@@ -16,9 +16,20 @@ __all__ = ['Party']
 class Party:
     __name__ = 'party.party'
 
+    sepa_creditor_identifier_required = fields.Function(fields.Boolean(
+            'Requires SEPA creditor identifier'),
+        'get_sepa_creditor_identifier_required')
+
     @classmethod
     def __setup__(cls):
         super(Party, cls).__setup__()
+        field = cls.sepa_creditor_identifier
+        if 'sepa_creditor_identifier_required' not in field.depends:
+            field.states.update({
+                    'required': Eval('sepa_creditor_identifier_required')
+                    })
+            field.depends.append('sepa_creditor_identifier_required')
+
         cls._error_messages.update({
                 'invalid_creditor_identifier': ('Invalid creditor identifier '
                     '"%s" for party "%s".'),
@@ -28,6 +39,33 @@ class Party:
                     'invisible': Bool(Eval('sepa_creditor_identifier', False)),
                     }
                 })
+
+    def get_sepa_creditor_identifier_required(self, name):
+        if (self.customer_payment_type and
+                self.customer_payment_type.requires_sepa_creditor_identifier):
+            return True
+        if (self.supplier_payment_type and
+                self.supplier_payment_type.requires_sepa_creditor_identifier):
+            return True
+        return False
+
+    @fields.depends('customer_payment_type')
+    def on_change_customer_payment_type(self):
+        res = {}
+        val = False
+        if self.customer_payment_type:
+            val = self.customer_payment_type.requires_sepa_creditor_identifier
+        res['sepa_creditor_identifier_required'] = val
+        return res
+
+    @fields.depends('supplier_payment_type')
+    def on_change_supplier_payment_type(self):
+        res = {}
+        val = False
+        if self.supplier_payment_type:
+            val = self.supplier_payment_type.requires_sepa_creditor_identifier
+        res['sepa_creditor_identifier_required'] = val
+        return res
 
     @classmethod
     def validate(cls, parties):

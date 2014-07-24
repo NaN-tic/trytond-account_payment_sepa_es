@@ -1,1 +1,7 @@
+* Allow to define if payment requires sepa_creditor_identifier in payment type
+
+Version 3.2.0 - 2014-05-22
+* Bug fixes (see mercurial logs for details)
+
+Version 3.0.0 - 2014-04-10
 * Initial release
