@@ -18,6 +18,10 @@ msgctxt "error:party.party:"
 msgid "Invalid creditor identifier \"%s\" for party \"%s\"."
 msgstr "L'identificador del creditor \"%s\" no és vàlid  per al tercer \"%s\"."
 
+msgctxt "error:party.party:"
+msgid "Missing creditor identifier for party \"%s\"."
+msgstr "Falta l'identificador del creditor per al tercer \"%s\"."
+
 msgctxt "field:account.payment.group,process_method:"
 msgid "Process Method"
 msgstr "Mètode de procés"
@@ -91,6 +95,10 @@ msgid "Write User"
 msgstr "Usuari modificació"
 
 msgctxt "field:account.payment.type,requires_sepa_creditor_identifier:"
+msgid "Requires SEPA creditor identifier"
+msgstr "Requereix identificador del creditor SEPA"
+
+msgctxt "field:party.party,sepa_creditor_identifier_required:"
 msgid "Requires SEPA creditor identifier"
 msgstr "Requereix identificador del creditor SEPA"
 

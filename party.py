@@ -33,6 +33,8 @@ class Party:
         cls._error_messages.update({
                 'invalid_creditor_identifier': ('Invalid creditor identifier '
                     '"%s" for party "%s".'),
+                'missing_creditor_identifier': ('Missing creditor identifier '
+                    'for party "%s".'),
                 })
         cls._buttons.update({
                 'calculate_sepa_creditor_identifier': {
@@ -97,6 +99,9 @@ class Party:
         suffix = Transaction().context.get('suffix', None)
         method = Transaction().context.get('process_method', None)
         if suffix:
+            if not res:
+                self.raise_user_error('missing_creditor_identifier',
+                    (self.rec_name,))
             if method in ("sepa_core", "sepa_b2b"):
                 res = res[:4] + suffix + res[7:]
             elif method in ("sepa_trf", "sepa_chk"):
