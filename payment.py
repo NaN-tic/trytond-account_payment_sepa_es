@@ -245,7 +245,7 @@ class Payment:
         elif self.description:
             return self.description[:35]
         else:
-            return super(Payment, self).sepa_end_to_end_id()
+            return super(Payment, self).sepa_end_to_end_id
 
     @property
     def sepa_bank_account_number(self):
