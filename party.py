@@ -35,6 +35,7 @@ class Party:
                     '"%s" for party "%s".'),
                 'missing_creditor_identifier': ('Missing creditor identifier '
                     'for party "%s".'),
+                'missing_vat_number': ('Missing VAT number for party "%s".'),
                 })
         cls._buttons.update({
                 'calculate_sepa_creditor_identifier': {
@@ -98,6 +99,10 @@ class Party:
         res = super(Party, self).get_sepa_creditor_identifier_used(name)
         suffix = Transaction().context.get('suffix', None)
         method = Transaction().context.get('process_method', None)
+        if method in ("sepa_trf", "sepa_chk"):
+            if not self.vat_number:
+                self.raise_user_error('missing_vat_number', (self.rec_name,))
+            res = self.vat_number
         if suffix:
             if not res:
                 self.raise_user_error('missing_creditor_identifier',
@@ -105,5 +110,5 @@ class Party:
             if method in ("sepa_core", "sepa_b2b"):
                 res = res[:4] + suffix + res[7:]
             elif method in ("sepa_trf", "sepa_chk"):
-                res = res[7:] + suffix
+                res = res + suffix
         return res

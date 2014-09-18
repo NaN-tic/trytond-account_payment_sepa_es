@@ -189,24 +189,28 @@ class Group:
         pool = Pool()
         Date = pool.get('ir.date')
         today = Date.today()
-        if not self.company.party.sepa_creditor_identifier_used:
-            self.raise_user_error('no_creditor_identifier',
-                self.company.party.rec_name)
-        if (self.journal.party and not
-                self.journal.party.sepa_creditor_identifier_used):
-            self.raise_user_error('no_creditor_identifier',
-                self.journal.party.rec_name)
-        for payment in self.payments:
-            if (payment.party and payment.line and
-                    payment.line.payment_type.requires_sepa_creditor_identifier
-                    and not payment.party.sepa_creditor_identifier_used):
-                self.raise_user_error('no_creditor_identifier',
-                    payment.party.rec_name)
-            if payment.date < today:
-                self.raise_user_error('invalid_payment_date', (payment.date,
-                        payment.rec_name))
+        # We set context there in order to ensure that the company and the
+        # journal party are calculated correctly. As they are cached, they
+        # are not properly written in the xml file.
         with Transaction().set_context(suffix=self.journal.suffix,
                 process_method=self.journal.process_method):
+            if not self.company.party.sepa_creditor_identifier_used:
+                self.raise_user_error('no_creditor_identifier',
+                    self.company.party.rec_name)
+            if (self.journal.party and not
+                    self.journal.party.sepa_creditor_identifier_used):
+                self.raise_user_error('no_creditor_identifier',
+                    self.journal.party.rec_name)
+            for payment in self.payments:
+                line = payment.line
+                if (payment.party and line and
+                        line.payment_type.requires_sepa_creditor_identifier
+                        and not payment.party.sepa_creditor_identifier_used):
+                    self.raise_user_error('no_creditor_identifier',
+                        payment.party.rec_name)
+                if payment.date < today:
+                    self.raise_user_error('invalid_payment_date',
+                        (payment.date, payment.rec_name))
             super(Group, self).process_sepa()
 
 
