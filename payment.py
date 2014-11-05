@@ -97,10 +97,6 @@ loader = genshi.template.TemplateLoader(
 
 class Group:
     __name__ = 'account.payment.group'
-    sepa_file = fields.Function(fields.Binary('SEPA File',
-            filename='sepa_filename', states={
-            'invisible': ~Eval('sepa_file'),
-            }), 'get_sepa_file')
 
     @classmethod
     def __setup__(cls):

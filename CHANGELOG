@@ -1,3 +1,4 @@
+Version 3.4.0 - 2014-11-03
 * Allow to define if payment requires sepa_creditor_identifier in payment type
 
 Version 3.2.0 - 2014-05-22
