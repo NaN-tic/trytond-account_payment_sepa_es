@@ -273,6 +273,7 @@ class PayLine:
         for mandate in line.party.sepa_mandates:
             if mandate.is_valid and mandate.account_number == account_number:
                 payment.sepa_mandate = mandate
+                payment.sepa_mandate_sequence_type = mandate.sequence_type
                 break
         return payment
 
