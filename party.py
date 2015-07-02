@@ -89,10 +89,11 @@ class Party:
         for party in parties:
             if not party.vat_country or not party.vat_number:
                 continue
-            number = _to_base10(party.vat_country + '00ZZZ' + party.vat_number)
+            number = _to_base10(party.vat_country + '00ZZZ' +
+                party.vat_number.upper())
             check_sum = mod_97_10.calc_check_digits(number[:-2])
             party.sepa_creditor_identifier = (party.vat_country + check_sum +
-                'ZZZ' + party.vat_number)
+                'ZZZ' + party.vat_number.upper())
             party.save()
 
     def get_sepa_creditor_identifier_used(self, name):
