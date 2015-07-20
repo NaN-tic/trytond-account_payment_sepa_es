@@ -19,8 +19,16 @@ msgid "Invalid creditor identifier \"%s\" for party \"%s\"."
 msgstr "L'identificador del creditor \"%s\" no és vàlid  per al tercer \"%s\"."
 
 msgctxt "error:party.party:"
+msgid "Missing VAT number for party \"%s\"."
+msgstr ""
+
+msgctxt "error:party.party:"
 msgid "Missing creditor identifier for party \"%s\"."
 msgstr "Falta l'identificador del creditor per al tercer \"%s\"."
+
+msgctxt "field:account.move.line,sepa_scheme:"
+msgid "Scheme"
+msgstr "Esquema"
 
 msgctxt "field:account.payment.group,process_method:"
 msgid "Process Method"
@@ -138,6 +146,34 @@ msgstr "Configuració"
 msgctxt "model:ir.ui.menu,name:menu_mandate_configuration_form"
 msgid "Mandate"
 msgstr "Mandat"
+
+msgctxt "selection:account.move.line,sepa_scheme:"
+msgid ""
+msgstr " "
+
+msgctxt "selection:account.move.line,sepa_scheme:"
+msgid "Business to Business"
+msgstr "Empresa a empresa"
+
+msgctxt "selection:account.move.line,sepa_scheme:"
+msgid "Core"
+msgstr "Core"
+
+msgctxt "selection:account.payment.journal,process_method:"
+msgid "SEPA B2B Direct Debit"
+msgstr ""
+
+msgctxt "selection:account.payment.journal,process_method:"
+msgid "SEPA Core Direct Debit"
+msgstr ""
+
+msgctxt "selection:account.payment.journal,process_method:"
+msgid "SEPA Credit Check"
+msgstr ""
+
+msgctxt "selection:account.payment.journal,process_method:"
+msgid "SEPA Credit Transfer"
+msgstr ""
 
 msgctxt "view:account.payment.sepa.configuration:"
 msgid "Mandate Configuration"
