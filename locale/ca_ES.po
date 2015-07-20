@@ -20,7 +20,7 @@ msgstr "L'identificador del creditor \"%s\" no és vàlid  per al tercer \"%s\".
 
 msgctxt "error:party.party:"
 msgid "Missing VAT number for party \"%s\"."
-msgstr ""
+msgstr "Falta el CIF/NIF del tercer \"%s\"."
 
 msgctxt "error:party.party:"
 msgid "Missing creditor identifier for party \"%s\"."
@@ -106,6 +106,10 @@ msgctxt "field:account.payment.type,requires_sepa_creditor_identifier:"
 msgid "Requires SEPA creditor identifier"
 msgstr "Requereix identificador del creditor SEPA"
 
+msgctxt "field:bank.account.number,mandates:"
+msgid "Mandates"
+msgstr "Mandats"
+
 msgctxt "field:party.party,sepa_creditor_identifier_required:"
 msgid "Requires SEPA creditor identifier"
 msgstr "Requereix identificador del creditor SEPA"
@@ -161,19 +165,19 @@ msgstr "Core"
 
 msgctxt "selection:account.payment.journal,process_method:"
 msgid "SEPA B2B Direct Debit"
-msgstr ""
+msgstr "Dèbit directe SERPA B2B"
 
 msgctxt "selection:account.payment.journal,process_method:"
 msgid "SEPA Core Direct Debit"
-msgstr ""
+msgstr "Dèbit directe SERPA Core"
 
 msgctxt "selection:account.payment.journal,process_method:"
 msgid "SEPA Credit Check"
-msgstr ""
+msgstr "Xec SEPA Credit"
 
 msgctxt "selection:account.payment.journal,process_method:"
 msgid "SEPA Credit Transfer"
-msgstr ""
+msgstr "Transferencia SEPA Credit"
 
 msgctxt "view:account.payment.sepa.configuration:"
 msgid "Mandate Configuration"
