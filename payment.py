@@ -119,12 +119,6 @@ class Group:
             return res
         return super(Group, self).__getattribute__(name)
 
-    def get_sepa_file(self, name):
-        if self.sepa_message:
-            return buffer(self.sepa_message.encode('utf-8'))
-        else:
-            return ""
-
     def get_payments_used(self):
         def keyfunc(x):
             return (x.currency, x.party, x.sepa_bank_account_number)
