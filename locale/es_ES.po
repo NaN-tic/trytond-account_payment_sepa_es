@@ -165,11 +165,11 @@ msgstr "Core"
 
 msgctxt "selection:account.payment.journal,process_method:"
 msgid "SEPA B2B Direct Debit"
-msgstr "Adeudo directo SERPA B2B"
+msgstr "Adeudo directo SEPA B2B"
 
 msgctxt "selection:account.payment.journal,process_method:"
 msgid "SEPA Core Direct Debit"
-msgstr "Adeudo directo SERPA Core"
+msgstr "Adeudo directo SEPA Core"
 
 msgctxt "selection:account.payment.journal,process_method:"
 msgid "SEPA Credit Check"
