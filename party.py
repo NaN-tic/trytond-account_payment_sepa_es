@@ -54,21 +54,23 @@ class Party:
 
     @fields.depends('customer_payment_type')
     def on_change_customer_payment_type(self):
-        res = {}
-        val = False
+        try:
+            super(Party, self).on_change_customer_payment_type()
+        except AttributeError:
+            pass
+        self.sepa_creditor_identifier_required = False
         if self.customer_payment_type:
-            val = self.customer_payment_type.requires_sepa_creditor_identifier
-        res['sepa_creditor_identifier_required'] = val
-        return res
+            self.sepa_creditor_identifier_required = self.customer_payment_type.requires_sepa_creditor_identifier
 
     @fields.depends('supplier_payment_type')
     def on_change_supplier_payment_type(self):
-        res = {}
-        val = False
+        try:
+            super(Party, self).on_change_supplier_payment_type()
+        except AttributeError:
+            pass
+        self.sepa_creditor_identifier_required = False
         if self.supplier_payment_type:
-            val = self.supplier_payment_type.requires_sepa_creditor_identifier
-        res['sepa_creditor_identifier_required'] = val
-        return res
+            self.sepa_creditor_identifier_required = self.supplier_payment_type.requires_sepa_creditor_identifier
 
     @classmethod
     def validate(cls, parties):
