@@ -3,22 +3,10 @@
 copyright notices and license terms. -->
 <tryton>
     <data>
-
-        <record model="ir.action.act_window.domain"
-            id="act_move_line_form_domain_payable_mandate">
-            <field name="name">Payable with Mandate</field>
-            <field name="sequence" eval="15"/>
-            <field name="domain"
-                eval="['AND', ['OR', ('credit', '&gt;', 0), ('debit', '&lt;', 0)], ('party.sepa_mandates', '!=', None)]"
-                pyson="1"/>
-            <field name="act_window" ref="account_payment.act_move_line_form"/>
-        </record>
-
         <record model="ir.ui.view" id="move_line_view_list">
             <field name="model">account.move.line</field>
             <field name="inherit" ref="account_payment.move_line_view_list"/>
             <field name="name">move_line_list</field>
         </record>
-
     </data>
 </tryton>
