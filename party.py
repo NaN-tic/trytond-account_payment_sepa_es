@@ -101,8 +101,8 @@ class Party:
     def get_sepa_creditor_identifier_used(self, name):
         res = super(Party, self).get_sepa_creditor_identifier_used(name)
         suffix = Transaction().context.get('suffix', None)
-        method = Transaction().context.get('process_method', None)
-        if method in ("sepa_trf", "sepa_chk"):
+        kind = Transaction().context.get('kind', '')
+        if kind == 'payable':
             if not self.vat_number:
                 self.raise_user_error('missing_vat_number', (self.rec_name,))
             res = self.vat_number
@@ -110,8 +110,8 @@ class Party:
             if not res:
                 self.raise_user_error('missing_creditor_identifier',
                     (self.rec_name,))
-            if method in ("sepa_core", "sepa_b2b"):
+            if kind == 'receivable':
                 res = res[:4] + suffix + res[7:]
-            elif method in ("sepa_trf", "sepa_chk"):
+            else:
                 res = res + suffix
         return res

@@ -2,9 +2,6 @@
 # This file is part of account_payment_sepa_es module for Tryton.
 # The COPYRIGHT file at the top level of this repository contains
 # the full copyright notices and license terms.
-import os
-import genshi
-import genshi.template
 from itertools import groupby
 from trytond.model import ModelSingleton, ModelView, ModelSQL, fields
 from trytond.pool import Pool, PoolMeta
@@ -20,49 +17,19 @@ class Journal:
     __name__ = 'account.payment.journal'
 
     @classmethod
-    def __setup__(cls):
-        super(Journal, cls).__setup__()
-        cls.party.states.update({
-                'required': ~Eval('process_method').in_(['manual', 'sepa_core',
-                    'sepa_b2b', 'sepa_trf', 'sepa_chk']),
-                })
-        cls.bank_account.states.update({
-                'required': ~Eval('process_method').in_(['manual', 'sepa_core',
-                    'sepa_b2b', 'sepa_trf', 'sepa_chk']),
-                'invisible': Eval('process_method').in_(['sepa_core',
-                    'sepa_b2b', 'sepa_trf', 'sepa_chk']),
-                })
-        cls.sepa_bank_account_number.states.update({
-                'required': Eval('process_method').in_(['sepa_core',
-                    'sepa_b2b', 'sepa_trf', 'sepa_chk']),
-                'invisible': ~Eval('process_method').in_(['sepa_core',
-                    'sepa_b2b', 'sepa_trf', 'sepa_chk']),
-                })
-        cls.sepa_payable_flavor.states.update({
-                'required': Eval('process_method').in_(['sepa_trf',
-                    'sepa_chk']),
-                'invisible': ~Eval('process_method').in_(['sepa_trf',
-                    'sepa_chk'])
-                })
-        cls.sepa_receivable_flavor.states.update({
-                'required': Eval('process_method').in_(['sepa_core',
-                    'sepa_b2b']),
-                'invisible': ~Eval('process_method').in_(['sepa_core',
-                    'sepa_b2b'])
-                })
+    def __register__(cls, module_name):
+        cursor = Transaction().cursor
+        table = cls.__table__()
 
-        sepa_method = ('sepa_core', 'SEPA Core Direct Debit')
-        if sepa_method not in cls.process_method.selection:
-            cls.process_method.selection.append(sepa_method)
-        sepa_method = ('sepa_b2b', 'SEPA B2B Direct Debit')
-        if sepa_method not in cls.process_method.selection:
-            cls.process_method.selection.append(sepa_method)
-        sepa_method = ('sepa_trf', 'SEPA Credit Transfer')
-        if sepa_method not in cls.process_method.selection:
-            cls.process_method.selection.append(sepa_method)
-        sepa_method = ('sepa_chk', 'SEPA Credit Check')
-        if sepa_method not in cls.process_method.selection:
-            cls.process_method.selection.append(sepa_method)
+        super(Journal, cls).__register__(module_name)
+
+        # Migration from 3.4 Custom process methods removed
+        cursor.execute(*table.select(table.process_method,
+                where=table.process_method.like('sepa_%')))
+        if cursor.fetchone():
+            cursor.execute(*table.update(columns=[table.process_method],
+                    values=['sepa'],
+                    where=table.process_method.like('sepa_%')))
 
     @staticmethod
     def default_suffix():
@@ -75,24 +42,6 @@ class Journal:
     @staticmethod
     def default_sepa_receivable_flavor():
         return 'pain.008.001.02'
-
-    @property
-    def sepa_method(self):
-        if self.process_method == "sepa_core":
-            return "CORE"
-        elif self.process_method == "sepa_b2b":
-            return "B2B"
-        elif self.process_method == "sepa_trf":
-            return "TRF"
-        elif self.process_method == "sepa_chk":
-            return "CHK"
-        else:
-            return ""
-
-
-loader = genshi.template.TemplateLoader(
-    os.path.join(os.path.dirname(__file__), 'template'),
-    auto_reload=True)
 
 
 class Group:
@@ -147,34 +96,6 @@ class Group:
     def sepa_initiating_party(self):
         return self.journal.party or self.company.party
 
-    def get_sepa_template(self):
-        '''Use a different SEPA template to group receivable payments with same
-           date and same sequence type of their mandates'''
-        if self.kind == 'payable':
-            return super(Group, self).get_sepa_template()
-        date = None
-        sequence_type = None
-        for payment in self.payments:
-            if not date:
-                date = payment.date
-                sequence_type = payment.sepa_mandate.sequence_type
-            elif (date != payment.date or
-                    sequence_type != payment.sepa_mandate.sequence_type):
-                return super(Group, self).get_sepa_template()
-        return loader.load('%s.xml' % self.journal.sepa_receivable_flavor)
-
-    def process_sepa_core(self):
-        self.process_sepa()
-
-    def process_sepa_b2b(self):
-        self.process_sepa()
-
-    def process_sepa_trf(self):
-        self.process_sepa()
-
-    def process_sepa_chk(self):
-        self.process_sepa()
-
     def process_sepa(self):
         pool = Pool()
         Date = pool.get('ir.date')
@@ -183,7 +104,7 @@ class Group:
         # journal party are calculated correctly. As they are cached, they
         # are not properly written in the xml file.
         with Transaction().set_context(suffix=self.journal.suffix,
-                process_method=self.journal.process_method):
+                kind=self.kind):
             if not self.company.party.sepa_creditor_identifier_used:
                 self.raise_user_error('no_creditor_identifier',
                     self.company.party.rec_name)
@@ -227,10 +148,6 @@ class Payment:
                 })
         if 'state' not in cls.sepa_mandate.depends:
             cls.sepa_mandate.depends.append('state')
-
-    @property
-    def sepa_charge_bearer(self):
-        return 'SLEV'
 
     @property
     def sepa_end_to_end_id(self):
