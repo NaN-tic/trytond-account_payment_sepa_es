@@ -5,7 +5,7 @@
 from itertools import groupby
 from trytond.model import ModelSingleton, ModelView, ModelSQL, fields
 from trytond.pool import Pool, PoolMeta
-from trytond.pyson import Eval
+from trytond.pyson import Eval, If, Bool
 from trytond.transaction import Transaction
 
 __all__ = ['Journal', 'Group', 'PaymentType', 'Payment', 'PayLine', 'Mandate',
@@ -146,7 +146,9 @@ class Payment:
         super(Payment, cls).__setup__()
         cls.sepa_mandate.domain.append(('state', '=', 'validated'))
         cls.sepa_mandate.domain.append(
-            ('account_number.account', '=', Eval('bank_account'))
+            If(Bool(Eval('bank_account')),
+                ('account_number.account', '=', Eval('bank_account')),
+                ()),
             )
         cls.sepa_mandate.depends.append('bank_account')
         cls.sepa_mandate.states.update({
@@ -154,6 +156,11 @@ class Payment:
                 })
         if 'state' not in cls.sepa_mandate.depends:
             cls.sepa_mandate.depends.append('state')
+        cls._error_messages.update({
+                'canceled_mandate': ('Payment "%(payment)s" can not be '
+                    'modified because its mandate "%(mandate)s" is '
+                    'canceled.'),
+                })
 
     @property
     def sepa_end_to_end_id(self):
@@ -171,6 +178,19 @@ class Payment:
                 if number.type == 'iban':
                     return number
         return super(Payment, self).sepa_bank_account_number
+
+    @classmethod
+    def write(cls, *args):
+        actions = iter(args)
+        for payments, _ in zip(actions, actions):
+            for payment in payments:
+                if (payment.sepa_mandate and
+                        payment.sepa_mandate.state == 'canceled'):
+                    cls.raise_user_error('canceled_mandate', {
+                            'payment': payment.rec_name,
+                            'mandate': payment.sepa_mandate.rec_name,
+                            })
+        return super(Payment, cls).write(*args)
 
 
 class PayLine:
@@ -199,6 +219,22 @@ class Mandate:
     __name__ = 'account.payment.sepa.mandate'
 
     @classmethod
+    def __setup__(cls):
+        super(Mandate, cls).__setup__()
+        cls._error_messages.update({
+                'cancel_with_processing_payments': ('Mandate "%(mandate)s" can'
+                    ' not be canceled because it is linked to payment '
+                    '"%(payment)s" which is still in process.'),
+                })
+
+    def get_rec_name(self, name):
+        return self.identification or unicode(self.id)
+
+    @classmethod
+    def search_rec_name(cls, name, clause):
+        return [tuple(('identification',)) + tuple(clause[1:])]
+
+    @classmethod
     def request(cls, mandates):
         pool = Pool()
         Sequence = pool.get('ir.sequence')
@@ -216,8 +252,21 @@ class Mandate:
                     'identification': identification,
                     })
 
-    def get_rec_name(self, name):
-        return self.identification or unicode(self.id)
+    @classmethod
+    def cancel(cls, mandates):
+        pool = Pool()
+        Payment = pool.get('account.payment')
+        payments = Payment.search([
+                ('state', '=', 'processing'),
+                ('sepa_mandate', 'in', [m.id for m in mandates]),
+                ], limit=1)
+        if payments:
+            payment, = payments
+            cls.raise_user_error('cancel_with_processing_payments', {
+                    'mandate': payment.sepa_mandate.rec_name,
+                    'payment': payment.rec_name,
+                    })
+        super(Mandate, cls).cancel(mandates)
 
 
 class CompanyConfiguration(ModelSQL):
