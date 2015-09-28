@@ -163,22 +163,6 @@ msgctxt "selection:account.move.line,sepa_scheme:"
 msgid "Core"
 msgstr "Core"
 
-msgctxt "selection:account.payment.journal,process_method:"
-msgid "SEPA B2B Direct Debit"
-msgstr "Dèbit directe SEPA B2B"
-
-msgctxt "selection:account.payment.journal,process_method:"
-msgid "SEPA Core Direct Debit"
-msgstr "Dèbit directe SEPA Core"
-
-msgctxt "selection:account.payment.journal,process_method:"
-msgid "SEPA Credit Check"
-msgstr "Xec SEPA Credit"
-
-msgctxt "selection:account.payment.journal,process_method:"
-msgid "SEPA Credit Transfer"
-msgstr "Transferencia SEPA Credit"
-
 msgctxt "view:account.payment.sepa.configuration:"
 msgid "Mandate Configuration"
 msgstr "Configuració mandats "
