@@ -89,13 +89,13 @@ class Party:
     @ModelView.button
     def calculate_sepa_creditor_identifier(cls, parties):
         for party in parties:
-            if not party.vat_country or not party.vat_number:
+            if not party.vat_code:
                 continue
-            number = _to_base10(party.vat_country + '00ZZZ' +
-                party.vat_number.upper())
+            number = _to_base10(party.vat_code[:2] + '00ZZZ' +
+                party.vat_code[2:].upper())
             check_sum = mod_97_10.calc_check_digits(number[:-2])
-            party.sepa_creditor_identifier = (party.vat_country + check_sum +
-                'ZZZ' + party.vat_number.upper())
+            party.sepa_creditor_identifier = (party.vat_code[:2] + check_sum +
+                'ZZZ' + party.vat_code[2:].upper())
             party.save()
 
     def get_sepa_creditor_identifier_used(self, name):
@@ -103,9 +103,9 @@ class Party:
         suffix = Transaction().context.get('suffix', None)
         kind = Transaction().context.get('kind', '')
         if kind == 'payable':
-            if not self.vat_number:
+            if not self.vat_code:
                 self.raise_user_error('missing_vat_number', (self.rec_name,))
-            res = self.vat_number
+            res = self.vat_code[2:]
         if suffix:
             if not res:
                 self.raise_user_error('missing_creditor_identifier',
