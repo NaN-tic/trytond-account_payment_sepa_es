@@ -3,13 +3,15 @@
 # The COPYRIGHT file at the top level of this repository contains
 # the full copyright notices and license terms.
 from itertools import groupby
+from sql import Table
 from trytond.model import ModelSingleton, ModelView, ModelSQL, fields
 from trytond.pool import Pool, PoolMeta
 from trytond.pyson import Eval, If, Bool
 from trytond.transaction import Transaction
+from trytond import backend
 
 __all__ = ['Journal', 'Group', 'PaymentType', 'Payment', 'PayLine', 'Mandate',
-    'Configuration', 'CompanyConfiguration']
+    'Configuration']
 __metaclass__ = PoolMeta
 
 
@@ -263,58 +265,31 @@ class Mandate:
         super(Mandate, cls).cancel(mandates)
 
 
-class CompanyConfiguration(ModelSQL):
-    'Mandate Company Configuration'
-    __name__ = 'account.payment.sepa.configuration.company'
-
-    company = fields.Many2One('company.company', 'Company', required=True)
-    mandate_sequence = fields.Many2One('ir.sequence', 'Mandate Sequence',
-        domain=[
-            ('code', '=', 'account.payment.sepa.mandate'),
-            ('company', 'in',
-                [Eval('context', {}).get('company', -1), None]),
-            ],
-        required=True)
-
-    @staticmethod
-    def default_company():
-        return Transaction().context.get('company')
-
-
 class Configuration(ModelSingleton, ModelSQL, ModelView):
     'Mandate Configuration'
     __name__ = 'account.payment.sepa.configuration'
-
-    mandate_sequence = fields.Function(fields.Many2One('ir.sequence',
+    mandate_sequence = fields.Property(fields.Many2One('ir.sequence',
             'Mandate Sequence', domain=[
                 ('code', '=', 'account.payment.sepa.mandate'),
                 ('company', 'in',
                     [Eval('context', {}).get('company', -1), None]),
                 ],
-        required=True), 'get_configuration', setter='set_configuration')
+        required=True))
 
     @classmethod
-    def get_configuration(self, configs, names):
-        pool = Pool()
-        CompanyConfig = pool.get('account.payment.sepa.configuration.company')
-        res = dict.fromkeys(names, [configs[0].id, None])
-        company_configs = CompanyConfig.search([], limit=1)
-        if len(company_configs) == 1:
-            company_config, = company_configs
-            for field_name in set(names):
-                value = getattr(company_config, field_name, None)
-                if value:
-                    res[field_name] = {configs[0].id: value.id}
-        return res
+    def __register__(cls, module_name):
+        TableHandler = backend.get('TableHandler')
+        cursor = Transaction().cursor
 
-    @classmethod
-    def set_configuration(self, configs, name, value):
-        pool = Pool()
-        CompanyConfig = pool.get('account.payment.sepa.configuration.company')
-        company_configs = CompanyConfig.search([], limit=1)
-        if len(company_configs) == 1:
-            company_config, = company_configs
-        else:
-            company_config = CompanyConfig()
-            setattr(company_config, name, value)
-            company_config.save()
+        # Migration from 3.4: remove older configuration 
+        config_old = 'account_payment_sepa_configuration_company'
+        if TableHandler.table_exist(cursor, config_old):
+            c_old = Table(config_old)
+            cursor.execute(*c_old.select(
+                    c_old.mandate_sequence, c_old.company))
+            # TODO support multicompany
+            for mandate_sequence, company in cursor.fetchall():
+                config = cls()
+                config.mandate_sequence = mandate_sequence
+                config.save()
+            TableHandler.drop_table(cursor, None, config_old)

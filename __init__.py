@@ -14,7 +14,6 @@ def register():
         PaymentType,
         Party,
         Mandate,
-        CompanyConfiguration,
         Configuration,
         BankNumber,
         MoveLine,
