@@ -1,4 +1,4 @@
-# 
+#
 msgid ""
 msgstr "Content-Type: text/plain; charset=utf-8\n"
 
@@ -58,66 +58,6 @@ msgctxt "field:account.payment.process.start,process_method:"
 msgid "Process Method"
 msgstr "Metodo de proceso"
 
-msgctxt "field:account.payment.sepa.configuration,create_date:"
-msgid "Create Date"
-msgstr "Fecha creación"
-
-msgctxt "field:account.payment.sepa.configuration,create_uid:"
-msgid "Create User"
-msgstr "Usuario creación"
-
-msgctxt "field:account.payment.sepa.configuration,id:"
-msgid "ID"
-msgstr "ID"
-
-msgctxt "field:account.payment.sepa.configuration,mandate_sequence:"
-msgid "Mandate Sequence"
-msgstr "Secuencia mandatos"
-
-msgctxt "field:account.payment.sepa.configuration,rec_name:"
-msgid "Name"
-msgstr "Nombre"
-
-msgctxt "field:account.payment.sepa.configuration,write_date:"
-msgid "Write Date"
-msgstr "Fecha modificación"
-
-msgctxt "field:account.payment.sepa.configuration,write_uid:"
-msgid "Write User"
-msgstr "Usuario modificación"
-
-msgctxt "field:account.payment.sepa.configuration.company,company:"
-msgid "Company"
-msgstr "Empresa"
-
-msgctxt "field:account.payment.sepa.configuration.company,create_date:"
-msgid "Create Date"
-msgstr "Fecha creación"
-
-msgctxt "field:account.payment.sepa.configuration.company,create_uid:"
-msgid "Create User"
-msgstr "Usuario creación"
-
-msgctxt "field:account.payment.sepa.configuration.company,id:"
-msgid "ID"
-msgstr "ID"
-
-msgctxt "field:account.payment.sepa.configuration.company,mandate_sequence:"
-msgid "Mandate Sequence"
-msgstr "Secuencia mandatos"
-
-msgctxt "field:account.payment.sepa.configuration.company,rec_name:"
-msgid "Name"
-msgstr "Nombre"
-
-msgctxt "field:account.payment.sepa.configuration.company,write_date:"
-msgid "Write Date"
-msgstr "Fecha modificación"
-
-msgctxt "field:account.payment.sepa.configuration.company,write_uid:"
-msgid "Write User"
-msgstr "Usuario modificación"
-
 msgctxt "field:account.payment.type,requires_sepa_creditor_identifier:"
 msgid "Requires SEPA creditor identifier"
 msgstr "Requiere identificador del créditor SEPA"
@@ -134,15 +74,7 @@ msgctxt "field:party.party,sepa_creditor_identifier_used:"
 msgid "SEPA Creditot Identifier Used"
 msgstr "Identificador creditor SEPA utilizado"
 
-msgctxt "model:account.payment.sepa.configuration,name:"
-msgid "Mandate Configuration"
-msgstr "Configuración de mandatos "
-
-msgctxt "model:account.payment.sepa.configuration.company,name:"
-msgid "Mandate Company Configuration"
-msgstr "Configuración de mandatos por empresa"
-
-msgctxt "model:ir.action,name:act_payment_sepa_configuration_form"
+msgctxt "model:ir.action,name:"
 msgid "Mandate"
 msgstr "Mandato"
 
@@ -150,17 +82,13 @@ msgctxt "model:ir.sequence,name:sequence_mandate"
 msgid "Mandate"
 msgstr "Mandato"
 
-msgctxt "model:ir.sequence.type,name:sequence_type_mandate"
+msgctxt "model:ir.sequence.type,name:"
 msgid "Mandate"
 msgstr "Mandato"
 
-msgctxt "model:ir.ui.menu,name:menu_mandate_configuration"
+msgctxt "model:ir.ui.menu,name:"
 msgid "Configuration"
 msgstr "Configuración"
-
-msgctxt "model:ir.ui.menu,name:menu_mandate_configuration_form"
-msgid "Mandate"
-msgstr "Mandato"
 
 #, fuzzy
 msgctxt "selection:account.move.line,sepa_scheme:"
@@ -185,10 +113,6 @@ msgstr "Empresa a empresa"
 msgctxt "selection:account.move.line,sepa_scheme:"
 msgid "Core"
 msgstr "Core"
-
-msgctxt "view:account.payment.sepa.configuration:"
-msgid "Mandate Configuration"
-msgstr "Configuración de mandatos "
 
 msgctxt "view:party.party:"
 msgid "Calculate"
