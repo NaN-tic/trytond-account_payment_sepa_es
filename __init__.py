@@ -5,7 +5,6 @@ from .account import *
 from .payment import *
 from .party import *
 
-
 def register():
     Pool.register(
         Journal,
@@ -14,7 +13,6 @@ def register():
         PaymentType,
         Party,
         Mandate,
-        Configuration,
         BankNumber,
         MoveLine,
         module='account_payment_sepa_es', type_='model')
