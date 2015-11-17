@@ -1,7 +1,13 @@
 #:after:account_payment_sepa/account_payment_sepa:section:generar#
 
+Calcular el identificador del creditor
+======================================
+
+El sistema nos mostrará un botón en la ficha de cada *Tercero* con el que 
+podremos calcular el identificador SEPA del acreedor (o creditor). 
+
 Seleccionar el orden y la secuencia
-==================================
+===================================
 
 Podremos editar el fichero mandato desde el menu Banca / Configuración / 
 Mandato dónde accederemos a la secuencia y orden que siguen nuestros mandatos. 
