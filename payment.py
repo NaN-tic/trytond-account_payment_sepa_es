@@ -155,14 +155,13 @@ class Payment:
                     'canceled.'),
                 })
 
-    @property
-    def sepa_end_to_end_id(self):
+    def get_sepa_end_to_end_id(self, name):
         if self.line and self.line.origin:
             return self.line.origin.rec_name[:35]
         elif self.description:
             return self.description[:35]
         else:
-            return super(Payment, self).sepa_end_to_end_id
+            return super(Payment, self).get_sepa_end_to_end_id(name)
 
     @property
     def sepa_bank_account_number(self):
