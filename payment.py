@@ -154,6 +154,9 @@ class Payment:
                 'canceled_mandate': ('Payment "%(payment)s" can not be '
                     'modified because its mandate "%(mandate)s" is '
                     'canceled.'),
+                'no_mandate_for_party': ('No valid mandate for payment '
+                    '"%(payment)s" of party "%(party)s" with amount '
+                    '"%(amount)s".'),
                 })
 
     def get_sepa_end_to_end_id(self, name):
@@ -184,6 +187,18 @@ class Payment:
                             'mandate': payment.sepa_mandate.rec_name,
                             })
         return super(Payment, cls).write(*args)
+
+    @classmethod
+    def get_sepa_mandates(cls, payments):
+        mandates = super(Payment, cls).get_sepa_mandates(payments)
+        for payment, mandate in zip(payments, mandates):
+            if not mandate:
+                cls.raise_user_error('no_mandate_for_party', {
+                        'payment': payment.rec_name,
+                        'party': payment.party.rec_name,
+                        'amount': payment.amount,
+                        })
+        return mandates
 
 
 class PayLine:
