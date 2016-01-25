@@ -82,21 +82,9 @@ msgctxt "field:party.party,sepa_creditor_identifier_used:"
 msgid "SEPA Creditot Identifier Used"
 msgstr "Identificador del creditor SEPA utilitzat"
 
-msgctxt "model:ir.action,name:"
-msgid "Mandate"
-msgstr "Mandat"
-
 msgctxt "model:ir.sequence,name:sequence_mandate"
 msgid "Mandate"
 msgstr "Mandat"
-
-msgctxt "model:ir.sequence.type,name:"
-msgid "Mandate"
-msgstr "Mandat"
-
-msgctxt "model:ir.ui.menu,name:"
-msgid "Configuration"
-msgstr "Configuració"
 
 msgctxt "selection:account.move.line,sepa_scheme:"
 msgid ""
