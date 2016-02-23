@@ -14,13 +14,5 @@
             <field name="inherit" ref="account_payment.payment_view_form"/>
             <field name="name">payment_form</field>
         </record>
-
-        <record model="ir.ui.view" id="payment_type_view_form">
-            <field name="model">account.payment.type</field>
-            <field name="type">form</field>
-            <field name="inherit"
-                ref="account_payment_type.account_payment_type_view_form"/>
-            <field name="name">payment_type_form</field>
-        </record>
     </data>
 </tryton>

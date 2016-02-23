@@ -3,12 +3,11 @@
 # The COPYRIGHT file at the top level of this repository contains
 # the full copyright notices and license terms.
 from itertools import groupby
-from trytond.model import fields
 from trytond.pool import Pool, PoolMeta
 from trytond.pyson import Eval, If, Bool
 from trytond.transaction import Transaction
 
-__all__ = ['Journal', 'Group', 'PaymentType', 'Payment', 'PayLine', 'Mandate']
+__all__ = ['Journal', 'Group', 'Payment', 'PayLine', 'Mandate']
 __metaclass__ = PoolMeta
 
 
@@ -112,23 +111,10 @@ class Group:
                 self.raise_user_error('no_creditor_identifier',
                     self.journal.party.rec_name)
             for payment in self.payments:
-                line = payment.line
-                if (payment.party and line and
-                        line.payment_type.requires_sepa_creditor_identifier
-                        and not payment.party.sepa_creditor_identifier_used):
-                    self.raise_user_error('no_creditor_identifier',
-                        payment.party.rec_name)
                 if payment.date < today:
                     self.raise_user_error('invalid_payment_date',
                         (payment.date, payment.rec_name))
             super(Group, self).process_sepa()
-
-
-class PaymentType:
-    __name__ = 'account.payment.type'
-
-    requires_sepa_creditor_identifier = fields.Boolean('Requires SEPA creditor'
-        ' identifier')
 
 
 class Payment:

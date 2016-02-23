@@ -66,17 +66,9 @@ msgctxt "field:account.payment.process.start,process_method:"
 msgid "Process Method"
 msgstr "Mètode de procés"
 
-msgctxt "field:account.payment.type,requires_sepa_creditor_identifier:"
-msgid "Requires SEPA creditor identifier"
-msgstr "Requereix identificador del creditor SEPA"
-
 msgctxt "field:bank.account.number,mandates:"
 msgid "Mandates"
 msgstr "Mandats"
-
-msgctxt "field:party.party,sepa_creditor_identifier_required:"
-msgid "Requires SEPA creditor identifier"
-msgstr "Requereix identificador del creditor SEPA"
 
 msgctxt "field:party.party,sepa_creditor_identifier_used:"
 msgid "SEPA Creditot Identifier Used"
