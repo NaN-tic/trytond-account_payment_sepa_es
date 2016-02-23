@@ -8,7 +8,7 @@ from trytond.pool import Pool, PoolMeta
 from trytond.pyson import Eval, If, Bool
 from trytond.transaction import Transaction
 
-__all__ = ['Journal', 'Group', 'PaymentType', 'Payment', 'PayLine', 'Mandate',
+__all__ = ['Journal', 'Group', 'Payment', 'PayLine', 'Mandate',
     'Configuration', 'CompanyConfiguration']
 __metaclass__ = PoolMeta
 
