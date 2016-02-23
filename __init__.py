@@ -5,12 +5,12 @@ from .account import *
 from .payment import *
 from .party import *
 
+
 def register():
     Pool.register(
         Journal,
         Group,
         Payment,
-        PaymentType,
         Party,
         Mandate,
         BankNumber,
