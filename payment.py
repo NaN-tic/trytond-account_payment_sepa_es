@@ -16,7 +16,7 @@ class Journal:
 
     @classmethod
     def __register__(cls, module_name):
-        cursor = Transaction().cursor
+        cursor = Transaction().connection.cursor()
         table = cls.__table__()
 
         super(Journal, cls).__register__(module_name)
