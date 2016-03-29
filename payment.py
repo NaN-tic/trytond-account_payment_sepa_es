@@ -8,10 +8,10 @@ from trytond.pyson import Eval, If, Bool
 from trytond.transaction import Transaction
 
 __all__ = ['Journal', 'Group', 'Payment', 'PayLine', 'Mandate']
-__metaclass__ = PoolMeta
 
 
 class Journal:
+    __metaclass__ = PoolMeta
     __name__ = 'account.payment.journal'
 
     @classmethod
@@ -43,6 +43,7 @@ class Journal:
 
 
 class Group:
+    __metaclass__ = PoolMeta
     __name__ = 'account.payment.group'
 
     @classmethod
@@ -118,6 +119,7 @@ class Group:
 
 
 class Payment:
+    __metaclass__ = PoolMeta
     __name__ = 'account.payment'
 
     @classmethod
@@ -187,6 +189,7 @@ class Payment:
 
 
 class PayLine:
+    __metaclass__ = PoolMeta
     __name__ = 'account.move.line.pay'
 
     def get_payment(self, line):
@@ -209,6 +212,7 @@ class PayLine:
 
 
 class Mandate:
+    __metaclass__ = PoolMeta
     __name__ = 'account.payment.sepa.mandate'
 
     @classmethod

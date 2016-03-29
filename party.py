@@ -9,11 +9,12 @@ from stdnum.iso7064 import mod_97_10
 #See: https://github.com/arthurdejong/python-stdnum/pull/5
 from .at_02 import is_valid, _to_base10
 
-__metaclass__ = PoolMeta
+
 __all__ = ['Party']
 
 
 class Party:
+    __metaclass__ = PoolMeta
     __name__ = 'party.party'
 
     @classmethod

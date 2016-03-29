@@ -4,16 +4,17 @@ from trytond.model import fields
 from trytond.pool import PoolMeta
 
 __all__ = ['BankNumber', 'MoveLine']
-__metaclass__ = PoolMeta
 
 
 class BankNumber:
+    __metaclass__ = PoolMeta
     __name__ = 'bank.account.number'
     mandates = fields.One2Many('account.payment.sepa.mandate',
         'account_number', 'Mandates')
 
 
 class MoveLine:
+    __metaclass__ = PoolMeta
     __name__ = 'account.move.line'
 
     sepa_scheme = fields.Function(fields.Selection([
