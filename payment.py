@@ -176,6 +176,21 @@ class Payment:
         return super(Payment, cls).write(*args)
 
     @classmethod
+    def create(cls, vlist):
+        pool = Pool()
+        Mandate = pool.get('account.payment.sepa.mandate')
+
+        vlist = [v.copy() for v in vlist]
+        for values in vlist:
+            mandate = values.get('sepa_mandate', None)
+            if mandate:
+                mandate = Mandate.browse([mandate])[0]
+            if not values.get('sepa_mandate_sequence_type') and mandate:
+                values['sepa_mandate_sequence_type'] = (mandate.sequence_type
+                    or None)
+        return super(Payment, cls).create(vlist)
+
+    @classmethod
     def get_sepa_mandates(cls, payments):
         mandates = super(Payment, cls).get_sepa_mandates(payments)
         for payment, mandate in zip(payments, mandates):
