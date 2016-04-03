@@ -65,9 +65,9 @@ class Party:
         suffix = Transaction().context.get('suffix', None)
         kind = Transaction().context.get('kind', '')
         if kind == 'payable':
-            if not self.vat_number:
+            if not self.vat_code:
                 self.raise_user_error('missing_vat_number', (self.rec_name,))
-            res = self.vat_number
+            res = self.vat_code[2:]
         if suffix:
             if not res:
                 self.raise_user_error('missing_creditor_identifier',
