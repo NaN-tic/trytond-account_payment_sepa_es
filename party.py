@@ -23,10 +23,7 @@ class Party:
 
         cls._error_messages.update({
                 'invalid_creditor_identifier': ('Invalid creditor identifier '
-                    '"%s" for party "%s".'),
-                'missing_creditor_identifier': ('Missing creditor identifier '
-                    'for party "%s".'),
-                'missing_vat_number': ('Missing VAT number for party "%s".'),
+                    '"%(identifier)s" for party "%(party)s".'),
                 })
         cls._buttons.update({
                 'calculate_sepa_creditor_identifier': {
@@ -44,8 +41,10 @@ class Party:
         if not self.sepa_creditor_identifier:
             return
         if not is_valid(self.sepa_creditor_identifier):
-            self.raise_user_error('invalid_creditor_identifier',
-                (self.sepa_creditor_identifier, self.rec_name))
+            self.raise_user_error('invalid_creditor_identifier', {
+                    'identifier': self.sepa_creditor_identifier,
+                    'party': self.rec_name,
+                    })
 
     @classmethod
     @ModelView.button
@@ -64,14 +63,7 @@ class Party:
         res = super(Party, self).get_sepa_creditor_identifier_used(name)
         suffix = Transaction().context.get('suffix', None)
         kind = Transaction().context.get('kind', '')
-        if kind == 'payable':
-            if not self.vat_code:
-                self.raise_user_error('missing_vat_number', (self.rec_name,))
-            res = self.vat_code[2:]
-        if suffix:
-            if not res:
-                self.raise_user_error('missing_creditor_identifier',
-                    (self.rec_name,))
+        if res and suffix:
             if kind == 'receivable':
                 res = res[:4] + suffix + res[7:]
             else:
