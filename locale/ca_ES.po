@@ -39,16 +39,10 @@ msgstr ""
 "\"%(mandate)s\" està cancel·lat."
 
 msgctxt "error:party.party:"
-msgid "Invalid creditor identifier \"%s\" for party \"%s\"."
-msgstr "L'identificador del creditor \"%s\" no és vàlid  per al tercer \"%s\"."
-
-msgctxt "error:party.party:"
-msgid "Missing VAT number for party \"%s\"."
-msgstr "Falta el CIF/NIF del tercer \"%s\"."
-
-msgctxt "error:party.party:"
-msgid "Missing creditor identifier for party \"%s\"."
-msgstr "Falta l'identificador del creditor per al tercer \"%s\"."
+msgid "Invalid creditor identifier \"%(identifier)s\" for party \"%(party)s\"."
+msgstr ""
+"L'identificador de creditor \"%(identifier)s\" del tercer \"%(party)s\" no "
+"és correcte."
 
 msgctxt "field:account.move.line,sepa_scheme:"
 msgid "Scheme"
@@ -80,7 +74,7 @@ msgstr "Mandat"
 
 msgctxt "selection:account.move.line,sepa_scheme:"
 msgid ""
-msgstr ""
+msgstr " "
 
 msgctxt "selection:account.move.line,sepa_scheme:"
 msgid "Business to Business"
