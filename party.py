@@ -67,5 +67,5 @@ class Party:
             if kind == 'receivable':
                 res = res[:4] + suffix + res[7:]
             else:
-                res = res + suffix
+                res = res[7:] + suffix
         return res
