@@ -8,7 +8,9 @@ import ConfigParser
 
 MODULE = 'account_payment_sepa_es'
 PREFIX = 'nantic'
-MODULE2PREFIX = {}
+MODULE2PREFIX = {
+    'account_payment_es': 'trytonspain',
+    }
 
 
 def read(fname):
