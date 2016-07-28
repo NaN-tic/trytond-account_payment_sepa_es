@@ -44,10 +44,6 @@ msgstr ""
 "L'identificador de creditor \"%(identifier)s\" del tercer \"%(party)s\" no "
 "és correcte."
 
-msgctxt "field:account.move.line,sepa_scheme:"
-msgid "Scheme"
-msgstr "Esquema"
-
 msgctxt "field:account.payment.group,process_method:"
 msgid "Process Method"
 msgstr "Mètode de procés"
@@ -60,10 +56,6 @@ msgctxt "field:account.payment.process.start,process_method:"
 msgid "Process Method"
 msgstr "Mètode de procés"
 
-msgctxt "field:bank.account.number,mandates:"
-msgid "Mandates"
-msgstr "Mandats"
-
 msgctxt "field:party.party,sepa_creditor_identifier_used:"
 msgid "SEPA Creditot Identifier Used"
 msgstr "Identificador del creditor SEPA utilitzat"
@@ -71,18 +63,6 @@ msgstr "Identificador del creditor SEPA utilitzat"
 msgctxt "model:ir.sequence,name:sequence_mandate"
 msgid "Mandate"
 msgstr "Mandat"
-
-msgctxt "selection:account.move.line,sepa_scheme:"
-msgid ""
-msgstr " "
-
-msgctxt "selection:account.move.line,sepa_scheme:"
-msgid "Business to Business"
-msgstr "Empresa a empresa"
-
-msgctxt "selection:account.move.line,sepa_scheme:"
-msgid "Core"
-msgstr "Core"
 
 msgctxt "view:party.party:"
 msgid "Calculate"
