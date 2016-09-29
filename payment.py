@@ -199,8 +199,8 @@ class PayLine:
     __metaclass__ = PoolMeta
     __name__ = 'account.move.line.pay'
 
-    def get_payment(self, line):
-        payment = super(PayLine, self).get_payment(line)
+    def get_payment(self, line, journals):
+        payment = super(PayLine, self).get_payment(line, journals)
         if not hasattr(line, 'bank_account'):
             return payment
         if not line.party or not line.bank_account:
