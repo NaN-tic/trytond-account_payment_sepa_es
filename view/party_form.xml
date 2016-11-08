@@ -2,9 +2,11 @@
 <!-- The COPYRIGHT file at the top level of this repository contains the full
      copyright notices and license terms. -->
 <data>
-    <xpath
-        expr="/form/notebook/page[@id='accounting']/field[@name='sepa_creditor_identifier']"
-        position="after">
-        <button name="calculate_sepa_creditor_identifier" string="Calculate" colspan="2"/>
+    <xpath expr="/form/notebook/page[@name='identifiers']"
+            position="inside">
+        <button name="calculate_sepa_creditor_identifier"
+            string="Calculate SEPA Creditor Identifier" colspan="4"/>
+        <field name="tax_identifier" invisible="1"/>
+        <field name="sepa_creditor_identifier_used" invisible="1"/>
     </xpath>
 </data>
