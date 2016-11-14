@@ -45,7 +45,7 @@ minor_version = int(minor_version)
 name = 'trytonspain_account_payment_sepa_es'
 download_url = 'https://bitbucket.org/trytonspain/trytond-account_payment_sepa_es'
 
-requires = []
+requires = ['python-stdnum >= 1.5']
 for dep in info.get('depends', []):
     if not re.match(r'(ir|res)(\W|$)', dep):
         prefix = MODULE2PREFIX.get(dep, 'trytond')

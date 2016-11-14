@@ -4,7 +4,6 @@ from trytond.pool import PoolMeta, Pool
 from trytond.model import ModelView
 from trytond.pyson import Eval, Bool
 from trytond.transaction import Transaction
-from stdnum.iso7064 import mod_97_10
 import stdnum.eu.at_02 as sepa
 
 
@@ -35,9 +34,8 @@ class Party:
             if not party.tax_identifier:
                 continue
             vat_code = party.tax_identifier.code
-            number = (sepa._to_base10(vat_code[:2] + '00ZZZ' +
-                vat_code[2:].upper()))
-            check_sum = mod_97_10.calc_check_digits(number[:-2])
+            number = vat_code[:2] + '00ZZZ' + vat_code[2:].upper()
+            check_sum = sepa.calc_check_digits(number)
             identifier = Identifier()
             identifier.type = 'sepa'
             identifier.code = (vat_code[:2] + check_sum + 'ZZZ' +
