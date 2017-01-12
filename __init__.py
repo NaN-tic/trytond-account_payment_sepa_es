@@ -1,7 +1,9 @@
 # The COPYRIGHT file at the top level of this repository contains the full
 # copyright notices and license terms.
 from trytond.pool import Pool
-from . import account, payment, party
+from . import account
+from . import payment
+from . import party
 
 
 def register():
@@ -11,10 +13,13 @@ def register():
         payment.Payment,
         party.Party,
         payment.Mandate,
+        payment.Message,
         account.BankNumber,
         account.MoveLine,
-        payment.Message,
         module='account_payment_sepa_es', type_='model')
     Pool.register(
         payment.PayLine,
         module='account_payment', type_='wizard')
+    Pool.register(
+        payment.MandateReport,
+        module='account_payment_sepa_es', type_='report')
