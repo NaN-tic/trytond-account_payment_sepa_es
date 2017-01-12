@@ -22,5 +22,14 @@
                 ref="account_payment_type.account_payment_type_view_form"/>
             <field name="name">payment_type_form</field>
         </record>
+
+        <record model="ir.action.report" id="account_payment_sepa.report_mandate">
+            <field name="name">Mandate</field>
+            <field name="model">account.payment.sepa.mandate</field>
+            <field name="report_name">account.payment.sepa.mandate.jreport</field>
+            <field name="report">account_payment_sepa_es/mandate.jrxml</field>
+            <field name="extension">pdf</field>
+            <field name="style"></field>
+        </record>
     </data>
 </tryton>
