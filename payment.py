@@ -8,7 +8,8 @@ from trytond.pyson import Eval, If, Bool
 from trytond.transaction import Transaction
 from trytond.modules.jasper_reports.jasper import JasperReport
 
-__all__ = ['Journal', 'Group', 'Payment', 'PayLine', 'Mandate', 'MandateReport]
+__all__ = ['Journal', 'Group', 'Payment', 'PayLine', 'Mandate',
+    'MandateReport']
 
 
 class Journal:
