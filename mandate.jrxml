@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" language="i18ngroovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="30" rightMargin="30" topMargin="30" bottomMargin="30" uuid="b1f7b495-3d76-461e-ae5b-a3b834b8adfb">
 	<property name="ireport.zoom" value="1.464100000000018"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="472"/>
 	<style name="defecto" isDefault="true" forecolor="#000000" backcolor="#FFFFFF" fill="Solid" radius="0" hAlign="Left" vAlign="Middle" markup="none" pattern="" isBlankWhenNull="true" fontName="Lucida Sans" fontSize="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" isPdfEmbedded="false"/>
 	<style name="field main label" style="defecto" forecolor="#000000" backcolor="#CCFFCC" radius="0" hAlign="Left" fontName="Lucida Sans" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" isPdfEmbedded="true">
 		<pen lineWidth="1.0" lineColor="#FF0066"/>
@@ -200,7 +200,7 @@
 					<textElement textAlignment="Left">
 						<font fontName="DejaVu Sans" isPdfEmbedded="true"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$F{type} == "Recurrent"
+					<textFieldExpression><![CDATA[$F{type} == "recurrent"
 ?
     tr($V{L}, "Recurrent payment")
 :
