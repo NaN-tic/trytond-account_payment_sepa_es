@@ -29,7 +29,6 @@
             <field name="report_name">account.payment.sepa.mandate.jreport</field>
             <field name="report">account_payment_sepa_es/mandate.jrxml</field>
             <field name="extension">pdf</field>
-            <field name="style"></field>
         </record>
     </data>
 </tryton>
