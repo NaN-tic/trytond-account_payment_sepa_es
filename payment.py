@@ -7,13 +7,14 @@ from trytond.model import ModelSingleton, ModelView, ModelSQL, fields
 from trytond.pool import Pool, PoolMeta
 from trytond.pyson import Eval, If, Bool
 from trytond.transaction import Transaction
+from trytond.modules.jasper_reports.jasper import JasperReport
 
-__all__ = ['Journal', 'Group', 'Payment', 'PayLine', 'Mandate',
+__all__ = ['Journal', 'Group', 'Payment', 'PayLine', 'Mandate', 'MandateReport'
     'Configuration', 'CompanyConfiguration']
-__metaclass__ = PoolMeta
 
 
 class Journal:
+    __metaclass__ = PoolMeta
     __name__ = 'account.payment.journal'
 
     @classmethod
@@ -45,6 +46,7 @@ class Journal:
 
 
 class Group:
+    __metaclass__ = PoolMeta
     __name__ = 'account.payment.group'
 
     @classmethod
@@ -127,6 +129,7 @@ class Group:
 
 
 class Payment:
+    __metaclass__ = PoolMeta
     __name__ = 'account.payment'
 
     @classmethod
@@ -203,6 +206,7 @@ class Payment:
 
 
 class PayLine:
+    __metaclass__ = PoolMeta
     __name__ = 'account.move.line.pay'
 
     def get_payment(self, line):
@@ -225,6 +229,7 @@ class PayLine:
 
 
 class Mandate:
+    __metaclass__ = PoolMeta
     __name__ = 'account.payment.sepa.mandate'
 
     @classmethod
@@ -278,8 +283,13 @@ class Mandate:
         super(Mandate, cls).cancel(mandates)
 
 
+class MandateReport(JasperReport):
+    __name__ = 'account.payment.sepa.mandate.jreport'
+
+
 class CompanyConfiguration(ModelSQL):
     'Mandate Company Configuration'
+    __metaclass__ = PoolMeta
     __name__ = 'account.payment.sepa.configuration.company'
 
     company = fields.Many2One('company.company', 'Company', required=True)
@@ -298,6 +308,7 @@ class CompanyConfiguration(ModelSQL):
 
 class Configuration(ModelSingleton, ModelSQL, ModelView):
     'Mandate Configuration'
+    __metaclass__ = PoolMeta
     __name__ = 'account.payment.sepa.configuration'
 
     mandate_sequence = fields.Function(fields.Many2One('ir.sequence',
