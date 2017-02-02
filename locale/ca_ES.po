@@ -123,7 +123,7 @@ msgstr "Data"
 
 msgctxt "jasper:account.payment.sepa.mandate.jreport:"
 msgid "Debtor's address"
-msgstr "Direcció del deutor"
+msgstr "Adreça del deutor"
 
 msgctxt "jasper:account.payment.sepa.mandate.jreport:"
 msgid "Debtor's country"
@@ -135,7 +135,7 @@ msgstr "Nom del deutor/s"
 
 msgctxt "jasper:account.payment.sepa.mandate.jreport:"
 msgid "Debtor's signature"
-msgstr "Firma del deutor"
+msgstr "Signatura del deutor"
 
 msgctxt "jasper:account.payment.sepa.mandate.jreport:"
 msgid "IBAN"
@@ -152,8 +152,8 @@ msgstr "Referència de l'ordre de domiciliació"
 msgctxt "jasper:account.payment.sepa.mandate.jreport:"
 msgid "ONCE THIS MANDATE HAS BEEN SIGNED MUST BE SENT TO CREDITOR FOR STORAGE"
 msgstr ""
-"UN COP FIRMADA AQUESTA ORDRE DE DOMICILIACIÓ HA DE SER ENVIADA AL CREDITOR "
-"PAR A LA SEVA CUSTÒDIA."
+"UN COP SIGNADA AQUESTA ORDRE DE DOMICILIACIÓ HA DE SER ENVIADA AL CREDITOR "
+"PER A LA SEVA CUSTÒDIA."
 
 msgctxt "jasper:account.payment.sepa.mandate.jreport:"
 msgid "One-off payment"
@@ -169,11 +169,11 @@ msgstr "Pagament recurrent"
 
 msgctxt "jasper:account.payment.sepa.mandate.jreport:"
 msgid "SEPA Direct Debit Mandate"
-msgstr "Ordre de domiciliació de deute directa SEPA"
+msgstr "Ordre de domiciliació de dèbit directe SEPA"
 
 msgctxt "jasper:account.payment.sepa.mandate.jreport:"
 msgid "Swift BIC"
-msgstr "Swift BIC"
+msgstr "Código Swift BIC"
 
 msgctxt "jasper:account.payment.sepa.mandate.jreport:"
 msgid ""
@@ -192,11 +192,11 @@ msgstr ""
 
 msgctxt "jasper:account.payment.sepa.mandate.jreport:"
 msgid "To be completed by the creditor"
-msgstr "Per a ser completat pel creditor"
+msgstr "A ser completat pel creditor"
 
 msgctxt "jasper:account.payment.sepa.mandate.jreport:"
 msgid "To be completed by the debtor"
-msgstr "Per a ser completat pel deutor"
+msgstr "A ser completat pel deutor"
 
 msgctxt "jasper:account.payment.sepa.mandate.jreport:"
 msgid "Town"

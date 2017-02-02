@@ -173,7 +173,7 @@ msgstr "Orden de domiciliación de adeudo directo SEPA"
 
 msgctxt "jasper:account.payment.sepa.mandate.jreport:"
 msgid "Swift BIC"
-msgstr "Swift BIC"
+msgstr "Codi Swift BIC"
 
 msgctxt "jasper:account.payment.sepa.mandate.jreport:"
 msgid ""
