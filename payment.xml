@@ -23,6 +23,12 @@
             <field name="name">payment_type_form</field>
         </record>
 
+        <record model="ir.ui.view" id="message_view_list">
+            <field name="model">account.payment.sepa.message</field>
+            <field name="inherit" ref="account_payment_sepa.message_view_list"/>
+            <field name="name">message_list</field>
+        </record>
+
         <record model="ir.action.report" id="account_payment_sepa.report_mandate">
             <field name="name">Mandate</field>
             <field name="model">account.payment.sepa.mandate</field>

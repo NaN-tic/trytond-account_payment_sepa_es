@@ -60,6 +60,18 @@ msgctxt "field:account.payment.process.start,process_method:"
 msgid "Process Method"
 msgstr "Mètode de procés"
 
+msgctxt "field:account.payment.sepa.message,group_amount:"
+msgid "Amount"
+msgstr "Import"
+
+msgctxt "field:account.payment.sepa.message,group_planned_date:"
+msgid "Planned Date"
+msgstr "Data estimada"
+
+msgctxt "field:account.payment.sepa.message,group_reference:"
+msgid "Reference"
+msgstr "Referència"
+
 msgctxt "field:bank.account.number,mandates:"
 msgid "Mandates"
 msgstr "Mandats"

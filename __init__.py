@@ -13,6 +13,7 @@ def register():
         payment.Payment,
         party.Party,
         payment.Mandate,
+        payment.Message,
         account.BankNumber,
         account.MoveLine,
         module='account_payment_sepa_es', type_='model')
