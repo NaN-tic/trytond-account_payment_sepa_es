@@ -265,7 +265,7 @@ class MandateReport(JasperReport):
 class Message:
     __metaclass__ = PoolMeta
     __name__ = 'account.payment.sepa.message'
-    group_reference = fields.Function(fields.Char('Reference'), 'get_group_field')
+    group_number = fields.Function(fields.Char('Number'), 'get_group_field')
     group_planned_date = fields.Function(fields.Date('Planned Date'), 'get_group_field')
     group_amount = fields.Function(fields.Numeric('Amount'), 'get_group_field')
 

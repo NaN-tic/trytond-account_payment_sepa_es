@@ -58,9 +58,9 @@ msgctxt "field:account.payment.sepa.message,group_planned_date:"
 msgid "Planned Date"
 msgstr "Fecha estimada"
 
-msgctxt "field:account.payment.sepa.message,group_reference:"
-msgid "Reference"
-msgstr "Referencia"
+msgctxt "field:account.payment.sepa.message,group_number:"
+msgid "Number"
+msgstr "Número"
 
 msgctxt "field:party.party,sepa_creditor_identifier_used:"
 msgid "SEPA Creditot Identifier Used"
