@@ -3,12 +3,14 @@
 # The COPYRIGHT file at the top level of this repository contains
 # the full copyright notices and license terms.
 from itertools import groupby
+from trytond.model import fields
 from trytond.pool import Pool, PoolMeta
 from trytond.pyson import Eval, If, Bool
 from trytond.transaction import Transaction
 from trytond.modules.jasper_reports.jasper import JasperReport
 
-__all__ = ['Journal', 'Group', 'Payment', 'PayLine', 'Mandate', 'MandateReport']
+__all__ = ['Journal', 'Group', 'Payment', 'PayLine', 'Mandate', 'MandateReport',
+    'Message']
 
 
 class Journal:
@@ -258,3 +260,16 @@ class Mandate:
 
 class MandateReport(JasperReport):
     __name__ = 'account.payment.sepa.mandate.jreport'
+
+
+class Message:
+    __metaclass__ = PoolMeta
+    __name__ = 'account.payment.sepa.message'
+    group_reference = fields.Function(fields.Char('Reference'), 'get_group_field')
+    group_planned_date = fields.Function(fields.Date('Planned Date'), 'get_group_field')
+    group_amount = fields.Function(fields.Numeric('Amount'), 'get_group_field')
+
+    def get_group_field(self, name):
+        if not self.origin or self.origin.__name__ != 'account.payment.group':
+            return
+        return getattr(self.origin, name[6:])
