@@ -14,5 +14,11 @@
             <field name="inherit" ref="account_payment.payment_view_form"/>
             <field name="name">payment_form</field>
         </record>
+
+        <record model="ir.ui.view" id="message_view_list">
+            <field name="model">account.payment.sepa.message</field>
+            <field name="inherit" ref="account_payment_sepa.message_view_list"/>
+            <field name="name">message_list</field>
+        </record>
     </data>
 </tryton>
