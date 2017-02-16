@@ -62,7 +62,7 @@
 		<fieldDescription><![CDATA[scheme]]></fieldDescription>
 	</field>
 	<field name="partner_vat" class="java.lang.String">
-		<fieldDescription><![CDATA[party/vat_number]]></fieldDescription>
+		<fieldDescription><![CDATA[party/vat_code]]></fieldDescription>
 	</field>
 	<field name="partner_name" class="java.lang.String">
 		<fieldDescription><![CDATA[party/name]]></fieldDescription>
