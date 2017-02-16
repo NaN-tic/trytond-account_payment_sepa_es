@@ -6,8 +6,9 @@ from itertools import groupby
 from trytond.pool import Pool, PoolMeta
 from trytond.pyson import Eval, If, Bool
 from trytond.transaction import Transaction
+from trytond.modules.jasper_reports.jasper import JasperReport
 
-__all__ = ['Journal', 'Group', 'Payment', 'PayLine', 'Mandate']
+__all__ = ['Journal', 'Group', 'Payment', 'PayLine', 'Mandate', 'MandateReport']
 
 
 class Journal:
@@ -253,3 +254,7 @@ class Mandate:
                     'payment': payment.rec_name,
                     })
         super(Mandate, cls).cancel(mandates)
+
+
+class MandateReport(JasperReport):
+    __name__ = 'account.payment.sepa.mandate.jreport'
