@@ -68,9 +68,9 @@ msgctxt "field:account.payment.sepa.message,group_planned_date:"
 msgid "Planned Date"
 msgstr "Data estimada"
 
-msgctxt "field:account.payment.sepa.message,group_reference:"
-msgid "Reference"
-msgstr "Referència"
+msgctxt "field:account.payment.sepa.message,group_number:"
+msgid "Number"
+msgstr "Número"
 
 msgctxt "field:bank.account.number,mandates:"
 msgid "Mandates"
