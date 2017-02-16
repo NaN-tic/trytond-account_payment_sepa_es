@@ -1,0 +1,7 @@
+<data>
+    <xpath expr="/tree/field[@name='state']" position="after">
+        <field name="group_number"/>
+        <field name="group_planned_date"/>
+        <field name="group_amount"/>
+    </xpath>
+</data>
