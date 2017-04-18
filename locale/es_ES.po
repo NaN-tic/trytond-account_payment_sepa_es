@@ -55,6 +55,10 @@ msgctxt "field:account.payment.journal,active:"
 msgid "Active"
 msgstr "Activo"
 
+msgctxt "field:account.payment.journal,core58_sequence:"
+msgid "SEPA CORE 58 Sequence"
+msgstr "Secuencia SEPA CORE 58"
+
 msgctxt "field:account.payment.process.start,process_method:"
 msgid "Process Method"
 msgstr "Metodo de proceso"
@@ -273,11 +277,11 @@ msgctxt "model:account.payment.sepa.configuration.company,name:"
 msgid "Mandate Company Configuration"
 msgstr "Configuración de mandatos por empresa"
 
-msgctxt "model:ir.action,name:act_payment_sepa_configuration_form"
+msgctxt "model:ir.action,name:"
 msgid "Mandate"
 msgstr "Mandato"
 
-msgctxt "model:ir.action,name:report_mandate"
+msgctxt "model:ir.action,name:act_payment_sepa_configuration_form"
 msgid "Mandate"
 msgstr "Mandato"
 
@@ -285,6 +289,19 @@ msgctxt ""
 "model:ir.action.act_window.domain,name:act_move_line_form_domain_payable_mandate"
 msgid "Payable with Mandate"
 msgstr "A pagar con mandato"
+
+msgctxt "model:ir.sequence,name:sequence_account_payment_group_sepa_core58"
+msgid "Default Account Payment Group SEPA CORE 58"
+msgstr "Grupo de pagos SEPA CORE 58 por defecto"
+
+msgctxt "model:ir.sequence,name:sequence_mandate"
+msgid "Mandate"
+msgstr "Mandato"
+
+msgctxt ""
+"model:ir.sequence.type,name:sequence_type_account_payment_group_sepa_core58"
+msgid "Account Payment Group SEPA CORE 58"
+msgstr "Grupo de pagos SEPA CORE 58"
 
 msgctxt "model:ir.sequence.type,name:sequence_type_mandate"
 msgid "Mandate"
