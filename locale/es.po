@@ -38,6 +38,15 @@ msgstr ""
 "El pago \"%(payment)s\" no se puede modificar porqué su mandato "
 "\"%(mandate)s\" esta cancelado."
 
+msgctxt "error:party.party:"
+msgid "Invalid creditor identifier \"%(identifier)s\" for party \"%(party)s\"."
+msgstr ""
+"Identificador creditor %(identifier)s inválido para el tercero %(party)s."
+
+msgctxt "field:account.move.line,sepa_scheme:"
+msgid "Scheme"
+msgstr "Esquema"
+
 msgctxt "field:account.payment.group,process_method:"
 msgid "Process Method"
 msgstr "Metodo de proceso"
@@ -46,21 +55,77 @@ msgctxt "field:account.payment.journal,active:"
 msgid "Active"
 msgstr "Activo"
 
+msgctxt "field:account.payment.journal,core58_sequence:"
+msgid "SEPA CORE 58 Sequence"
+msgstr "Secuencia SEPA CORE 58"
+
 msgctxt "field:account.payment.process.start,process_method:"
 msgid "Process Method"
 msgstr "Metodo de proceso"
 
-msgctxt "field:account.payment.sepa.message,group_amount:"
-msgid "Amount"
-msgstr "Importe"
+msgctxt "field:account.payment.sepa.configuration,create_date:"
+msgid "Create Date"
+msgstr "Fecha creación"
 
-msgctxt "field:account.payment.sepa.message,group_planned_date:"
-msgid "Planned Date"
-msgstr "Fecha estimada"
+msgctxt "field:account.payment.sepa.configuration,create_uid:"
+msgid "Create User"
+msgstr "Usuario creación"
 
-msgctxt "field:account.payment.sepa.message,group_number:"
-msgid "Number"
-msgstr "Número"
+msgctxt "field:account.payment.sepa.configuration,id:"
+msgid "ID"
+msgstr "ID"
+
+msgctxt "field:account.payment.sepa.configuration,mandate_sequence:"
+msgid "Mandate Sequence"
+msgstr "Secuencia mandatos"
+
+msgctxt "field:account.payment.sepa.configuration,rec_name:"
+msgid "Name"
+msgstr "Nombre"
+
+msgctxt "field:account.payment.sepa.configuration,write_date:"
+msgid "Write Date"
+msgstr "Fecha modificación"
+
+msgctxt "field:account.payment.sepa.configuration,write_uid:"
+msgid "Write User"
+msgstr "Usuario modificación"
+
+msgctxt "field:account.payment.sepa.configuration.company,company:"
+msgid "Company"
+msgstr "Empresa"
+
+msgctxt "field:account.payment.sepa.configuration.company,create_date:"
+msgid "Create Date"
+msgstr "Fecha creación"
+
+msgctxt "field:account.payment.sepa.configuration.company,create_uid:"
+msgid "Create User"
+msgstr "Usuario creación"
+
+msgctxt "field:account.payment.sepa.configuration.company,id:"
+msgid "ID"
+msgstr "ID"
+
+msgctxt "field:account.payment.sepa.configuration.company,mandate_sequence:"
+msgid "Mandate Sequence"
+msgstr "Secuencia mandatos"
+
+msgctxt "field:account.payment.sepa.configuration.company,rec_name:"
+msgid "Name"
+msgstr "Nombre"
+
+msgctxt "field:account.payment.sepa.configuration.company,write_date:"
+msgid "Write Date"
+msgstr "Fecha modificación"
+
+msgctxt "field:account.payment.sepa.configuration.company,write_uid:"
+msgid "Write User"
+msgstr "Usuario modificación"
+
+msgctxt "field:bank.account.number,mandates:"
+msgid "Mandates"
+msgstr "Mandatos"
 
 msgctxt "field:party.party,sepa_creditor_identifier_used:"
 msgid "SEPA Creditot Identifier Used"
@@ -171,7 +236,7 @@ msgstr "Orden de domiciliación de adeudo directo SEPA"
 
 msgctxt "jasper:account.payment.sepa.mandate.jreport:"
 msgid "Swift BIC"
-msgstr "Código Swift BIC"
+msgstr "Swift BIC"
 
 msgctxt "jasper:account.payment.sepa.mandate.jreport:"
 msgid ""
@@ -204,10 +269,67 @@ msgctxt "jasper:account.payment.sepa.mandate.jreport:"
 msgid "Type of payment"
 msgstr "Tipo de pago"
 
-msgctxt "model:ir.sequence,name:sequence_mandate"
+msgctxt "model:account.payment.sepa.configuration,name:"
+msgid "Mandate Configuration"
+msgstr "Configuración de mandatos "
+
+msgctxt "model:account.payment.sepa.configuration.company,name:"
+msgid "Mandate Company Configuration"
+msgstr "Configuración de mandatos por empresa"
+
+msgctxt "model:ir.action,name:act_payment_sepa_configuration_form"
 msgid "Mandate"
 msgstr "Mandato"
 
+msgctxt "model:ir.action,name:report_mandate"
+msgid "Mandate"
+msgstr "Mandato"
+
+msgctxt ""
+"model:ir.action.act_window.domain,name:act_move_line_form_domain_payable_mandate"
+msgid "Payable with Mandate"
+msgstr "A pagar con mandato"
+
+msgctxt "model:ir.sequence.type,name:sequence_type_mandate"
+msgid "Mandate"
+msgstr "Mandato"
+
+msgctxt "model:ir.ui.menu,name:menu_mandate_configuration"
+msgid "Configuration"
+msgstr "Configuración"
+
+msgctxt "model:ir.ui.menu,name:menu_mandate_configuration_form"
+msgid "Mandate"
+msgstr "Mandato"
+
+#, fuzzy
+msgctxt "selection:account.move.line,sepa_scheme:"
+msgid ""
+msgstr ""
+"-        VARIADOR FRECUENCIA:\n"
+"\n"
+"Instalación de un variador de frecuencia conectado al nuevo cuadro de maniobra.  El variador de frecuencia consiste en un dispositivo electrónico que actúa sobre el motor suministrando la tensión y frecuencia necesaria adecuada para cada situación,  consiguiendo así muchas ventajas:\n"
+"\n"
+"AHORRO ENERGÉTICO: Realiza las arrancadas suaves y de forma progresiva con lo que se evitan los picos de corriente con la consiguiente  reducción en el consumo eléctrico. \n"
+"\n"
+"CONFORT: Realiza las arrancadas y paradas progresivamente ofreciendo así siempre un mayor confort durante el trayecto de uso del ascensor \n"
+"\n"
+"PRECISIÓN: Con esta tecnología  se garantiza la parada a nivel de planta con un margen de +-2mm.\n"
+"\n"
+"INTELIGENTE: El variador se adapta a la carga actual de la cabina y ofrece sólo la energía necesaria para realizar este trayecto evitando así un mayor consumo eléctrico en casos innecesarios."
+
+msgctxt "selection:account.move.line,sepa_scheme:"
+msgid "Business to Business"
+msgstr "Empresa a empresa"
+
+msgctxt "selection:account.move.line,sepa_scheme:"
+msgid "Core"
+msgstr "Core"
+
+msgctxt "view:account.payment.sepa.configuration:"
+msgid "Mandate Configuration"
+msgstr "Configuración de mandatos "
+
 msgctxt "view:party.party:"
-msgid "Calculate SEPA Creditor Identifier"
-msgstr "Calcular Identificador creditor SEPA"
+msgid "Calculate"
+msgstr "Calcular"

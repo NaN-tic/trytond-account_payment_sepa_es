@@ -17,6 +17,15 @@ class Journal:
     __metaclass__ = PoolMeta
     __name__ = 'account.payment.journal'
 
+    core58_sequence = fields.Many2One('ir.sequence', 'SEPA CORE 58 Sequence',
+        states={
+            'invisible': Eval('process_method') != 'sepa',
+            },
+        domain=[
+            ('code', '=', 'account.payment.group.sepa_core58'),
+            ],
+        depends=['process_method'])
+
     @classmethod
     def __register__(cls, module_name):
         cursor = Transaction().connection.cursor()
@@ -59,6 +68,23 @@ class Group:
                     ' "%s". Payment\'s date must be greather or equal than '
                     'today.'),
                 })
+
+    @classmethod
+    def create(cls, vlist):
+        pool = Pool()
+        Journal = pool.get('account.payment.journal')
+        Sequence = pool.get('ir.sequence')
+
+        vlist = [v.copy() for v in vlist]
+        for values in vlist:
+            if 'journal' in values:
+                journal = Journal(values.get('journla'))
+                if (journal and journal.core58_sequence and
+                        'reference' not in values):
+                    values['reference'] = Sequence.get_id(
+                        journal.core58_sequence.id)
+
+        return super(Group, cls).create(vlist)
 
     def __getattribute__(self, name):
         if name == 'payments' and Transaction().context.get('join_payments'):
