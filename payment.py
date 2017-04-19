@@ -78,7 +78,7 @@ class Group:
         vlist = [v.copy() for v in vlist]
         for values in vlist:
             if 'journal' in values:
-                journal = Journal(values.get('journla'))
+                journal = Journal(values.get('journal'))
                 if (journal and journal.core58_sequence and
                         'reference' not in values):
                     values['reference'] = Sequence.get_id(
