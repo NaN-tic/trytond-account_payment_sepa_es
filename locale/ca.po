@@ -185,7 +185,7 @@ msgstr "Data"
 
 msgctxt "jasper:account.payment.sepa.mandate.jreport:"
 msgid "Debtor's address"
-msgstr "Direcció del deutor"
+msgstr "Adreça del deutor"
 
 msgctxt "jasper:account.payment.sepa.mandate.jreport:"
 msgid "Debtor's country"
@@ -197,7 +197,7 @@ msgstr "Nom del deutor/s"
 
 msgctxt "jasper:account.payment.sepa.mandate.jreport:"
 msgid "Debtor's signature"
-msgstr "Firma del deutor"
+msgstr "Signatura del deutor"
 
 msgctxt "jasper:account.payment.sepa.mandate.jreport:"
 msgid "IBAN"
@@ -214,8 +214,8 @@ msgstr "Referència de l'ordre de domiciliació"
 msgctxt "jasper:account.payment.sepa.mandate.jreport:"
 msgid "ONCE THIS MANDATE HAS BEEN SIGNED MUST BE SENT TO CREDITOR FOR STORAGE"
 msgstr ""
-"UN COP FIRMADA AQUESTA ORDRE DE DOMICILIACIÓ HA DE SER ENVIADA AL CREDITOR "
-"PAR A LA SEVA CUSTÒDIA."
+"UN COP SIGNADA AQUESTA ORDRE DE DOMICILIACIÓ HA DE SER ENVIADA AL CREDITOR "
+"PER A LA SEVA CUSTÒDIA."
 
 msgctxt "jasper:account.payment.sepa.mandate.jreport:"
 msgid "One-off payment"
@@ -280,43 +280,6 @@ msgctxt "model:ir.action,name:act_payment_sepa_configuration_form"
 msgid "Mandate"
 msgstr "Mandat"
 
-msgctxt "model:ir.action,name:report_mandate"
-msgid "Mandate"
-msgstr "Mandat"
-
-msgctxt ""
-"model:ir.action.act_window.domain,name:act_move_line_form_domain_payable_mandate"
-msgid "Payable with Mandate"
-msgstr "A pagar amb mandat"
-
-msgctxt "model:ir.sequence.type,name:sequence_type_mandate"
-msgid "Mandate"
-msgstr "Mandat"
-
-msgctxt "model:ir.ui.menu,name:menu_mandate_configuration"
-msgid "Configuration"
-msgstr "Configuració"
-
-msgctxt "model:ir.ui.menu,name:menu_mandate_configuration_form"
-msgid "Mandate"
-msgstr "Mandat"
-
-msgctxt "selection:account.move.line,sepa_scheme:"
-msgid ""
-msgstr " "
-
-msgctxt "selection:account.move.line,sepa_scheme:"
-msgid "Business to Business"
-msgstr "Empresa a empresa"
-
-msgctxt "selection:account.move.line,sepa_scheme:"
-msgid "Core"
-msgstr "Core"
-
-msgctxt "view:account.payment.sepa.configuration:"
-msgid "Mandate Configuration"
-msgstr "Configuració mandats "
-
 msgctxt "view:party.party:"
-msgid "Calculate"
-msgstr "Calcula"
+msgid "Calculate SEPA Creditor Identifier"
+msgstr "Calcula Identificador creditor SEPA"
