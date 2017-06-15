@@ -14,6 +14,7 @@ except ImportError:
 
 MODULE2PREFIX = {
     'account_payment_es': 'trytonspain',
+    'jasper_reports': 'trytonspain',
     }
 
 
