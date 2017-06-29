@@ -76,7 +76,7 @@ setup(name=name,
     package_data={
         'trytond.modules.account_payment_sepa_es': (info.get('xml', [])
             + ['tryton.cfg', 'view/*.xml', 'locale/*.po', '*.odt',
-                'icons/*.svg', 'tests/*.rst']),
+                'icons/*.svg', 'tests/*.rst', '*.jrxml']),
         },
     classifiers=[
         'Development Status :: 5 - Production/Stable',
