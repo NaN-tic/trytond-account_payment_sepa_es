@@ -286,7 +286,7 @@ msgstr "Mandat"
 
 msgctxt ""
 "model:ir.action.act_window.domain,name:act_move_line_form_domain_payable_mandate"
-msgid "Payable with Mandate"º
+msgid "Payable with Mandate"
 msgstr "A pagar amb mandat"
 
 msgctxt "model:ir.sequence.type,name:sequence_type_mandate"
