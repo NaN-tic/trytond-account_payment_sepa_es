@@ -38,14 +38,6 @@ msgstr ""
 "El Pagament \"%(payment)s\" no es pot modificar perquè el seu mandat "
 "\"%(mandate)s\" està cancel·lat."
 
-msgctxt "error:party.party:"
-msgid "Invalid creditor identifier \"%(identifier)s\" for party \"%(party)s\"."
-msgstr "Identificador creditor %(identifier)s invàlid pel tercer %(party)s."
-
-msgctxt "field:account.move.line,sepa_scheme:"
-msgid "Scheme"
-msgstr "Esquema"
-
 msgctxt "field:account.payment.group,process_method:"
 msgid "Process Method"
 msgstr "Mètode de procés"
@@ -54,77 +46,21 @@ msgctxt "field:account.payment.journal,active:"
 msgid "Active"
 msgstr "Actiu"
 
-msgctxt "field:account.payment.journal,core58_sequence:"
-msgid "SEPA CORE 58 Sequence"
-msgstr "Seqüència SEPA CORE 58"
-
 msgctxt "field:account.payment.process.start,process_method:"
 msgid "Process Method"
 msgstr "Mètode de procés"
 
-msgctxt "field:account.payment.sepa.configuration,create_date:"
-msgid "Create Date"
-msgstr "Data creació"
+msgctxt "field:account.payment.sepa.message,group_amount:"
+msgid "Amount"
+msgstr "Import"
 
-msgctxt "field:account.payment.sepa.configuration,create_uid:"
-msgid "Create User"
-msgstr "Usuari creació"
+msgctxt "field:account.payment.sepa.message,group_number:"
+msgid "Number"
+msgstr "Número"
 
-msgctxt "field:account.payment.sepa.configuration,id:"
-msgid "ID"
-msgstr "ID"
-
-msgctxt "field:account.payment.sepa.configuration,mandate_sequence:"
-msgid "Mandate Sequence"
-msgstr "Seqüència mandats"
-
-msgctxt "field:account.payment.sepa.configuration,rec_name:"
-msgid "Name"
-msgstr "Nom"
-
-msgctxt "field:account.payment.sepa.configuration,write_date:"
-msgid "Write Date"
-msgstr "Data modificació"
-
-msgctxt "field:account.payment.sepa.configuration,write_uid:"
-msgid "Write User"
-msgstr "Usuari modificació"
-
-msgctxt "field:account.payment.sepa.configuration.company,company:"
-msgid "Company"
-msgstr "Empresa"
-
-msgctxt "field:account.payment.sepa.configuration.company,create_date:"
-msgid "Create Date"
-msgstr "Data creació"
-
-msgctxt "field:account.payment.sepa.configuration.company,create_uid:"
-msgid "Create User"
-msgstr "Usuari creació"
-
-msgctxt "field:account.payment.sepa.configuration.company,id:"
-msgid "ID"
-msgstr "ID"
-
-msgctxt "field:account.payment.sepa.configuration.company,mandate_sequence:"
-msgid "Mandate Sequence"
-msgstr "Seqüència mandats"
-
-msgctxt "field:account.payment.sepa.configuration.company,rec_name:"
-msgid "Name"
-msgstr "Nom"
-
-msgctxt "field:account.payment.sepa.configuration.company,write_date:"
-msgid "Write Date"
-msgstr "Data modificació"
-
-msgctxt "field:account.payment.sepa.configuration.company,write_uid:"
-msgid "Write User"
-msgstr "Usuari modificació"
-
-msgctxt "field:bank.account.number,mandates:"
-msgid "Mandates"
-msgstr "Mandats"
+msgctxt "field:account.payment.sepa.message,group_planned_date:"
+msgid "Planned Date"
+msgstr "Data de planificació"
 
 msgctxt "field:party.party,sepa_creditor_identifier_used:"
 msgid "SEPA Creditot Identifier Used"
@@ -268,15 +204,7 @@ msgctxt "jasper:account.payment.sepa.mandate.jreport:"
 msgid "Type of payment"
 msgstr "Tipus de pagament"
 
-msgctxt "model:account.payment.sepa.configuration,name:"
-msgid "Mandate Configuration"
-msgstr "Configuració mandats "
-
-msgctxt "model:account.payment.sepa.configuration.company,name:"
-msgid "Mandate Company Configuration"
-msgstr "Configuració mandats per empresa"
-
-msgctxt "model:ir.action,name:act_payment_sepa_configuration_form"
+msgctxt "model:ir.sequence,name:sequence_mandate"
 msgid "Mandate"
 msgstr "Mandat"
 
