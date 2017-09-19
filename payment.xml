@@ -4,8 +4,8 @@
 <tryton>
     <data>
         <record model="ir.sequence" id="sequence_mandate">
-                <field name="name">Mandate</field>
-                <field name="code">account.payment.sepa.mandate</field>
+            <field name="name">Mandate</field>
+            <field name="code">account.payment.sepa.mandate</field>
         </record>
 
         <record model="ir.ui.view" id="payment_view_form">
