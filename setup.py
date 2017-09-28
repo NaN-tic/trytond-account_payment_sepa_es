@@ -14,7 +14,8 @@ except ImportError:
 
 MODULE2PREFIX = {
     'account_payment_es': 'trytonspain',
-    }
+    'jasper_reports': 'trytonspain',
+}
 
 
 def read(fname):
@@ -45,7 +46,7 @@ minor_version = int(minor_version)
 name = 'trytonspain_account_payment_sepa_es'
 download_url = 'https://bitbucket.org/trytonspain/trytond-account_payment_sepa_es'
 
-requires = ['python-stdnum >= 1.5']
+requires = []
 for dep in info.get('depends', []):
     if not re.match(r'(ir|res)(\W|$)', dep):
         prefix = MODULE2PREFIX.get(dep, 'trytond')
@@ -75,7 +76,7 @@ setup(name=name,
     package_data={
         'trytond.modules.account_payment_sepa_es': (info.get('xml', [])
             + ['tryton.cfg', 'view/*.xml', 'locale/*.po', '*.odt',
-                'icons/*.svg', 'tests/*.rst', '*.jrxml']),
+                'icons/*.svg', 'tests/*.rst']),
         },
     classifiers=[
         'Development Status :: 5 - Production/Stable',
