@@ -14,7 +14,8 @@ except ImportError:
 
 MODULE2PREFIX = {
     'account_payment_es': 'trytonspain',
-    }
+    'jasper_reports': 'trytonspain',
+}
 
 
 def read(fname):
@@ -28,9 +29,10 @@ def get_require_version(name):
         require = '%s >= %s.%s.dev0, < %s.%s'
     else:
         require = '%s >= %s.%s, < %s.%s'
-    require %= (name, major_version, minor_version,
-        major_version, minor_version + 1)
+    require %= (
+        name, major_version, minor_version, major_version, minor_version + 1)
     return require
+
 
 config = ConfigParser()
 config.readfp(open('tryton.cfg'))
@@ -58,7 +60,8 @@ if minor_version % 2:
     # Add development index for testing with proteus
     dependency_links.append('https://trydevpi.tryton.org/')
 
-setup(name=name,
+setup(
+    name=name,
     version=version,
     description='Tryton Account Payment Sepa Es Module',
     long_description=read('README'),
@@ -71,12 +74,12 @@ setup(name=name,
     packages=[
         'trytond.modules.account_payment_sepa_es',
         'trytond.modules.account_payment_sepa_es.tests',
-        ],
+    ],
     package_data={
-        'trytond.modules.account_payment_sepa_es': (info.get('xml', [])
-            + ['tryton.cfg', 'view/*.xml', 'locale/*.po', '*.odt',
-                'icons/*.svg', 'tests/*.rst']),
-        },
+        'trytond.modules.account_payment_sepa_es': (info.get('xml', []) + [
+            'tryton.cfg', 'view/*.xml', 'locale/*.po', '*.odt',
+            'icons/*.svg', 'tests/*.rst']),
+    },
     classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Environment :: Plugins',
@@ -106,7 +109,7 @@ setup(name=name,
         'Programming Language :: Python :: Implementation :: CPython',
         'Programming Language :: Python :: Implementation :: PyPy',
         'Topic :: Office/Business',
-        ],
+    ],
     license='GPL-3',
     install_requires=requires,
     dependency_links=dependency_links,
@@ -119,4 +122,4 @@ setup(name=name,
     test_loader='trytond.test_loader:Loader',
     tests_require=tests_require,
     use_2to3=True,
-    )
+)
