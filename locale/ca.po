@@ -1,4 +1,4 @@
-#
+selection:account.move.line,sepa_scheme#
 msgid ""
 msgstr "Content-Type: text/plain; charset=utf-8\n"
 
@@ -243,7 +243,7 @@ msgstr "Mandat"
 
 msgctxt "selection:account.move.line,sepa_scheme:"
 msgid ""
-msgstr " "
+msgstr ""
 
 msgctxt "selection:account.move.line,sepa_scheme:"
 msgid "Business to Business"
