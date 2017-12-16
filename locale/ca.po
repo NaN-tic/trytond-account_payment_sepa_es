@@ -1,4 +1,4 @@
-selection:account.move.line,sepa_scheme#
+#
 msgid ""
 msgstr "Content-Type: text/plain; charset=utf-8\n"
 
@@ -220,6 +220,10 @@ msgctxt "model:account.payment.sepa.configuration.company,name:"
 msgid "Mandate Company Configuration"
 msgstr "Configuració mandats per empresa"
 
+msgctxt "model:ir.action,name:act_payment_sepa_configuration_form"
+msgid "Mandate"
+msgstr "Mandat"
+
 msgctxt "model:ir.action,name:report_mandate"
 msgid "Mandate"
 msgstr "Mandat"
@@ -255,7 +259,7 @@ msgstr "Core"
 
 msgctxt "view:account.payment.sepa.configuration:"
 msgid "Mandate Configuration"
-msgstr "Configuració mandats "
+msgstr "Configuració mandats"
 
 msgctxt "view:party.party:"
 msgid "Calculate"
