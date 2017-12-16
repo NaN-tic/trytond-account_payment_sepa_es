@@ -277,6 +277,10 @@ msgctxt "model:account.payment.sepa.configuration.company,name:"
 msgid "Mandate Company Configuration"
 msgstr "Configuración de mandatos por empresa"
 
+msgctxt "model:ir.action,name:act_payment_sepa_configuration_form"
+msgid "Mandate"
+msgstr "Mandato"
+
 msgctxt "model:ir.action,name:report_mandate"
 msgid "Mandate"
 msgstr "Mandato"
@@ -312,7 +316,7 @@ msgstr "Core"
 
 msgctxt "view:account.payment.sepa.configuration:"
 msgid "Mandate Configuration"
-msgstr "Configuración de mandatos "
+msgstr "Configuración de mandatos"
 
 msgctxt "view:party.party:"
 msgid "Calculate"
