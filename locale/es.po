@@ -38,15 +38,6 @@ msgstr ""
 "El pago \"%(payment)s\" no se puede modificar porqué su mandato "
 "\"%(mandate)s\" esta cancelado."
 
-msgctxt "error:party.party:"
-msgid "Invalid creditor identifier \"%(identifier)s\" for party \"%(party)s\"."
-msgstr ""
-"Identificador creditor %(identifier)s inválido para el tercero %(party)s."
-
-msgctxt "field:account.move.line,sepa_scheme:"
-msgid "Scheme"
-msgstr "Esquema"
-
 msgctxt "field:account.payment.group,process_method:"
 msgid "Process Method"
 msgstr "Metodo de proceso"
@@ -63,69 +54,17 @@ msgctxt "field:account.payment.process.start,process_method:"
 msgid "Process Method"
 msgstr "Metodo de proceso"
 
-msgctxt "field:account.payment.sepa.configuration,create_date:"
-msgid "Create Date"
-msgstr "Fecha creación"
+msgctxt "field:account.payment.sepa.message,group_amount:"
+msgid "Amount"
+msgstr "Importe"
 
-msgctxt "field:account.payment.sepa.configuration,create_uid:"
-msgid "Create User"
-msgstr "Usuario creación"
+msgctxt "field:account.payment.sepa.message,group_number:"
+msgid "Number"
+msgstr "Número"
 
-msgctxt "field:account.payment.sepa.configuration,id:"
-msgid "ID"
-msgstr "ID"
-
-msgctxt "field:account.payment.sepa.configuration,mandate_sequence:"
-msgid "Mandate Sequence"
-msgstr "Secuencia mandatos"
-
-msgctxt "field:account.payment.sepa.configuration,rec_name:"
-msgid "Name"
-msgstr "Nombre"
-
-msgctxt "field:account.payment.sepa.configuration,write_date:"
-msgid "Write Date"
-msgstr "Fecha modificación"
-
-msgctxt "field:account.payment.sepa.configuration,write_uid:"
-msgid "Write User"
-msgstr "Usuario modificación"
-
-msgctxt "field:account.payment.sepa.configuration.company,company:"
-msgid "Company"
-msgstr "Empresa"
-
-msgctxt "field:account.payment.sepa.configuration.company,create_date:"
-msgid "Create Date"
-msgstr "Fecha creación"
-
-msgctxt "field:account.payment.sepa.configuration.company,create_uid:"
-msgid "Create User"
-msgstr "Usuario creación"
-
-msgctxt "field:account.payment.sepa.configuration.company,id:"
-msgid "ID"
-msgstr "ID"
-
-msgctxt "field:account.payment.sepa.configuration.company,mandate_sequence:"
-msgid "Mandate Sequence"
-msgstr "Secuencia mandatos"
-
-msgctxt "field:account.payment.sepa.configuration.company,rec_name:"
-msgid "Name"
-msgstr "Nombre"
-
-msgctxt "field:account.payment.sepa.configuration.company,write_date:"
-msgid "Write Date"
-msgstr "Fecha modificación"
-
-msgctxt "field:account.payment.sepa.configuration.company,write_uid:"
-msgid "Write User"
-msgstr "Usuario modificación"
-
-msgctxt "field:bank.account.number,mandates:"
-msgid "Mandates"
-msgstr "Mandatos"
+msgctxt "field:account.payment.sepa.message,group_planned_date:"
+msgid "Planned Date"
+msgstr "Fecha estimada"
 
 msgctxt "field:party.party,sepa_creditor_identifier_used:"
 msgid "SEPA Creditot Identifier Used"
@@ -269,55 +208,35 @@ msgctxt "jasper:account.payment.sepa.mandate.jreport:"
 msgid "Type of payment"
 msgstr "Tipo de pago"
 
-msgctxt "model:account.payment.sepa.configuration,name:"
-msgid "Mandate Configuration"
-msgstr "Configuración de mandatos "
-
-msgctxt "model:account.payment.sepa.configuration.company,name:"
-msgid "Mandate Company Configuration"
-msgstr "Configuración de mandatos por empresa"
-
-msgctxt "model:ir.action,name:act_payment_sepa_configuration_form"
+msgctxt "model:ir.action,name:"
 msgid "Mandate"
 msgstr "Mandato"
 
-msgctxt "model:ir.action,name:report_mandate"
+msgctxt "model:ir.action.act_window.domain,name:"
+msgid "Payable with Mandate"
+msgstr "A pagar con mandato"
+
+msgctxt "model:ir.sequence,name:sequence_account_payment_group_sepa_core58"
+msgid "Default Account Payment Group SEPA CORE 58"
+msgstr "Grupo de pagos SEPA CORE 58 por defecto"
+
+msgctxt "model:ir.sequence,name:sequence_mandate"
+msgid "Mandate"
+msgstr "Mandato"
+
+msgctxt "model:ir.sequence.type,name:"
 msgid "Mandate"
 msgstr "Mandato"
 
 msgctxt ""
-"model:ir.action.act_window.domain,name:act_move_line_form_domain_payable_mandate"
-msgid "Payable with Mandate"
-msgstr "A pagar con mandato"
+"model:ir.sequence.type,name:sequence_type_account_payment_group_sepa_core58"
+msgid "Account Payment Group SEPA CORE 58"
+msgstr "Grupo de pagos SEPA CORE 58"
 
-msgctxt "model:ir.sequence.type,name:sequence_type_mandate"
-msgid "Mandate"
-msgstr "Mandato"
-
-msgctxt "model:ir.ui.menu,name:menu_mandate_configuration"
+msgctxt "model:ir.ui.menu,name:"
 msgid "Configuration"
 msgstr "Configuración"
 
-msgctxt "model:ir.ui.menu,name:menu_mandate_configuration_form"
-msgid "Mandate"
-msgstr "Mandato"
-
-msgctxt "selection:account.move.line,sepa_scheme:"
-msgid ""
-msgstr ""
-
-msgctxt "selection:account.move.line,sepa_scheme:"
-msgid "Business to Business"
-msgstr "Empresa a empresa"
-
-msgctxt "selection:account.move.line,sepa_scheme:"
-msgid "Core"
-msgstr "Core"
-
-msgctxt "view:account.payment.sepa.configuration:"
-msgid "Mandate Configuration"
-msgstr "Configuración de mandatos"
-
 msgctxt "view:party.party:"
-msgid "Calculate"
-msgstr "Calcular"
+msgid "Calculate SEPA Creditor Identifier"
+msgstr "Calcular identificador SEPA creditor"
