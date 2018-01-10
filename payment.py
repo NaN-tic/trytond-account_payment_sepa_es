@@ -1,4 +1,4 @@
-## coding: utf-8
+# coding: utf-8
 # This file is part of account_payment_sepa_es module for Tryton.
 # The COPYRIGHT file at the top level of this repository contains
 # the full copyright notices and license terms.
@@ -9,8 +9,8 @@ from trytond.pyson import Eval, If, Bool
 from trytond.transaction import Transaction
 from trytond.modules.jasper_reports.jasper import JasperReport
 
-__all__ = ['Journal', 'Group', 'Payment', 'PayLine', 'Mandate', 'MandateReport',
-    'Message']
+__all__ = ['Journal', 'Group', 'Payment', 'PayLine', 'Mandate',
+    'MandateReport', 'Message']
 
 
 class Journal:
@@ -292,7 +292,8 @@ class Message:
     __metaclass__ = PoolMeta
     __name__ = 'account.payment.sepa.message'
     group_number = fields.Function(fields.Char('Number'), 'get_group_field')
-    group_planned_date = fields.Function(fields.Date('Planned Date'), 'get_group_field')
+    group_planned_date = fields.Function(
+        fields.Date('Planned Date'), 'get_group_field')
     group_amount = fields.Function(fields.Numeric('Amount'), 'get_group_field')
 
     def get_group_field(self, name):
