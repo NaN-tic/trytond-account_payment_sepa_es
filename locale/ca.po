@@ -1,4 +1,4 @@
-selection:account.move.line,sepa_scheme#
+#
 msgid ""
 msgstr "Content-Type: text/plain; charset=utf-8\n"
 
@@ -38,14 +38,6 @@ msgstr ""
 "El Pagament \"%(payment)s\" no es pot modificar perquè el seu mandat "
 "\"%(mandate)s\" està cancel·lat."
 
-msgctxt "error:party.party:"
-msgid "Invalid creditor identifier \"%(identifier)s\" for party \"%(party)s\"."
-msgstr "Identificador creditor %(identifier)s invàlid pel tercer %(party)s."
-
-msgctxt "field:account.move.line,sepa_scheme:"
-msgid "Scheme"
-msgstr "Esquema"
-
 msgctxt "field:account.payment.group,process_method:"
 msgid "Process Method"
 msgstr "Mètode de procés"
@@ -69,6 +61,10 @@ msgstr "Import"
 msgctxt "field:account.payment.sepa.message,group_number:"
 msgid "Number"
 msgstr "Número"
+
+msgctxt "field:account.payment.sepa.message,group_planned_date:"
+msgid "Planned Date"
+msgstr "Data estimada"
 
 msgctxt "field:party.party,sepa_creditor_identifier_used:"
 msgid "SEPA Creditot Identifier Used"
@@ -212,51 +208,35 @@ msgctxt "jasper:account.payment.sepa.mandate.jreport:"
 msgid "Type of payment"
 msgstr "Tipus de pagament"
 
-msgctxt "model:account.payment.sepa.configuration,name:"
-msgid "Mandate Configuration"
-msgstr "Configuració mandats "
+msgctxt "model:ir.action,name:"
+msgid "Mandate"
+msgstr "Mandat"
 
-msgctxt "model:account.payment.sepa.configuration.company,name:"
-msgid "Mandate Company Configuration"
-msgstr "Configuració mandats per empresa"
+msgctxt "model:ir.action.act_window.domain,name:"
+msgid "Payable with Mandate"
+msgstr "A pagar amb mandat"
 
-msgctxt "model:ir.action,name:report_mandate"
+msgctxt "model:ir.sequence,name:sequence_account_payment_group_sepa_core58"
+msgid "Default Account Payment Group SEPA CORE 58"
+msgstr "Grup de pagament SEPA CORE 58 per defecte"
+
+msgctxt "model:ir.sequence,name:sequence_mandate"
+msgid "Mandate"
+msgstr "Mandat"
+
+msgctxt "model:ir.sequence.type,name:"
 msgid "Mandate"
 msgstr "Mandat"
 
 msgctxt ""
-"model:ir.action.act_window.domain,name:act_move_line_form_domain_payable_mandate"
-msgid "Payable with Mandate"
-msgstr "A pagar amb mandat"
+"model:ir.sequence.type,name:sequence_type_account_payment_group_sepa_core58"
+msgid "Account Payment Group SEPA CORE 58"
+msgstr "Grup de pagament SEPA CORE 58"
 
-msgctxt "model:ir.sequence.type,name:sequence_type_mandate"
-msgid "Mandate"
-msgstr "Mandat"
-
-msgctxt "model:ir.ui.menu,name:menu_mandate_configuration"
+msgctxt "model:ir.ui.menu,name:"
 msgid "Configuration"
 msgstr "Configuració"
 
-msgctxt "model:ir.ui.menu,name:menu_mandate_configuration_form"
-msgid "Mandate"
-msgstr "Mandat"
-
-msgctxt "selection:account.move.line,sepa_scheme:"
-msgid ""
-msgstr ""
-
-msgctxt "selection:account.move.line,sepa_scheme:"
-msgid "Business to Business"
-msgstr "Empresa a empresa"
-
-msgctxt "selection:account.move.line,sepa_scheme:"
-msgid "Core"
-msgstr "Core"
-
-msgctxt "view:account.payment.sepa.configuration:"
-msgid "Mandate Configuration"
-msgstr "Configuració mandats "
-
 msgctxt "view:party.party:"
-msgid "Calculate"
-msgstr "Calcula"
+msgid "Calculate SEPA Creditor Identifier"
+msgstr "Calcula l'identificador SEPA Creditor"
