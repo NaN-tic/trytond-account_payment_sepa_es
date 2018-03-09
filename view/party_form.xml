@@ -4,8 +4,7 @@
 <data>
     <xpath expr="/form/notebook/page[@name='identifiers']"
             position="inside">
-        <button name="calculate_sepa_creditor_identifier"
-            string="Calculate SEPA Creditor Identifier" colspan="4"/>
+        <button name="calculate_sepa_creditor_identifier" colspan="4"/>
         <field name="tax_identifier" invisible="1"/>
         <field name="sepa_creditor_identifier_used" invisible="1"/>
     </xpath>
