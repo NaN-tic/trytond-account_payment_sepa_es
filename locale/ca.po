@@ -23,6 +23,10 @@ msgstr ""
 "pagament \"%(payment)s\" que encara esta en procés. "
 
 msgctxt "error:account.payment:"
+msgid "Missing IBAN bank account in \"%(party)s\"."
+msgstr "Falta el compte bancari IBAN a \"%(party)s\"."
+
+msgctxt "error:account.payment:"
 msgid ""
 "No valid mandate for payment \"%(payment)s\" of party \"%(party)s\" with "
 "amount \"%(amount)s\"."
