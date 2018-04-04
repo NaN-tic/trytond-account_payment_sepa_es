@@ -173,6 +173,7 @@ class Payment:
                 'no_mandate_for_party': ('No valid mandate for payment '
                     '"%(payment)s" of party "%(party)s" with amount '
                     '"%(amount)s".'),
+                'missing_iban': ('Missing IBAN bank account in "%(party)s".'),
                 })
 
     @property
@@ -181,7 +182,12 @@ class Payment:
             for number in self.bank_account.numbers:
                 if number.type == 'iban':
                     return number
-        return super(Payment, self).sepa_bank_account_number
+        number = super(Payment, self).sepa_bank_account_number
+        if not number:
+            self.raise_user_error('missing_iban', {
+                    'party': self.party.rec_name,
+                    })
+        return number
 
     @classmethod
     def write(cls, *args):
