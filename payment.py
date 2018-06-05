@@ -9,8 +9,7 @@ from trytond.pyson import Eval, If, Bool
 from trytond.transaction import Transaction
 from trytond.modules.jasper_reports.jasper import JasperReport
 
-__all__ = ['Journal', 'Group', 'Payment', 'PayLine', 'Mandate',
-    'MandateReport', 'Message']
+__all__ = ['Journal', 'Group', 'Payment', 'Mandate', 'MandateReport', 'Message']
 
 
 class Journal:
@@ -222,29 +221,6 @@ class Payment:
                         'amount': payment.amount,
                         })
         return mandates
-
-
-class PayLine:
-    __metaclass__ = PoolMeta
-    __name__ = 'account.move.line.pay'
-
-    def get_payment(self, line, journals):
-        payment = super(PayLine, self).get_payment(line, journals)
-        if not hasattr(line, 'bank_account'):
-            return payment
-        if not line.party or not line.bank_account:
-            return payment
-        for account_number in line.bank_account.numbers:
-            if account_number.type == 'iban':
-                break
-        else:
-            return payment
-        for mandate in line.party.sepa_mandates:
-            if mandate.is_valid and mandate.account_number == account_number:
-                payment.sepa_mandate = mandate
-                payment.sepa_mandate_sequence_type = mandate.sequence_type
-                break
-        return payment
 
 
 class Mandate:

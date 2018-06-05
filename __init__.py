@@ -15,8 +15,5 @@ def register():
         payment.Message,
         module='account_payment_sepa_es', type_='model')
     Pool.register(
-        payment.PayLine,
-        module='account_payment', type_='wizard')
-    Pool.register(
         payment.MandateReport,
         module='account_payment_sepa_es', type_='report')
