@@ -121,11 +121,15 @@ class Group:
 
     @property
     def sepa_initiating_party(self):
-        return self.journal.party or self.company.party
+        Party = Pool().get('party.party')
+        # reload party to calculate sepa_creditor_identifier_used
+        # according to context (suffix & kind)
+        party_id = (self.journal.party and self.journal.party.id
+            or self.company.party.id)
+        return Party(party_id)
 
     def process_sepa(self):
-        pool = Pool()
-        Date = pool.get('ir.date')
+        Date = Pool().get('ir.date')
         today = Date.today()
         # We set context there in order to ensure that the company and the
         # journal party are calculated correctly. As they are cached, they
