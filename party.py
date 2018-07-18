@@ -46,12 +46,13 @@ class Party:
         Identifier.save(identifiers)
 
     def get_sepa_creditor_identifier_used(self, name):
+        context = Transaction().context
+
         res = super(Party, self).get_sepa_creditor_identifier_used(name)
-        suffix = Transaction().context.get('suffix', None)
-        kind = Transaction().context.get('kind', '')
+
+        suffix = context.get('suffix', None)
+        kind = context.get('kind', None)
         if res and suffix:
-            if kind == 'receivable':
-                res = res[:4] + suffix + res[7:]
-            else:
-                res = res[7:] + suffix
+            res = (res[:4] + suffix + res[7:]
+                if kind == 'receivable' else res[7:] + suffix)
         return res
