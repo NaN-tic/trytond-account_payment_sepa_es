@@ -3,7 +3,7 @@
 # The COPYRIGHT file at the top level of this repository contains
 # the full copyright notices and license terms.
 from itertools import groupby
-from trytond.model import fields
+from trytond.model import fields, dualmethod
 from trytond.pool import Pool, PoolMeta
 from trytond.pyson import Eval, If, Bool
 from trytond.transaction import Transaction
@@ -60,6 +60,12 @@ class Group:
     @classmethod
     def __setup__(cls):
         super(Group, cls).__setup__()
+        # set generate message button to invisible when has SEPA messages
+        cls._buttons.update({
+                'generate_message': {
+                    'invisible': Eval('sepa_messages'),
+                    },
+                })
         cls._error_messages.update({
                 'no_creditor_identifier': ('No creditor identifier for party'
                     ' "%s".'),
@@ -130,24 +136,39 @@ class Group:
 
     def process_sepa(self):
         Date = Pool().get('ir.date')
+
         today = Date.today()
-        # We set context there in order to ensure that the company and the
-        # journal party are calculated correctly. As they are cached, they
-        # are not properly written in the xml file.
-        with Transaction().set_context(suffix=self.journal.suffix,
-                kind=self.kind):
-            if not self.company.party.sepa_creditor_identifier_used:
-                self.raise_user_error('no_creditor_identifier',
-                    self.company.party.rec_name)
-            if (self.journal.party and not
-                    self.journal.party.sepa_creditor_identifier_used):
-                self.raise_user_error('no_creditor_identifier',
-                    self.journal.party.rec_name)
-            for payment in self.payments:
-                if payment.date < today:
-                    self.raise_user_error('invalid_payment_date',
-                        (payment.date, payment.rec_name))
-            super(Group, self).process_sepa()
+        if not self.company.party.sepa_creditor_identifier_used:
+            self.raise_user_error('no_creditor_identifier',
+                self.company.party.rec_name)
+        if (self.journal.party and not
+                self.journal.party.sepa_creditor_identifier_used):
+            self.raise_user_error('no_creditor_identifier',
+                self.journal.party.rec_name)
+        for payment in self.payments:
+            if payment.date < today:
+                self.raise_user_error('invalid_payment_date',
+                    (payment.date, payment.rec_name))
+        super(Group, self).process_sepa()
+
+    @dualmethod
+    def generate_message(cls, groups, _save=True):
+        # reload groups to calculate sepa_creditor_identifier_used
+        # in company and party according to context (suffix & kind)
+        # depend group journal and kind
+        # Also set True to save SEPA message related to payment group
+        def keyfunc(x):
+            return (x.journal.suffix, x.kind)
+
+        groups = sorted(groups, key=keyfunc)
+        for key, grouped in groupby(groups, keyfunc):
+            grouped_groups = list(grouped)
+            group = grouped_groups[0]
+            suffix = group.journal.suffix
+            kind = group.kind
+            with Transaction().set_context(suffix=suffix, kind=kind):
+                reload_groups = cls.browse(grouped_groups)
+                super(Group, cls).generate_message(reload_groups, _save=True)
 
 
 class Payment:
