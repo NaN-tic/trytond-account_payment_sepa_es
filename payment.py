@@ -12,8 +12,7 @@ from trytond.modules.jasper_reports.jasper import JasperReport
 __all__ = ['Journal', 'Group', 'Payment', 'Mandate', 'MandateReport', 'Message']
 
 
-class Journal:
-    __metaclass__ = PoolMeta
+class Journal(metaclass=PoolMeta):
     __name__ = 'account.payment.journal'
 
     core58_sequence = fields.Many2One('ir.sequence', 'SEPA CORE 58 Sequence',
@@ -53,8 +52,7 @@ class Journal:
         return 'pain.008.001.02'
 
 
-class Group:
-    __metaclass__ = PoolMeta
+class Group(metaclass=PoolMeta):
     __name__ = 'account.payment.group'
 
     @classmethod
@@ -171,8 +169,7 @@ class Group:
                 super(Group, cls).generate_message(reload_groups, _save=True)
 
 
-class Payment:
-    __metaclass__ = PoolMeta
+class Payment(metaclass=PoolMeta):
     __name__ = 'account.payment'
 
     @classmethod
@@ -248,8 +245,7 @@ class Payment:
         return mandates
 
 
-class Mandate:
-    __metaclass__ = PoolMeta
+class Mandate(metaclass=PoolMeta):
     __name__ = 'account.payment.sepa.mandate'
 
     @classmethod
@@ -262,7 +258,7 @@ class Mandate:
                 })
 
     def get_rec_name(self, name):
-        return self.identification or unicode(self.id)
+        return self.identification or str(self.id)
 
     @classmethod
     def search_rec_name(cls, name, clause):
@@ -289,8 +285,7 @@ class MandateReport(JasperReport):
     __name__ = 'account.payment.sepa.mandate.jreport'
 
 
-class Message:
-    __metaclass__ = PoolMeta
+class Message(metaclass=PoolMeta):
     __name__ = 'account.payment.sepa.message'
     group_number = fields.Function(fields.Char('Number'), 'get_group_field')
     group_planned_date = fields.Function(
