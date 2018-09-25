@@ -2,6 +2,8 @@
 # This file is part of account_payment_sepa_es module for Tryton.
 # The COPYRIGHT file at the top level of this repository contains
 # the full copyright notices and license terms.
+import os
+import genshi
 from itertools import groupby
 from trytond.model import fields, dualmethod
 from trytond.pool import Pool, PoolMeta
@@ -167,6 +169,20 @@ class Group(metaclass=PoolMeta):
             with Transaction().set_context(suffix=suffix, kind=kind):
                 reload_groups = cls.browse(grouped_groups)
                 super(Group, cls).generate_message(reload_groups, _save=True)
+
+    def get_sepa_template(self):
+        loader_es = genshi.template.TemplateLoader(
+            os.path.join(os.path.dirname(__file__), 'template'),
+            auto_reload=True)
+        if (self.kind == 'payable' and
+                self.journal.sepa_payable_flavor == 'pain.001.001.03'):
+            return loader_es.load('%s.xml' % self.journal.sepa_payable_flavor)
+        elif (self.kind == 'receivable' and
+                self.journal.sepa_receivable_flavor == 'pain.008.001.02'):
+            return loader_es.load(
+                '%s.xml' % self.journal.sepa_receivable_flavor)
+        else:
+            super(Group, self).get_sepa_template()
 
 
 class Payment(metaclass=PoolMeta):
