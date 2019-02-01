@@ -296,6 +296,13 @@ class Mandate(metaclass=PoolMeta):
                     })
         super(Mandate, cls).cancel(mandates)
 
+    @property
+    def is_valid(self):
+        is_valid = super().is_valid
+        if not self.account_number.account.active:
+            return False
+        return is_valid
+
 
 class MandateReport(JasperReport):
     __name__ = 'account.payment.sepa.mandate.jreport'
