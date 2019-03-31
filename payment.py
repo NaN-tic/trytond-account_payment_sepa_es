@@ -10,6 +10,8 @@ from trytond.pool import Pool, PoolMeta
 from trytond.pyson import Eval, If, Bool
 from trytond.transaction import Transaction
 from trytond.modules.jasper_reports.jasper import JasperReport
+from trytond.i18n import gettext
+from trytond.exceptions import UserError
 
 __all__ = ['Journal', 'Group', 'Payment', 'Mandate', 'MandateReport', 'Message']
 
@@ -65,13 +67,6 @@ class Group(metaclass=PoolMeta):
                 'generate_message': {
                     'invisible': Eval('sepa_messages'),
                     },
-                })
-        cls._error_messages.update({
-                'no_creditor_identifier': ('No creditor identifier for party'
-                    ' "%s".'),
-                'invalid_payment_date': ('Invalid payment date %s for payment'
-                    ' "%s". Payment\'s date must be greather or equal than '
-                    'today.'),
                 })
 
     @classmethod
@@ -139,16 +134,20 @@ class Group(metaclass=PoolMeta):
 
         today = Date.today()
         if not self.company.party.sepa_creditor_identifier_used:
-            self.raise_user_error('no_creditor_identifier',
-                self.company.party.rec_name)
+            raise UserError(gettext(
+                'account_payment_sepa_es.no_creditor_identifier',
+                party=self.company.party.rec_name))
         if (self.journal.party and not
                 self.journal.party.sepa_creditor_identifier_used):
-            self.raise_user_error('no_creditor_identifier',
-                self.journal.party.rec_name)
+                raise UserError(gettext(
+                    'account_payment_sepa_es.no_creditor_identifier',
+                    party=self.journal.party.rec_name))
         for payment in self.payments:
             if payment.date < today:
-                self.raise_user_error('invalid_payment_date',
-                    (payment.date, payment.rec_name))
+                raise UserError(gettext(
+                    'account_payment_sepa_es.invalid_payment_date',
+                    payment_date=payment.date, payment=payment.rec_name))
+
         super(Group, self).process_sepa()
 
     @dualmethod
@@ -203,14 +202,6 @@ class Payment(metaclass=PoolMeta):
                 })
         if 'state' not in cls.sepa_mandate.depends:
             cls.sepa_mandate.depends.append('state')
-        cls._error_messages.update({
-                'canceled_mandate': ('Payment "%(payment)s" can not be '
-                    'modified because its mandate "%(mandate)s" is '
-                    'canceled.'),
-                'no_mandate_for_party': ('No valid mandate for payment '
-                    '"%(payment)s" of party "%(party)s" with amount '
-                    '"%(amount)s".'),
-                })
 
     @property
     def sepa_bank_account_number(self):
@@ -227,10 +218,11 @@ class Payment(metaclass=PoolMeta):
             for payment in payments:
                 if (payment.sepa_mandate and
                         payment.sepa_mandate.state == 'canceled'):
-                    cls.raise_user_error('canceled_mandate', {
-                            'payment': payment.rec_name,
-                            'mandate': payment.sepa_mandate.rec_name,
-                            })
+                    raise UserError(gettext(
+                        'account_payment_sepa_es.canceled_mandate',
+                            payment=payment.rec_name,
+                            mandate=payment.sepa_mandate.rec_name,
+                            ))
         return super(Payment, cls).write(*args)
 
     @classmethod
@@ -253,25 +245,17 @@ class Payment(metaclass=PoolMeta):
         mandates = super(Payment, cls).get_sepa_mandates(payments)
         for payment, mandate in zip(payments, mandates):
             if not mandate:
-                cls.raise_user_error('no_mandate_for_party', {
-                        'payment': payment.rec_name,
-                        'party': payment.party.rec_name,
-                        'amount': payment.amount,
-                        })
+                raise UserError(gettext(
+                    'account_payment_sepa_es.no_mandate_for_party',
+                        payment=payment.rec_name,
+                        party=payment.party.rec_name,
+                        amount=payment.amount))
         return mandates
 
 
 class Mandate(metaclass=PoolMeta):
     __name__ = 'account.payment.sepa.mandate'
 
-    @classmethod
-    def __setup__(cls):
-        super(Mandate, cls).__setup__()
-        cls._error_messages.update({
-                'cancel_with_processing_payments': ('Mandate "%(mandate)s" can'
-                    ' not be canceled because it is linked to payment '
-                    '"%(payment)s" which is still in process.'),
-                })
 
     def get_rec_name(self, name):
         return self.identification or str(self.id)
@@ -290,10 +274,10 @@ class Mandate(metaclass=PoolMeta):
                 ], limit=1)
         if payments:
             payment, = payments
-            cls.raise_user_error('cancel_with_processing_payments', {
-                    'mandate': payment.sepa_mandate.rec_name,
-                    'payment': payment.rec_name,
-                    })
+            raise UserError(gettext(
+                'account_payment_sepa_es.cancel_with_processing_payments',
+                    mandate=payment.sepa_mandate.rec_name,
+                    payment=payment.rec_name))
         super(Mandate, cls).cancel(mandates)
 
     @property
