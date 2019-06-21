@@ -68,7 +68,7 @@ msgstr ""
 
 msgctxt "model:ir.message,text:no_creditor_identifier"
 msgid "No creditor identifier for party \"%(party)s\"."
-msgstr "No hi ha identificador de creditor per al tercer \"%(party)\"."
+msgstr "No hi ha identificador de creditor per al tercer \"%(party)s\"."
 
 msgctxt "model:ir.message,text:no_mandate_for_party"
 msgid ""
