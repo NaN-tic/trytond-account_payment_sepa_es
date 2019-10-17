@@ -2,25 +2,21 @@
 <!-- This file is part of Tryton.  The COPYRIGHT file at the top level of
 this repository contains the full copyright notices and license terms. -->
 <tryton>
-    <data group="1">
-    <record model="ir.message" id="no_creditor_identifier">
-        <field name="text">No creditor identifier for party "%(party)s".</field>
-    </record>
-    <record model="ir.message" id="invalid_payment_date">
-        <field name="text">Invalid payment date %(payment_date)s for payment
-            "%(payment)s". Payment\'s date must be greather or equal than today.</field>
-    </record>
-    <record model="ir.message" id="canceled_mandate">
-        <field name="text">Payment "%(payment)s" can not be
-            modified because its mandate "%(mandate)s" is canceled.</field>
-    </record>
-    <record model="ir.message" id="no_mandate_for_party">
-        <field name="text">No valid mandate for payment "%(payment)s" of party
-            "%(party)s" with amount "%(amount)s".</field>
-    </record>
-    <record model="ir.message" id="cancel_with_processing_payments">
-        <field name="text">Mandate "%(mandate)s" can not be canceled because
-          it is linked to payment "%(payment)s" which is still in process.</field>
-    </record>
+    <data grouped="1">
+        <record model="ir.message" id="no_creditor_identifier">
+            <field name="text">No creditor identifier for party "%(party)s".</field>
+        </record>
+        <record model="ir.message" id="invalid_payment_date">
+            <field name="text">Invalid payment date %(payment_date)s for payment "%(payment)s". Payment\'s date must be greather or equal than today.</field>
+        </record>
+        <record model="ir.message" id="canceled_mandate">
+            <field name="text">Payment "%(payment)s" can not be modified because its mandate "%(mandate)s" is canceled.</field>
+        </record>
+        <record model="ir.message" id="no_mandate_for_party">
+            <field name="text">No valid mandate for payment "%(payment)s" of party "%(party)s" with amount "%(amount)s".</field>
+        </record>
+        <record model="ir.message" id="cancel_with_processing_payments">
+            <field name="text">Mandate "%(mandate)s" can not be canceled because it is linked to payment "%(payment)s" which is still in process.</field>
+        </record>
     </data>
 </tryton>
