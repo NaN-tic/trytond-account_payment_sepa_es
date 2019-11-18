@@ -2,14 +2,16 @@
 <!-- This file is part of Tryton.  The COPYRIGHT file at the top level of
 this repository contains the full copyright notices and license terms. -->
 <py:strip xmlns:py="http://genshi.edgewall.org/">
-    <py:def function="PartyIdentification(party, id=True, adr=False)">
+    <py:def function="PartyIdentification(party, id=True, with_name=True, with_address=True)">
         <!-- EPC limits to 70 instead of 140 -->
-        <Nm>${party.name[:70]}</Nm>
-        <py:with vars="address = party.address_get()">
-            <PstlAdr py:if="adr and address">
-                ${PostalAddress(address)}
-            </PstlAdr>
-        </py:with>
+        <Nm py:if="with_name">${normalize(party.name)[:70]}</Nm>
+        <py:if test="with_address">
+            <py:with vars="address = party.address_get()">
+                <PstlAdr py:if="address">
+                    ${PostalAddress(address)}
+                </PstlAdr>
+            </py:with>
+        </py:if>
         <Id py:if="id and party.sepa_creditor_identifier_used">
             <PrvtId>
                 <Othr>
@@ -25,25 +27,27 @@ this repository contains the full copyright notices and license terms. -->
         <!-- CtctDtls -->
     </py:def>
     <py:def function="PostalAddress(address)">
-        <Ctry py:if="address.country">${address.country.code}</Ctry>
-        <AdrLine py:if="address.street">${address.street[:70]}</AdrLine>
-        <AdrLine py:if="address.zip or address.city or address.city">${address.zip[:16]} ${address.city[:35]}</AdrLine>
+        <Ctry py:if="address.country">${normalize(address.country.code)}</Ctry>
+        <AdrLine py:if="address.street">${normalize(' '.join(address.street.splitlines()[0:1]))[:70]}</AdrLine>
+        <AdrLine py:if="address.street and len(address.street.splitlines()) > 1">${normalize(' '.join(address.street.splitlines()[1:]))[:70]}</AdrLine>
+        <AdrLine py:if="address.zip and address.city">${address.zip[:16]} ${address.city[:35]}</AdrLine>
     </py:def>
-    <py:def function="Account(account_number, currency=True)">
+    <py:def function="Account(account_number, with_ccy=True)">
         <Id>
             <!-- EPC only IBAN is allowed -->
             <IBAN>${account_number.compact_iban}</IBAN>
         </Id>
         <!-- Tp -->
-        <Ccy py:if="currency and account_number.account.currency">${account_number.account.currency.code}</Ccy>
+        <Ccy py:if="with_ccy and account_number.account.currency">${account_number.account.currency.code}</Ccy>
         <!-- Nm -->
     </py:def>
-    <py:def function="FinancialInstitution(bank, only_bic=False)">
+    <py:def function="FinancialInstitution(bank, bicfi=False, only_bic=True)">
         <FinInstnId>
-            <BICFI py:if="bank.bic">${bank.bic}</BICFI>
+            <BICFI py:if="bicfi and bank.bic">${bank.bic}</BICFI>
+            <BIC py:if=" not bicfi and bank.bic">${bank.bic}</BIC>
             <py:if test="not only_bic">
                 <!-- ClrSysMmbId -->
-                <Nm>${bank.party.name[:140]}</Nm>
+                <Nm>${normalize(bank.party.name)[:140]}</Nm>
                 <py:with vars="address = bank.party.address_get()">
                     <PstlAdr py:if="address">
                         ${PostalAddress(address)}
