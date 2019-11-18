@@ -4,16 +4,24 @@
 # the full copyright notices and license terms.
 import os
 import genshi
+import datetime
+from unidecode import unidecode
 from itertools import groupby
-from trytond.model import fields, dualmethod
+from trytond.model import fields, dualmethod, ModelView
 from trytond.pool import Pool, PoolMeta
 from trytond.pyson import Eval, If, Bool
 from trytond.transaction import Transaction
 from trytond.modules.jasper_reports.jasper import JasperReport
 from trytond.i18n import gettext
 from trytond.exceptions import UserError
+from trytond.modules.account_payment_sepa.payment import remove_comment
 
 __all__ = ['Journal', 'Group', 'Payment', 'Mandate', 'MandateReport', 'Message']
+
+def normalize_text(text):
+    # Function create becasuse not all Banks accept the same chars
+    # so it's needed to 'normalize' the textto be accepted
+    return unidecode(text).replace('_', '-').replace('(', '').replace(')', '')
 
 
 class Journal(metaclass=PoolMeta):
@@ -151,11 +159,15 @@ class Group(metaclass=PoolMeta):
         super(Group, self).process_sepa()
 
     @dualmethod
+    @ModelView.button
     def generate_message(cls, groups, _save=True):
         # reload groups to calculate sepa_creditor_identifier_used
         # in company and party according to context (suffix & kind)
         # depend group journal and kind
         # Also set True to save SEPA message related to payment group
+        pool = Pool()
+        Message = pool.get('account.payment.sepa.message')
+
         def keyfunc(x):
             return (x.journal.suffix, x.kind)
 
@@ -167,7 +179,19 @@ class Group(metaclass=PoolMeta):
             kind = group.kind
             with Transaction().set_context(suffix=suffix, kind=kind):
                 reload_groups = cls.browse(grouped_groups)
-                super(Group, cls).generate_message(reload_groups, _save=True)
+                for group in reload_groups:
+                    tmpl = group.get_sepa_template()
+                    if not tmpl:
+                        raise NotImplementedError
+                    if not group.sepa_messages:
+                        group.sepa_messages = ()
+                    message = tmpl.generate(group=group,
+                        datetime=datetime, normalize=normalize_text,
+                        ).filter(remove_comment).render()
+                    message = Message(message=message, type='out',
+                        state='waiting', company=group.company)
+                    group.sepa_messages += (message,)
+                    cls.save(reload_groups)
 
     def get_sepa_template(self):
         loader_es = genshi.template.TemplateLoader(

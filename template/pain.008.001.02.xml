@@ -5,27 +5,7 @@ this repository contains the full copyright notices and license terms. -->
     xmlns:xsd="http://www.w3.org/2001/XMLSchema"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:xi="http://www.w3.org/2001/XInclude"
-    xmlns:py="http://genshi.edgewall.org/">
-    <xi:include href="base.xml"/>
-    <!-- version 2 uses BIC instead of BICFI -->
-    <py:def function="FinancialInstitution(bank, only_bic=False)">
-        <FinInstnId>
-            <BIC py:if="bank.bic">${bank.bic}</BIC>
-            <py:if test="not only_bic">
-                <!-- ClrSysMmbId -->
-                <Nm>${bank.party.name[:140]}</Nm>
-                <py:with vars="address = bank.party.address_get()">
-                    <PstlAdr py:if="address">
-                        ${PostalAddress(address)}
-                    </PstlAdr>
-                </py:with>
-            </py:if>
-            <Othr py:if="not bank.bic">
-                <Id>NOTPROVIDED</Id>
-            </Othr>
-        </FinInstnId>
-        <!-- BrnchId -->
-    </py:def>
+    xmlns:py="http://genshi.edgewall.org/"><xi:include href="base.xml"/>
     <CstmrDrctDbtInitn>
         <GrpHdr>
             <MsgId>${group.number[:35]}</MsgId>
@@ -36,7 +16,7 @@ this repository contains the full copyright notices and license terms. -->
             <!-- PmtTpInf -->
             <!-- ReqdColltnDt -->
             <InitgPty>
-                ${PartyIdentification(group.sepa_initiating_party)}
+                ${PartyIdentification(group.sepa_initiating_party, with_address=False)}
             </InitgPty>
             <!-- FwdgAgt -->
         </GrpHdr>
@@ -61,13 +41,13 @@ this repository contains the full copyright notices and license terms. -->
             </PmtTpInf>
             <ReqdColltnDt>${key['date'].isoformat()}</ReqdColltnDt>
             <Cdtr>
-                ${PartyIdentification(group.company.party, id=False, adr=True)}
+                ${PartyIdentification(group.company.party, id=False)}
             </Cdtr>
             <CdtrAcct>
                 ${Account(group.journal.sepa_bank_account_number)}
             </CdtrAcct>
             <CdtrAgt>
-                ${FinancialInstitution(group.journal.sepa_bank_account_number.account.bank, only_bic=True)}
+                ${FinancialInstitution(group.journal.sepa_bank_account_number.account.bank)}
             </CdtrAgt>
             <!-- CdtrAgtAcct -->
             <!-- UltmtCdtr -->
@@ -75,7 +55,7 @@ this repository contains the full copyright notices and license terms. -->
             <!-- ChrgsAcct -->
             <!-- ChrgsAcctAgt -->
             <CdtrSchmeId>
-                ${PartyIdentification(group.company.party)}
+                ${PartyIdentification(group.company.party, with_address=False)}
             </CdtrSchmeId>
             <DrctDbtTxInf py:for="payment in payments">
                 <PmtId>
@@ -102,14 +82,14 @@ this repository contains the full copyright notices and license terms. -->
                 </DrctDbtTx>
                 <!-- UltmtCdtr -->
                 <DbtrAgt>
-                    ${FinancialInstitution(payment.sepa_bank_account_number.account.bank, only_bic=True)}
+                    ${FinancialInstitution(payment.sepa_bank_account_number.account.bank)}
                 </DbtrAgt>
                 <!-- DbtrAgtAcct -->
                 <Dbtr>
-                    ${PartyIdentification(payment.party)}
+                    ${PartyIdentification(payment.party, with_address=False)}
                 </Dbtr>
                 <DbtrAcct>
-                    ${Account(payment.sepa_bank_account_number, currency=False)}
+                    ${Account(payment.sepa_bank_account_number, with_ccy=False)}
                 </DbtrAcct>
                 <!-- UltmtDbtr -->
                 <!-- InstrForCdtrAgt -->
@@ -118,7 +98,7 @@ this repository contains the full copyright notices and license terms. -->
                 <!-- Tax -->
                 <!-- RltdRmtInf -->
                 <RmtInf py:if="payment.sepa_remittance_information">
-                    <Ustrd>${payment.sepa_remittance_information[:140]}</Ustrd>
+                    <Ustrd>${normalize(payment.sepa_remittance_information)[:140]}</Ustrd>
                 </RmtInf>
             </DrctDbtTxInf>
         </PmtInf>
