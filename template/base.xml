@@ -7,7 +7,7 @@ this repository contains the full copyright notices and license terms. -->
         <Nm py:if="with_name">${normalize(party.name)[:70]}</Nm>
         <py:if test="with_address">
             <py:with vars="address = party.address_get()">
-                <PstlAdr py:if="address">
+                <PstlAdr py:if="address and address.country and address.street">
                     ${PostalAddress(address)}
                 </PstlAdr>
             </py:with>
@@ -29,7 +29,7 @@ this repository contains the full copyright notices and license terms. -->
     <py:def function="PostalAddress(address)">
         <Ctry py:if="address.country">${normalize(address.country.code)}</Ctry>
         <AdrLine py:if="address.street">${normalize(' '.join(address.street.splitlines()[0:1]))[:70]}</AdrLine>
-        <AdrLine py:if="address.street and len(address.street.splitlines()) > 1">${normalize(' '.join(address.street.splitlines()[1:]))[:70]}</AdrLine>
+        <AdrLine py:if="address.street and len(address.street.splitlines()) > 1 and address.street.splitlines()[1:]">${normalize(' '.join(address.street.splitlines()[1:]))[:70]}</AdrLine>
         <AdrLine py:if="address.zip and address.city">${address.zip[:16]} ${address.city[:35]}</AdrLine>
     </py:def>
     <py:def function="Account(account_number, with_ccy=True)">
