@@ -21,12 +21,20 @@
         </record>
 
         <record model="ir.action.report" id="account_payment_sepa.report_mandate">
+            <field name="active" eval="False"/>
+        </record>
+        <record model="ir.action.report" id="report_mandate">
             <field name="name">Mandate</field>
             <field name="model">account.payment.sepa.mandate</field>
             <field name="report_name">account.payment.sepa.mandate.jreport</field>
             <field name="report">account_payment_sepa_es/mandate.jrxml</field>
             <field name="extension">pdf</field>
             <field name="template_extension">jrxml</field>
+        </record>
+        <record model="ir.action.keyword" id="report_mandate_keyword">
+            <field name="keyword">form_print</field>
+            <field name="model">account.payment.sepa.mandate,-1</field>
+            <field name="action" ref="report_mandate"/>
         </record>
 
         <!-- account.payment.journal -->
