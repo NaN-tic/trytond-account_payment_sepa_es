@@ -30,7 +30,7 @@ msgctxt "field:account.payment.sepa.message,group_planned_date:"
 msgid "Planned Date"
 msgstr "Data estimada"
 
-msgctxt "model:ir.action,name:"
+msgctxt "model:ir.action,name:report_mandate"
 msgid "Mandate"
 msgstr "Mandat"
 
