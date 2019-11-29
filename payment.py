@@ -280,7 +280,6 @@ class Payment(metaclass=PoolMeta):
 class Mandate(metaclass=PoolMeta):
     __name__ = 'account.payment.sepa.mandate'
 
-
     def get_rec_name(self, name):
         return self.identification or str(self.id)
 
