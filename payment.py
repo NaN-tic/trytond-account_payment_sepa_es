@@ -21,8 +21,7 @@ __all__ = ['Journal', 'Group', 'Payment', 'Mandate', 'MandateReport', 'Message']
 def normalize_text(text):
     # Function create becasuse not all Banks accept the same chars
     # so it's needed to 'normalize' the textto be accepted
-    return unidecode(text).replace('_', '-').replace('(', '').replace(')', '').\
-        replace('[', '').replace(' ', '-')
+    return unidecode(text).replace('_', '-').replace('(', '').replace(')', '')
 
 
 class Journal(metaclass=PoolMeta):
@@ -188,7 +187,7 @@ class Group(metaclass=PoolMeta):
                         group.sepa_messages = ()
                     message = tmpl.generate(group=group,
                         datetime=datetime, normalize=normalize_text,
-                        ).filter(remove_comment).render().encode('utf-8')
+                        ).filter(remove_comment).render()
                     message = Message(message=message, type='out',
                         state='waiting', company=group.company)
                     group.sepa_messages += (message,)
@@ -280,7 +279,6 @@ class Payment(metaclass=PoolMeta):
 
 class Mandate(metaclass=PoolMeta):
     __name__ = 'account.payment.sepa.mandate'
-
 
     def get_rec_name(self, name):
         return self.identification or str(self.id)
