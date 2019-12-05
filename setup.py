@@ -12,6 +12,7 @@ from configparser import ConfigParser
 MODULE = 'account_payment_sepa_es'
 PREFIX = 'trytonspain'
 MODULE2PREFIX = {
+    'account_bank': 'trytonspain',
     'account_payment_es': 'trytonspain',
     'jasper_reports': 'trytonspain',
     }
@@ -43,7 +44,11 @@ major_version, minor_version, _ = version.split('.', 2)
 major_version = int(major_version)
 minor_version = int(minor_version)
 
-requires = []
+requires = [
+    'Genshi',
+    'unidecode',
+    'python-stdnum',
+]
 for dep in info.get('depends', []):
     if not re.match(r'(ir|res)(\W|$)', dep):
         prefix = MODULE2PREFIX.get(dep, 'trytond')
