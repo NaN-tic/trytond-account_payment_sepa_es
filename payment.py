@@ -187,7 +187,7 @@ class Group(metaclass=PoolMeta):
                         group.sepa_messages = ()
                     message = tmpl.generate(group=group,
                         datetime=datetime, normalize=normalize_text,
-                        ).filter(remove_comment).render()
+                        ).filter(remove_comment).render().encode('utf8')
                     message = Message(message=message, type='out',
                         state='waiting', company=group.company)
                     group.sepa_messages += (message,)
