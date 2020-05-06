@@ -23,11 +23,11 @@ class AccountPaymentSepaEsTestCase(ModuleTestCase):
         party.save()
         Party.calculate_sepa_creditor_identifier([party])
         self.assertIsNone(party.sepa_creditor_identifier_used)
-        sepa = Identifier(party=party, code='ES47690558N', type='eu_vat')
+        sepa = Identifier(party=party, code='ES47690558N', type='eu_at_02')
         sepa.save()
         Party.calculate_sepa_creditor_identifier([party])
         self.assertEqual(party.sepa_creditor_identifier_used,
-            'ES23ZZZ47690558N')
+            'ES47690558N')
 
     @with_transaction()
     def test_sepa_identifier_used(self):
@@ -38,7 +38,7 @@ class AccountPaymentSepaEsTestCase(ModuleTestCase):
 
         party = Party(name='test')
         party.save()
-        sepa = Identifier(party=party, code='ES23ZZZ47690558N', type='sepa')
+        sepa = Identifier(party=party, code='ES23ZZZ47690558N', type='eu_at_02')
         sepa.save()
         self.assertEqual(party.sepa_creditor_identifier_used,
             'ES23ZZZ47690558N')
@@ -50,7 +50,6 @@ class AccountPaymentSepaEsTestCase(ModuleTestCase):
             party = Party(party.id)
             self.assertEqual(party.sepa_creditor_identifier_used,
                 '47690558N001')
-
 
 def suite():
     suite = trytond.tests.test_tryton.suite()

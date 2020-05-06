@@ -36,7 +36,7 @@ class Party(metaclass=PoolMeta):
             number = vat_code[:2] + '00ZZZ' + vat_code[2:].upper()
             check_sum = sepa.calc_check_digits(number)
             identifier = Identifier()
-            identifier.type = 'sepa'
+            identifier.type = 'eu_at_02'
             identifier.code = (vat_code[:2] + check_sum + 'ZZZ' +
                 vat_code[2:].upper())
             identifier.party = party
