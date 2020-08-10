@@ -2,9 +2,17 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=utf-8\n"
 
+msgctxt "field:account.payment,rec_name:"
+msgid "Record Name"
+msgstr "Nombre registro"
+
 msgctxt "field:account.payment.group,process_method:"
 msgid "Process Method"
 msgstr "Metodo de proceso"
+
+msgctxt "field:account.payment.group,rec_name:"
+msgid "Record Name"
+msgstr "Nombre registro"
 
 msgctxt "field:account.payment.journal,active:"
 msgid "Active"
@@ -14,9 +22,17 @@ msgctxt "field:account.payment.journal,core58_sequence:"
 msgid "SEPA CORE 58 Sequence"
 msgstr "Secuencia SEPA CORE 58"
 
+msgctxt "field:account.payment.journal,rec_name:"
+msgid "Record Name"
+msgstr "Nombre registro"
+
 msgctxt "field:account.payment.process.start,process_method:"
 msgid "Process Method"
 msgstr "Metodo de proceso"
+
+msgctxt "field:account.payment.sepa.mandate,rec_name:"
+msgid "Record Name"
+msgstr "Nombre registro"
 
 msgctxt "field:account.payment.sepa.message,group_amount:"
 msgid "Amount"
@@ -30,6 +46,31 @@ msgctxt "field:account.payment.sepa.message,group_planned_date:"
 msgid "Planned Date"
 msgstr "Fecha estimada"
 
+msgctxt "field:account.payment.sepa.message,rec_name:"
+msgid "Record Name"
+msgstr "Nombre registro"
+
+msgctxt "field:bank.account.number,rec_name:"
+msgid "Record Name"
+msgstr "Nombre registro"
+
+msgctxt "field:bank.account.number,sepa_mandates:"
+msgid "Mandate"
+msgstr "Mandato"
+
+msgctxt "field:party.party,rec_name:"
+msgid "Record Name"
+msgstr "Nombre registro"
+
+msgctxt "help:party.party,customer_location:"
+msgid "The default destination location for stock sent to the party."
+msgstr "La ubicación de destino por defecto para envíar productos al tercero."
+
+msgctxt "help:party.party,supplier_location:"
+msgid "The default source location for stock received from the party."
+msgstr ""
+"La ubicación de origen por defecto para recibir productos del tercero."
+
 msgctxt "model:ir.action,name:report_mandate"
 msgid "Mandate"
 msgstr "Mandato"
@@ -37,6 +78,17 @@ msgstr "Mandato"
 msgctxt "model:ir.action.act_window.domain,name:"
 msgid "Payable with Mandate"
 msgstr "A pagar con mandato"
+
+msgctxt ""
+"model:ir.message,text:bad_relation_mandate_number_vs_bank_account_numbers"
+msgid ""
+"The mandate \"%(mandate)s\" for payment \"%(payment)s\" of party "
+"\"%(party)s\" with amount \"%(amount)s\" is not for the move line bank "
+"accounts \"%(bank_account_numbers)s\"."
+msgstr ""
+"El mandato \"%(mandate)s\" para el pago \"%(payment)s\" del tercero "
+"\"%(party)s\"  con el importe \"%(amount)s\" no es correcto para la cuenta "
+"bancaria \"%(bank_account_numbers)s\"."
 
 msgctxt "model:ir.message,text:cancel_with_processing_payments"
 msgid ""
@@ -62,6 +114,14 @@ msgstr ""
 "Fecha de pago no vàlida \"%(payment_date)s\". La fecha de pago debe ser "
 "mayor o igual a la de hoy."
 
+msgctxt "model:ir.message,text:no_bank_account"
+msgid ""
+"Payment \"%(payment)s\" of party \"%(party)s\" with amount \"%(amount)s "
+"hasn't bank account.\"."
+msgstr ""
+"Pago \"%(payment)s\" del tercero \"%(party)s\"  con el importe "
+"\"%(amount)s\" no tiene cuenta bancaria."
+
 msgctxt "model:ir.message,text:no_creditor_identifier"
 msgid "No creditor identifier for party \"%(party)s\"."
 msgstr "No hay identificador de acreedor para el tercero \"%(party)s\"."
@@ -78,14 +138,6 @@ msgctxt ""
 "model:ir.model.button,string:party_calculate_sepa_creditor_identifier_button"
 msgid "Calculate SEPA Creditor Identifier"
 msgstr "Calcular identificador SEPA creditor"
-
-msgctxt "model:ir.sequence,name:sequence_account_payment_group_sepa_core58"
-msgid "Default Account Payment Group SEPA CORE 58"
-msgstr "Grupo de pagos SEPA CORE 58 por defecto"
-
-msgctxt "model:ir.sequence,name:sequence_mandate"
-msgid "Mandate"
-msgstr "Mandato"
 
 msgctxt "model:ir.sequence.type,name:"
 msgid "Mandate"
@@ -237,6 +289,10 @@ msgstr "Provincia"
 msgctxt "report:account.payment.sepa.mandate.jreport:"
 msgid "Type of payment"
 msgstr "Tipo de pago"
+
+msgctxt "view:party.party:"
+msgid "Calculate"
+msgstr "Calcular"
 
 msgctxt "view:party.party:"
 msgid "Calculate SEPA Creditor Identifier"

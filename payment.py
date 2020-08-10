@@ -229,7 +229,9 @@ class Payment(metaclass=PoolMeta):
 
     @property
     def sepa_bank_account_number(self):
-        if self.bank_account:
+        if self.kind == 'receivable' and self.sepa_mandate:
+            return self.sepa_mandate.account_number
+        elif self.bank_account:
             for number in self.bank_account.numbers:
                 if number.type == 'iban':
                     return number
@@ -274,6 +276,23 @@ class Payment(metaclass=PoolMeta):
                         payment=payment.rec_name,
                         party=payment.party.rec_name,
                         amount=payment.amount))
+            elif not payment.bank_account:
+                raise UserError(gettext(
+                    'account_payment_sepa_es.no_bank_account',
+                        payment=payment.rec_name,
+                        party=payment.party.rec_name,
+                        amount=payment.amount))
+            elif mandate.account_number not in payment.bank_account.numbers:
+                raise UserError(gettext(
+                    'account_payment_sepa_es.'\
+                        'bad_relation_mandate_number_vs_bank_account_numbers',
+                        mandate=mandate.rec_name,
+                        payment=payment.rec_name,
+                        party=payment.party.rec_name,
+                        amount=payment.amount,
+                        bank_account_numbers=("".join(
+                                [n.rec_name + " (id: " + str(n.id) + ")"
+                                for n in payment.bank_account.numbers]))))
         return mandates
 
 
