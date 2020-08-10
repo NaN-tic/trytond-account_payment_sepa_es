@@ -12,7 +12,7 @@ class PayLine(metaclass=PoolMeta):
 
     def get_payment(self, line, journals):
         pool = Pool()
-        BankAccountNumber = pool.get('bank.account.number') 
+        BankAccountNumber = pool.get('bank.account.number')
 
         payment = super(PayLine, self).get_payment(line, journals)
 
@@ -20,5 +20,12 @@ class PayLine(metaclass=PoolMeta):
             numbers = BankAccountNumber.search([
                     ('account', '=', payment.bank_account),
                     ], order=[('sequence', 'ASC')], limit=1)
-            payment.sepa_mandate = numbers[0].sepa_mandate if numbers else None
+            mandate = None
+            for number in numbers:
+                for sepa_mandate in number.sepa_mandates:
+                    if sepa_mandate.party == payment.party:
+                        mandate = sepa_mandate
+                        break
+            payment.sepa_mandate = mandate
+
         return payment

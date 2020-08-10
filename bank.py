@@ -11,19 +11,22 @@ __all__ = ['BankAccountNumber']
 class BankAccountNumber(metaclass=PoolMeta):
     __name__ = 'bank.account.number'
 
-    sepa_mandate = fields.Function(fields.Many2One(
-        'account.payment.sepa.mandate', 'Mandate'), 'get_sepa_mandate')
+    sepa_mandates = fields.Function(fields.One2Many(
+        'account.payment.sepa.mandate', None, 'Mandate'), 'get_sepa_mandates')
 
     @classmethod
-    def get_sepa_mandate(cls, numbers, name):
+    def get_sepa_mandates(cls, numbers, names):
         pool = Pool()
         Mandate = pool.get('account.payment.sepa.mandate')
 
-        mandates = {}
+        sepa_mandates = {
+            'sepa_mandates': {}
+            }
         for number in numbers:
-            mandate = Mandate.search([
+            mandates = Mandate.search([
                     ('state', '=', 'validated'),
                     ('account_number', '=', number.id),
-                    ], order=[('create_date', 'DESC')], limit=1)
-            mandates[number.id] = mandate[0] if mandate else None
-        return mandates
+                    ])
+            sepa_mandates['sepa_mandates'][number.id] = ([m.id for m in mandates]
+                if mandates else None)
+        return sepa_mandates
