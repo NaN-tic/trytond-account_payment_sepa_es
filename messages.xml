@@ -15,6 +15,12 @@ this repository contains the full copyright notices and license terms. -->
         <record model="ir.message" id="no_mandate_for_party">
             <field name="text">No valid mandate for payment "%(payment)s" of party "%(party)s" with amount "%(amount)s".</field>
         </record>
+        <record model="ir.message" id="no_bank_account">
+            <field name="text">Payment "%(payment)s" of party "%(party)s" with amount "%(amount)s hasn't bank account.".</field>
+        </record>
+        <record model="ir.message" id="bad_relation_mandate_number_vs_bank_account_numbers">
+            <field name="text">The mandate "%(mandate)s" for payment "%(payment)s" of party "%(party)s" with amount "%(amount)s" is not for the move line bank accounts "%(bank_account_numbers)s".</field>
+        </record>
         <record model="ir.message" id="cancel_with_processing_payments">
             <field name="text">Mandate "%(mandate)s" can not be canceled because it is linked to payment "%(payment)s" which is still in process.</field>
         </record>
