@@ -243,7 +243,7 @@ class Payment(metaclass=PoolMeta):
         for payments, _ in zip(actions, actions):
             for payment in payments:
                 if (payment.sepa_mandate and
-                        payment.sepa_mandate.state == 'canceled'):
+                        payment.sepa_mandate.state == 'cancelled'):
                     raise UserError(gettext(
                         'account_payment_sepa_es.canceled_mandate',
                             payment=payment.rec_name,
