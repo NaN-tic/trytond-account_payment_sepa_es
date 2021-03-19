@@ -81,7 +81,6 @@ class Group(metaclass=PoolMeta):
     def create(cls, vlist):
         pool = Pool()
         Journal = pool.get('account.payment.journal')
-        Sequence = pool.get('ir.sequence')
 
         vlist = [v.copy() for v in vlist]
         for values in vlist:
@@ -89,8 +88,7 @@ class Group(metaclass=PoolMeta):
                 journal = Journal(values.get('journal'))
                 if (journal and journal.core58_sequence and
                         'number' not in values):
-                    values['number'] = Sequence.get_id(
-                        journal.core58_sequence.id)
+                    values['number'] = journal.core58_sequence.get()
 
         return super(Group, cls).create(vlist)
 
