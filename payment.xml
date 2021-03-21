@@ -5,7 +5,7 @@
     <data>
         <record model="ir.sequence" id="sequence_mandate">
             <field name="name">Mandate</field>
-            <field name="code">account.payment.sepa.mandate</field>
+            <field name="sequence_type" ref="account_payment_sepa.sequence_type_mandate"/>
         </record>
 
         <record model="ir.ui.view" id="payment_view_form">
@@ -45,27 +45,20 @@
             <field name="name">payment_journal_form</field>
         </record>
 
-        <record model="ir.sequence.type"
-            id="sequence_type_account_payment_group_sepa_core58">
+        <record model="ir.sequence.type" id="sequence_type_account_payment_group_sepa_core58">
             <field name="name">Account Payment Group SEPA CORE 58</field>
-            <field name="code">account.payment.group.sepa_core58</field>
         </record>
-        <record model="ir.sequence.type-res.group"
-            id="sequence_type_account_payment_group_sepa_core58_group_admin">
-            <field name="sequence_type"
-                ref="sequence_type_account_payment_group_sepa_core58"/>
+        <record model="ir.sequence.type-res.group" id="sequence_type_account_payment_group_sepa_core58_group_admin">
+            <field name="sequence_type" ref="sequence_type_account_payment_group_sepa_core58"/>
             <field name="group" ref="res.group_admin"/>
         </record>
-        <record model="ir.sequence.type-res.group"
-            id="sequence_type_account_payment_group_sepa_core58_group_account_admin">
-            <field name="sequence_type"
-                ref="sequence_type_account_payment_group_sepa_core58"/>
+        <record model="ir.sequence.type-res.group" id="sequence_type_account_payment_group_sepa_core58_group_account_admin">
+            <field name="sequence_type" ref="sequence_type_account_payment_group_sepa_core58"/>
             <field name="group" ref="account.group_account_admin"/>
         </record>
-        <record model="ir.sequence"
-            id="sequence_account_payment_group_sepa_core58">
+        <record model="ir.sequence" id="sequence_account_payment_group_sepa_core58">
             <field name="name">Default Account Payment Group SEPA CORE 58</field>
-            <field name="code">account.payment.group.sepa_core58</field>
+            <field name="sequence_type" ref="sequence_type_account_payment_group_sepa_core58"/>
             <field name="prefix">FSDD_</field>
         </record>
     </data>

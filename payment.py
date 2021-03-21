@@ -9,7 +9,7 @@ from unidecode import unidecode
 from itertools import groupby
 from trytond.model import fields, dualmethod, ModelView
 from trytond.pool import Pool, PoolMeta
-from trytond.pyson import Eval, If, Bool
+from trytond.pyson import Eval, If, Bool, Id
 from trytond.transaction import Transaction
 from trytond.modules.jasper_reports.jasper import JasperReport
 from trytond.i18n import gettext
@@ -32,7 +32,8 @@ class Journal(metaclass=PoolMeta):
             'invisible': Eval('process_method') != 'sepa',
             },
         domain=[
-            ('code', '=', 'account.payment.group.sepa_core58'),
+            ('payment_type', '=', Id('account_payment_sepa_es',
+                    'sequence_type_account_payment_group_sepa_core58')),
             ],
         depends=['process_method'])
 
