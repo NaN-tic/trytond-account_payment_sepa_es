@@ -43,8 +43,8 @@
 	<field name="company_street" class="java.lang.String">
 		<fieldDescription><![CDATA[company/party/addresses/street]]></fieldDescription>
 	</field>
-	<field name="company_zip" class="java.lang.String">
-		<fieldDescription><![CDATA[company/party/addresses/zip]]></fieldDescription>
+	<field name="company_postal_code" class="java.lang.String">
+		<fieldDescription><![CDATA[company/party/addresses/postal_code]]></fieldDescription>
 	</field>
 	<field name="company_city" class="java.lang.String">
 		<fieldDescription><![CDATA[company/party/addresses/city]]></fieldDescription>
@@ -67,8 +67,8 @@
 	<field name="partner_street" class="java.lang.String">
 		<fieldDescription><![CDATA[party/addresses/street]]></fieldDescription>
 	</field>
-	<field name="partner_zip" class="java.lang.String">
-		<fieldDescription><![CDATA[party/addresses/zip]]></fieldDescription>
+	<field name="partner_postal_code" class="java.lang.String">
+		<fieldDescription><![CDATA[party/addresses/postal_code]]></fieldDescription>
 	</field>
 	<field name="partner_city" class="java.lang.String">
 		<fieldDescription><![CDATA[party/addresses/city]]></fieldDescription>
@@ -135,7 +135,7 @@
 					<textElement>
 						<font fontName="DejaVu Sans" isPdfEmbedded="true"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$F{company_zip} + " - " + $F{company_city} + " - " + $F{company_state}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{company_postal_code} + " - " + $F{company_city} + " - " + $F{company_state}]]></textFieldExpression>
 				</textField>
 				<textField>
 					<reportElement style="defecto" x="29" y="237" width="501" height="15" uuid="b58294dc-8aa7-4429-b213-6dea955d7a52"/>
@@ -166,7 +166,7 @@
 					<textElement>
 						<font fontName="DejaVu Sans" isPdfEmbedded="true"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$F{partner_zip} + " - " + $F{partner_city} + " - " + $F{partner_state}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{partner_postal_code} + " - " + $F{partner_city} + " - " + $F{partner_state}]]></textFieldExpression>
 				</textField>
 				<textField>
 					<reportElement style="defecto" x="29" y="519" width="501" height="15" uuid="44a83a92-c1db-4e06-a02b-8cdac8017fed"/>
