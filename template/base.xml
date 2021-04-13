@@ -30,7 +30,7 @@ this repository contains the full copyright notices and license terms. -->
         <Ctry py:if="address.country">${normalize(address.country.code)}</Ctry>
         <AdrLine py:if="address.street.strip()">${normalize(' '.join(address.street.splitlines()[0:1]))[:70]}</AdrLine>
         <AdrLine py:if="address.street.strip() and len(address.street.strip().splitlines()) > 1 and address.street.strip().splitlines()[1:]">${normalize(' '.join(address.street.splitlines()[1:]))[:70]}</AdrLine>
-        <AdrLine py:if="address.zip and address.city">${address.zip[:16]} ${address.city[:35]}</AdrLine>
+        <AdrLine py:if="address.postal_code and address.city">${address.postal_code[:16]} ${address.city[:35]}</AdrLine>
     </py:def>
     <py:def function="Account(account_number, with_ccy=True)">
         <Id>
