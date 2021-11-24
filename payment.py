@@ -73,7 +73,7 @@ class Group(metaclass=PoolMeta):
         super(Group, cls).__setup__()
         # set generate message button to invisible when has SEPA messages
         cls._buttons.update({
-                'generate_message': {
+                'sepa_generate_message': {
                     'invisible': Eval('sepa_messages'),
                     },
                 })
@@ -159,7 +159,7 @@ class Group(metaclass=PoolMeta):
 
     @dualmethod
     @ModelView.button
-    def generate_message(cls, groups, _save=True):
+    def sepa_generate_message(cls, groups, _save=True):
         # reload groups to calculate sepa_creditor_identifier_used
         # in company and party according to context (suffix & kind)
         # depend group journal and kind
