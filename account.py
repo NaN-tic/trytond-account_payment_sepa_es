@@ -16,6 +16,9 @@ class PayLine(metaclass=PoolMeta):
 
         payment = super(PayLine, self).get_payment(line, journals)
 
+        if line.payment_type and line.payment_type.kind == 'payable':
+            return payment
+
         if hasattr(payment, 'bank_account'):
             numbers = BankAccountNumber.search([
                     ('account', '=', payment.bank_account),
