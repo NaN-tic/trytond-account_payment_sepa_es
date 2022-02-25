@@ -213,7 +213,6 @@ class Payment(metaclass=PoolMeta):
     @classmethod
     def __setup__(cls):
         super(Payment, cls).__setup__()
-        cls.sepa_mandate.domain.append(('state', '=', 'validated'))
         cls.sepa_mandate.domain.append(
             If(Bool(Eval('bank_account')),
                 ('account_number.account', '=', Eval('bank_account')),
