@@ -16,9 +16,6 @@ class PayLine(metaclass=PoolMeta):
 
         payment = super(PayLine, self).get_payment(line, journals)
 
-        if line.payment_type and line.payment_type.kind == 'payable':
-            return payment
-
         if hasattr(payment, 'bank_account'):
             numbers = BankAccountNumber.search([
                     ('account', '=', payment.bank_account),
@@ -26,6 +23,8 @@ class PayLine(metaclass=PoolMeta):
             mandate = None
             for number in numbers:
                 for sepa_mandate in number.sepa_mandates:
+                    if sepa_mandate.company != payment.company:
+                        continue
                     if sepa_mandate.party == payment.party:
                         mandate = sepa_mandate
                         break
