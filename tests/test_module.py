@@ -1,15 +1,15 @@
-# This file is part of the account_payment_sepa_es module for Tryton.
-# The COPYRIGHT file at the top level of this repository contains the full
-# copyright notices and license terms.
-import unittest
-import trytond.tests.test_tryton
+
+# This file is part of Tryton.  The COPYRIGHT file at the top level of
+# this repository contains the full copyright notices and license terms.
+
 from trytond.pool import Pool
 from trytond.transaction import Transaction
 from trytond.tests.test_tryton import ModuleTestCase, with_transaction
+from trytond.modules.company.tests import CompanyTestMixin
 
 
-class AccountPaymentSepaEsTestCase(ModuleTestCase):
-    'Test Account Payment Sepa Es module'
+class AccountPaymentSepaEsTestCase(CompanyTestMixin, ModuleTestCase):
+    'Test AccountPaymentSepaEs module'
     module = 'account_payment_sepa_es'
 
     @with_transaction()
@@ -51,8 +51,5 @@ class AccountPaymentSepaEsTestCase(ModuleTestCase):
             self.assertEqual(party.sepa_creditor_identifier_used,
                 '47690558N001')
 
-def suite():
-    suite = trytond.tests.test_tryton.suite()
-    suite.addTests(unittest.TestLoader().loadTestsFromTestCase(
-        AccountPaymentSepaEsTestCase))
-    return suite
+
+del ModuleTestCase
