@@ -219,12 +219,12 @@ class Payment(metaclass=PoolMeta):
                 ('account_number.account', '=', Eval('bank_account')),
                 ()),
             )
-        cls.sepa_mandate.depends.append('bank_account')
+        cls.sepa_mandate.depends.add('bank_account')
         cls.sepa_mandate.states.update({
                 'readonly': Eval('state') != 'draft',
                 })
         if 'state' not in cls.sepa_mandate.depends:
-            cls.sepa_mandate.depends.append('state')
+            cls.sepa_mandate.depends.add('state')
 
     @property
     def sepa_bank_account_number(self):
