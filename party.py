@@ -33,6 +33,8 @@ class Party(metaclass=PoolMeta):
             if not party.tax_identifier:
                 continue
             vat_code = party.tax_identifier.code
+            if party.tax_identifier.type in ('es_cif', 'es_nie', 'es_nif'):
+                vat_code = 'ES' + vat_code
             number = vat_code[:2] + '00ZZZ' + vat_code[2:].upper()
             check_sum = sepa.calc_check_digits(number)
             identifier = Identifier()
