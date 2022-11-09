@@ -38,6 +38,8 @@ def create_mandates():
             continue
         mandate = Mandate()
         party = bank_account.account.owners and bank_account.account.owners[0]
+        if not party:
+            continue
         mandate.party = party
         mandate.account_number = bank_account
         mandate.type = 'recurrent'
