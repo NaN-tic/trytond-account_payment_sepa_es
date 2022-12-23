@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.13.0.final using JasperReports Library version 5.5.2  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" language="i18ngroovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="30" rightMargin="30" topMargin="30" bottomMargin="30" uuid="b1f7b495-3d76-461e-ae5b-a3b834b8adfb">
 	<property name="ireport.zoom" value="1.464100000000018"/>
 	<property name="ireport.x" value="0"/>
@@ -145,52 +146,52 @@
 					<textFieldExpression><![CDATA[$F{company_country}]]></textFieldExpression>
 				</textField>
 				<rectangle>
-					<reportElement x="17" y="390" width="518" height="377" uuid="b0bc916b-e83f-4f45-8a79-9e68c8181e60"/>
+					<reportElement x="17" y="380" width="518" height="385" uuid="b0bc916b-e83f-4f45-8a79-9e68c8181e60"/>
 				</rectangle>
 				<textField>
-					<reportElement style="defecto" x="29" y="411" width="501" height="15" uuid="b45c9a50-7c01-4751-aa26-25153c76f9a9"/>
+					<reportElement style="defecto" x="29" y="402" width="501" height="15" uuid="b45c9a50-7c01-4751-aa26-25153c76f9a9"/>
 					<textElement>
 						<font fontName="DejaVu Sans" isPdfEmbedded="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{partner_name}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement style="defecto" x="29" y="447" width="501" height="15" uuid="cf770b3c-f6d1-48b9-b854-450ce39efd9a"/>
+					<reportElement style="defecto" x="29" y="474" width="501" height="15" uuid="cf770b3c-f6d1-48b9-b854-450ce39efd9a"/>
 					<textElement>
 						<font fontName="DejaVu Sans" isPdfEmbedded="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{partner_street}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement style="defecto" x="29" y="483" width="501" height="15" uuid="8d45bab2-ee14-488a-bee1-154cefe80b61"/>
+					<reportElement style="defecto" x="29" y="510" width="501" height="15" uuid="8d45bab2-ee14-488a-bee1-154cefe80b61"/>
 					<textElement>
 						<font fontName="DejaVu Sans" isPdfEmbedded="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{partner_postal_code} + " - " + $F{partner_city} + " - " + $F{partner_state}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement style="defecto" x="29" y="519" width="501" height="15" uuid="44a83a92-c1db-4e06-a02b-8cdac8017fed"/>
+					<reportElement style="defecto" x="29" y="546" width="501" height="15" uuid="44a83a92-c1db-4e06-a02b-8cdac8017fed"/>
 					<textElement>
 						<font fontName="DejaVu Sans" isPdfEmbedded="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{partner_country}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement style="defecto" x="37" y="555" width="493" height="15" uuid="0ca3512a-0843-4f4e-ad91-b1b7c1926930"/>
+					<reportElement style="defecto" x="37" y="582" width="493" height="15" uuid="0ca3512a-0843-4f4e-ad91-b1b7c1926930"/>
 					<textElement>
 						<font fontName="DejaVu Sans" isPdfEmbedded="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{swift_bic}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement style="defecto" x="37" y="591" width="493" height="15" uuid="d143d1e2-f094-4f7c-a06a-543c319619bd"/>
+					<reportElement style="defecto" x="37" y="618" width="493" height="15" uuid="d143d1e2-f094-4f7c-a06a-543c319619bd"/>
 					<textElement>
 						<font fontName="DejaVu Sans" isPdfEmbedded="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{iban}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement style="defecto" x="29" y="627" width="501" height="15" uuid="044a1fa2-38a2-4f0a-b9f2-facf0659ebf7"/>
+					<reportElement style="defecto" x="29" y="654" width="501" height="15" uuid="044a1fa2-38a2-4f0a-b9f2-facf0659ebf7"/>
 					<textElement textAlignment="Left">
 						<font fontName="DejaVu Sans" isPdfEmbedded="true"/>
 					</textElement>
@@ -215,7 +216,7 @@
 					<textFieldExpression><![CDATA[tr($V{L}, "Mandate reference") + ":"]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="17" y="262" width="518" height="123" uuid="9e9f705c-9b23-4551-b8f7-41d9a3d67829"/>
+					<reportElement x="17" y="257" width="518" height="123" uuid="9e9f705c-9b23-4551-b8f7-41d9a3d67829"/>
 					<textElement>
 						<font fontName="DejaVu Sans"/>
 					</textElement>
@@ -278,77 +279,77 @@
 )]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="0" y="390" width="15" height="377" forecolor="#0000FF" uuid="7aed11bd-126a-4835-b17e-fbf6de8ed403"/>
+					<reportElement x="0" y="381" width="15" height="386" forecolor="#0000FF" uuid="7aed11bd-126a-4835-b17e-fbf6de8ed403"/>
 					<textElement textAlignment="Center" rotation="Left">
 						<font fontName="DejaVu Sans" isBold="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[tr($V{L}, "To be completed by the debtor")]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="22" y="395" width="327" height="15" uuid="32af195d-beb1-4d7b-9849-265c3ab4e2d4"/>
+					<reportElement x="22" y="386" width="327" height="15" uuid="32af195d-beb1-4d7b-9849-265c3ab4e2d4"/>
 					<textElement>
 						<font fontName="DejaVu Sans" isBold="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[tr($V{L}, "Debtor's name") + ":"]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="22" y="431" width="327" height="15" uuid="e6e64fd1-22c2-43c7-8ac2-ccabdd7e4a4c"/>
+					<reportElement x="22" y="458" width="327" height="15" uuid="e6e64fd1-22c2-43c7-8ac2-ccabdd7e4a4c"/>
 					<textElement>
 						<font fontName="DejaVu Sans" isBold="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[tr($V{L}, "Debtor's address") + ":"]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="22" y="467" width="328" height="15" uuid="a0edd2ef-d1df-4c44-ac78-42fd6dc5eaee"/>
+					<reportElement x="22" y="494" width="328" height="15" uuid="a0edd2ef-d1df-4c44-ac78-42fd6dc5eaee"/>
 					<textElement>
 						<font fontName="DejaVu Sans" size="11" isBold="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[tr($V{L}, "Postal Code") + " - " + tr($V{L}, "City") + " - " + tr($V{L}, "Town") + ":"]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="22" y="503" width="327" height="15" uuid="7b0074d8-2293-499b-be21-f336ef619f9f"/>
+					<reportElement x="22" y="530" width="327" height="15" uuid="7b0074d8-2293-499b-be21-f336ef619f9f"/>
 					<textElement>
 						<font fontName="DejaVu Sans" isBold="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[tr($V{L}, "Debtor's country") + ":"]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="22" y="539" width="327" height="15" uuid="43894ebc-8a4b-4e7d-b984-72b409ab4d0c"/>
+					<reportElement x="22" y="566" width="327" height="15" uuid="43894ebc-8a4b-4e7d-b984-72b409ab4d0c"/>
 					<textElement>
 						<font fontName="DejaVu Sans" isBold="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[tr($V{L}, "Swift BIC") + ":"]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="22" y="575" width="327" height="15" uuid="9b78fc1b-5957-42b5-869b-67935f38adca"/>
+					<reportElement x="22" y="602" width="327" height="15" uuid="9b78fc1b-5957-42b5-869b-67935f38adca"/>
 					<textElement>
 						<font fontName="DejaVu Sans" isBold="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[tr($V{L}, "Accont number") + " - " + tr($V{L}, "IBAN") + ":"]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="22" y="611" width="327" height="15" uuid="2f0b97c5-6228-4b6d-826e-6a0d683628ac"/>
+					<reportElement x="22" y="638" width="327" height="15" uuid="2f0b97c5-6228-4b6d-826e-6a0d683628ac"/>
 					<textElement>
 						<font fontName="DejaVu Sans" isBold="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[tr($V{L}, "Type of payment") + ":"]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="22" y="647" width="327" height="15" uuid="aa1e8be8-dc2d-4e09-b117-4eda20cacf2b"/>
+					<reportElement x="22" y="674" width="327" height="15" uuid="aa1e8be8-dc2d-4e09-b117-4eda20cacf2b"/>
 					<textElement>
 						<font fontName="DejaVu Sans" isBold="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[tr($V{L}, "Date") + " - " + tr($V{L}, "Location in which you are signing") + ":"]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement style="defecto" x="29" y="663" width="501" height="15" uuid="88b89389-27ba-4674-a25b-7cee21ec7a36"/>
+					<reportElement style="defecto" x="29" y="690" width="501" height="15" uuid="88b89389-27ba-4674-a25b-7cee21ec7a36"/>
 					<textElement textAlignment="Left">
 						<font fontName="DejaVu Sans" isPdfEmbedded="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[new SimpleDateFormat("dd/MM/yyyy").format($F{signature_date}) + " - " + $F{partner_city}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="184" y="693" width="350" height="15" uuid="db2fcc3c-b24b-40e7-ba79-865568734b68"/>
+					<reportElement x="184" y="705" width="350" height="15" uuid="db2fcc3c-b24b-40e7-ba79-865568734b68"/>
 					<textElement>
 						<font fontName="DejaVu Sans" isBold="true"/>
 					</textElement>
@@ -360,6 +361,20 @@
 						<font fontName="DejaVu Sans" size="8" isBold="false"/>
 					</textElement>
 					<textFieldExpression><![CDATA[tr($V{L}, "ONCE THIS MANDATE HAS BEEN SIGNED MUST BE SENT TO CREDITOR FOR STORAGE")]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="24" y="422" width="327" height="15" uuid="946c119e-75cb-4edc-8089-da5cfb064d86"/>
+					<textElement>
+						<font fontName="DejaVu Sans" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[tr($V{L}, "Debtor Identifier") + ":"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="defecto" x="31" y="438" width="501" height="15" uuid="fbc64f3f-f67c-48fa-96b7-dab9178385e0"/>
+					<textElement>
+						<font fontName="DejaVu Sans" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{partner_vat}]]></textFieldExpression>
 				</textField>
 			</band>
 		</groupHeader>
