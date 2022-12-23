@@ -2,37 +2,17 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=utf-8\n"
 
-msgctxt "field:account.payment,rec_name:"
-msgid "Record Name"
-msgstr "Nom registre"
-
 msgctxt "field:account.payment.group,process_method:"
 msgid "Process Method"
 msgstr "Mètode de procés"
-
-msgctxt "field:account.payment.group,rec_name:"
-msgid "Record Name"
-msgstr "Nom registre"
-
-msgctxt "field:account.payment.journal,active:"
-msgid "Active"
-msgstr "Actiu"
 
 msgctxt "field:account.payment.journal,core58_sequence:"
 msgid "SEPA CORE 58 Sequence"
 msgstr "Seqüència SEPA CORE 58"
 
-msgctxt "field:account.payment.journal,rec_name:"
-msgid "Record Name"
-msgstr "Nom registre"
-
 msgctxt "field:account.payment.process.start,process_method:"
 msgid "Process Method"
 msgstr "Mètode de procés"
-
-msgctxt "field:account.payment.sepa.mandate,rec_name:"
-msgid "Record Name"
-msgstr "Nom registre"
 
 msgctxt "field:account.payment.sepa.message,group_amount:"
 msgid "Amount"
@@ -46,21 +26,9 @@ msgctxt "field:account.payment.sepa.message,group_planned_date:"
 msgid "Planned Date"
 msgstr "Data estimada"
 
-msgctxt "field:account.payment.sepa.message,rec_name:"
-msgid "Record Name"
-msgstr "Nom registre"
-
-msgctxt "field:bank.account.number,rec_name:"
-msgid "Record Name"
-msgstr "Nom registre"
-
 msgctxt "field:bank.account.number,sepa_mandates:"
 msgid "Mandate"
 msgstr "Mandat"
-
-msgctxt "field:party.party,rec_name:"
-msgid "Record Name"
-msgstr "Nom registre"
 
 msgctxt "help:party.party,customer_location:"
 msgid "The default destination location for stock sent to the party."
@@ -139,6 +107,14 @@ msgctxt ""
 msgid "Calculate SEPA Creditor Identifier"
 msgstr "Calcula l'identificador SEPA Creditor"
 
+msgctxt "model:ir.sequence,name:sequence_account_payment_group_sepa_core58"
+msgid "Default Account Payment Group SEPA CORE 58"
+msgstr ""
+
+msgctxt "model:ir.sequence,name:sequence_mandate"
+msgid "Mandate"
+msgstr "Mandat"
+
 msgctxt "model:ir.sequence.type,name:"
 msgid "Mandate"
 msgstr "Mandat"
@@ -204,6 +180,10 @@ msgstr "Nom del creditor"
 msgctxt "report:account.payment.sepa.mandate.jreport:"
 msgid "Date"
 msgstr "Data"
+
+msgctxt "report:account.payment.sepa.mandate.jreport:"
+msgid "Debtor Identifier"
+msgstr "Identificador del deutor"
 
 msgctxt "report:account.payment.sepa.mandate.jreport:"
 msgid "Debtor's address"
