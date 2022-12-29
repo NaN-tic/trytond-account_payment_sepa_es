@@ -324,7 +324,8 @@ class Mandate(metaclass=PoolMeta):
     @property
     def is_valid(self):
         is_valid = super().is_valid
-        if not self.account_number.account.active:
+        if (not self.account_number or not self.account_number.account
+                or not self.account_number.account.active):
             return False
         return is_valid
 
