@@ -342,6 +342,7 @@ class Message(metaclass=PoolMeta):
     group_amount = fields.Function(fields.Numeric('Amount'), 'get_group_field')
 
     def get_group_field(self, name):
-        if not self.origin or self.origin.__name__ != 'account.payment.group':
+        if (not self.origin or isinstance(self.origin, str)
+                or (self.origin.__name__ != 'account.payment.group')):
             return
         return getattr(self.origin, name[6:])
