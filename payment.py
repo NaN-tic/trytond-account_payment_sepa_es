@@ -192,6 +192,11 @@ class Payment(metaclass=PoolMeta):
         if 'state' not in cls.sepa_mandate.depends:
             cls.sepa_mandate.depends.add('state')
 
+    @classmethod
+    def join_payment_keyfunc(cls, x):
+        # not call super
+        return (x.currency, x.party, x.sepa_bank_account_number)
+
     @property
     def sepa_bank_account_number(self):
         if self.kind == 'receivable' and self.sepa_mandate:
