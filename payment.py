@@ -93,40 +93,6 @@ class Group(metaclass=PoolMeta):
 
         return super(Group, cls).create(vlist)
 
-    def __getattribute__(self, name):
-        if name == 'payments' and Transaction().context.get('join_payments'):
-            cache_name = 'payments_used_cache'
-            res = getattr(self, cache_name, None)
-            if not res:
-                res = self.get_payments_used()
-                setattr(self, cache_name, res)
-            return res
-        return super(Group, self).__getattribute__(name)
-
-    def get_payments_used(self):
-        def keyfunc(x):
-            return (x.currency, x.party, x.sepa_bank_account_number)
-
-        res = []
-        with Transaction().set_context(join_payments=False):
-            payments = sorted(self.payments, key=keyfunc)
-            for key, grouped in groupby(payments, keyfunc):
-                amount = 0
-                date = None
-                end_to_end_id = ''
-                for payment in grouped:
-                    amount += payment.amount
-                    end_to_end_id += payment.sepa_end_to_end_id + ','
-                    if not date or payment.date > date:
-                        date = payment.date
-
-                payment.amount = amount
-                payment.line = None
-                payment.description = end_to_end_id[:-1][:35]
-                payment.date = date
-                res.append(payment)
-        return res
-
     @property
     def sepa_initiating_party(self):
         Party = Pool().get('party.party')
@@ -225,6 +191,11 @@ class Payment(metaclass=PoolMeta):
                 })
         if 'state' not in cls.sepa_mandate.depends:
             cls.sepa_mandate.depends.add('state')
+
+    @classmethod
+    def join_payment_keyfunc(cls, x):
+        # not call super
+        return (x.currency, x.party, x.sepa_bank_account_number)
 
     @property
     def sepa_bank_account_number(self):
