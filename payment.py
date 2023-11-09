@@ -173,6 +173,20 @@ class Group(metaclass=PoolMeta):
             super(Group, self).get_sepa_template()
 
 
+class ProcessPayment(metaclass=PoolMeta):
+    __name__ = 'account.payment.process'
+
+    def do_process(self, action):
+        pool = Pool()
+        Payment = pool.get('account.payment')
+
+        payments = self.records
+        # Before process the payment group check all payments has the correct
+        # values and it's domains, like account or Mandate.
+        Payment._check_payment(payments)
+        return super().do_process(action)
+
+
 class Payment(metaclass=PoolMeta):
     __name__ = 'account.payment'
 
@@ -264,6 +278,52 @@ class Payment(metaclass=PoolMeta):
                                 [n.rec_name + " (id: " + str(n.id) + ")"
                                 for n in payment.bank_account.numbers]))))
         return mandates
+
+    @classmethod
+    def _check_payment(cls, payments):
+        for payment in payments:
+            if payment.bank_account is None:
+                raise UserError(gettext(
+                        'account_payment_sepa_es.'
+                        'msg_payment_without_bank_account',
+                        party=payment.party.rec_name,
+                        amount=payment.amount,
+                        ))
+            elif payment.party not in payment.bank_account.owners:
+                raise UserError(gettext(
+                        'account_payment_sepa_es.'
+                        'msg_bad_relation_party_bank_account',
+                        party=payment.party.rec_name,
+                        amount=payment.amount,
+                        account=payment.bank_account.rec_name,
+                        ))
+            elif payment.sepa_mandate is None:
+                raise UserError(gettext(
+                        'account_payment_sepa_es.msg_payment_without_mandate',
+                        party=payment.party.rec_name,
+                        amount=payment.amount,
+                        account=payment.bank_account.rec_name,
+                        ))
+            elif not payment.sepa_mandate.is_valid:
+                raise UserError(gettext(
+                        'account_payment_sepa_es.msg_mandate_state_not_valid',
+                        party=payment.party.rec_name,
+                        amount=payment.amount,
+                        account=payment.bank_account.rec_name,
+                        mandate=payment.sepa_mandate.rec_name,
+                        ))
+            elif (payment.sepa_bank_account_number !=
+                    payment.sepa_mandate.account_number):
+                raise UserError(gettext(
+                        'account_payment_sepa_es.msg_mandate_not_correct',
+                        party=payment.party.rec_name,
+                        amount=payment.amount,
+                        account=payment.bank_account.rec_name,
+                        mandate=payment.sepa_mandate.rec_name,
+                        mandate_account=(payment.sepa_mandate.account_number.
+                            rec_name),
+                        ))
+        print(A)
 
 
 class Mandate(metaclass=PoolMeta):

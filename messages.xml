@@ -24,5 +24,20 @@ this repository contains the full copyright notices and license terms. -->
         <record model="ir.message" id="cancel_with_processing_payments">
             <field name="text">Mandate "%(mandate)s" can not be canceled because it is linked to payment "%(payment)s" which is still in process.</field>
         </record>
+        <record model="ir.message" id="msg_payment_without_bank_account">
+            <field name="text">The line of party "%(party)s with amount "%(amount)s" has not bank account.</field>
+        </record>
+        <record model="ir.message" id="msg_bad_relation_party_bank_account">
+            <field name="text">The line of party "%(party)s with amount "%(amount)s" has a bank account "%(account)s" with a different owner.</field>
+        </record>
+        <record model="ir.message" id="msg_payment_without_mandate">
+            <field name="text">The line of party "%(party)s with amount "%(amount)s" and bank account "%(account)s" has not found Mandate.</field>
+        </record>
+        <record model="ir.message" id="msg_mandate_state_not_valid">
+            <field name="text">The line of party "%(party)s with amount "%(amount)s" and bank account "%(account)s" has an invalid Mandate "%(mandate)s".</field>
+        </record>
+        <record model="ir.message" id="msg_mandate_not_correct">
+            <field name="text">The line of party "%(party)s with amount "%(amount)s" and bank account "%(account)s" has a Mandate "%(mandate)s" with and incorrect account "%(mdante_account)s".</field>
+        </record>
     </data>
 </tryton>
