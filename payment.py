@@ -323,7 +323,6 @@ class Payment(metaclass=PoolMeta):
                         mandate_account=(payment.sepa_mandate.account_number.
                             rec_name),
                         ))
-        print(A)
 
 
 class Mandate(metaclass=PoolMeta):
