@@ -22,4 +22,5 @@ def register():
         module='account_payment_sepa_es', type_='report')
     Pool.register(
         account.PayLine,
+        payment.ProcessPayment,
         module='account_payment_sepa_es', type_='wizard')
