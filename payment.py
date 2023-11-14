@@ -290,8 +290,9 @@ class Payment(metaclass=PoolMeta):
                         amount=payment.amount,
                         ))
             elif payment.journal.payment_type:
+                owners = payment.bank_account.owners
                 if (payment.journal.payment_type.account_bank == 'party'
-                        and payment.party not in payment.bank_account.owners):
+                        and payment.party not in owners):
                     raise UserError(gettext(
                             'account_payment_sepa_es.'
                             'msg_bad_relation_party_bank_account',
@@ -300,7 +301,7 @@ class Payment(metaclass=PoolMeta):
                             account=payment.bank_account.rec_name,
                             ))
                 elif (payment.journal.payment_type.account_bank == 'company'
-                        and payment.company.party not in payment.bank_account.owners):
+                        and payment.company.party not in owners):
                     raise UserError(gettext(
                             'account_payment_sepa_es.'
                             'msg_bad_relation_party_bank_account',
@@ -309,12 +310,11 @@ class Payment(metaclass=PoolMeta):
                             account=payment.bank_account.rec_name,
                             ))
                 elif (payment.journal.payment_type.account_bank == 'other'
-                        and payment.journal.payment_type.party == payment.party
-                        and payment.party not in payment.bank_account.owners):
+                        and payment.journal.payment_type.party not in owners):
                     raise UserError(gettext(
                             'account_payment_sepa_es.'
                             'msg_bad_relation_party_bank_account',
-                            party=payment.party.rec_name,
+                            party=payment.journal.payment_type.party.rec_name,
                             amount=payment.amount,
                             account=payment.bank_account.rec_name,
                             ))
