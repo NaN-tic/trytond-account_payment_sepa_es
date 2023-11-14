@@ -289,14 +289,36 @@ class Payment(metaclass=PoolMeta):
                         party=payment.party.rec_name,
                         amount=payment.amount,
                         ))
-            elif payment.party not in payment.bank_account.owners:
-                raise UserError(gettext(
-                        'account_payment_sepa_es.'
-                        'msg_bad_relation_party_bank_account',
-                        party=payment.party.rec_name,
-                        amount=payment.amount,
-                        account=payment.bank_account.rec_name,
-                        ))
+            elif payment.journal.payment_type:
+                owners = payment.bank_account.owners
+                if (payment.journal.payment_type.account_bank == 'party'
+                        and payment.party not in owners):
+                    raise UserError(gettext(
+                            'account_payment_sepa_es.'
+                            'msg_bad_relation_party_bank_account',
+                            party=payment.party.rec_name,
+                            amount=payment.amount,
+                            account=payment.bank_account.rec_name,
+                            ))
+                elif (payment.journal.payment_type.account_bank == 'company'
+                        and payment.company.party not in owners):
+                    raise UserError(gettext(
+                            'account_payment_sepa_es.'
+                            'msg_bad_relation_party_bank_account',
+                            party=payment.company.party.rec_name,
+                            amount=payment.amount,
+                            account=payment.bank_account.rec_name,
+                            ))
+                elif (payment.journal.payment_type.account_bank == 'other'
+                        and payment.journal.payment_type.party not in owners):
+                    raise UserError(gettext(
+                            'account_payment_sepa_es.'
+                            'msg_bad_relation_party_bank_account',
+                            party=payment.journal.payment_type.party.rec_name,
+                            amount=payment.amount,
+                            account=payment.bank_account.rec_name,
+                            ))
+                # else payment.journal.payment_type.account_bank == 'none'
             elif payment.sepa_mandate is None:
                 raise UserError(gettext(
                         'account_payment_sepa_es.msg_payment_without_mandate',
