@@ -333,14 +333,16 @@ class Payment(metaclass=PoolMeta):
                         amount=payment.amount,
                         account=payment.bank_account.rec_name,
                         ))
-            elif (payment.sepa_mandate_required and payment.sepa_mandate is None):
+            elif (payment.sepa_mandate_required
+                    and payment.sepa_mandate is None):
                 raise UserError(gettext(
                         'account_payment_sepa_es.msg_payment_without_mandate',
                         party=payment.party.rec_name,
                         amount=payment.amount,
                         account=payment.bank_account.rec_name,
                         ))
-            elif (payment.sepa_mandate_required and not payment.sepa_mandate.is_valid):
+            elif (payment.sepa_mandate_required
+                    and not payment.sepa_mandate.is_valid):
                 raise UserError(gettext(
                         'account_payment_sepa_es.msg_mandate_state_not_valid',
                         party=payment.party.rec_name,
@@ -349,7 +351,8 @@ class Payment(metaclass=PoolMeta):
                         mandate=payment.sepa_mandate.rec_name,
                         ))
             elif (payment.sepa_mandate_required
-                    and (payment.sepa_mandate.account_number != payment.sepa_bank_account_number)):
+                    and (payment.sepa_mandate.account_number
+                        != payment.sepa_bank_account_number)):
                 raise UserError(gettext(
                         'account_payment_sepa_es.msg_mandate_not_correct',
                         party=payment.party.rec_name,
