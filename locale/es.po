@@ -104,7 +104,7 @@ msgid ""
 "The line of party \"%(party)s with amount \"%(amount)s\" has not bank "
 "account."
 msgstr ""
-"El apunto del tercero \"%(party)s con importe \"%(amount)s\" no tiene cuenta "
+"El apunte del tercero \"%(party)s con importe \"%(amount)s\" no tiene cuenta "
 "bancaria."
 
 msgctxt "model:ir.message,text:msg_payment_without_mandate"
