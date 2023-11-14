@@ -282,6 +282,9 @@ class Payment(metaclass=PoolMeta):
     @classmethod
     def _check_payment(cls, payments):
         for payment in payments:
+            if payment.journal.payment_type.account_bank == 'none':
+                continue
+
             if payment.bank_account is None:
                 raise UserError(gettext(
                         'account_payment_sepa_es.'
