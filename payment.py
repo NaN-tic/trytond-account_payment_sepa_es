@@ -296,7 +296,9 @@ class Payment(metaclass=PoolMeta):
                 continue
 
             owners = payment.bank_account and payment.bank_account.owners or []
-            if payment.bank_account is None:
+            if (payment.bank_account is None
+                    and payment.journal.payment_type
+                    and payment.journal.payment_type.account_bank != 'other'):
                 raise UserError(gettext(
                         'account_payment_sepa_es.'
                         'msg_payment_without_bank_account',
@@ -323,7 +325,7 @@ class Payment(metaclass=PoolMeta):
                         amount=payment.amount,
                         account=payment.bank_account.rec_name,
                         ))
-            elif (payment.journal.payment_type
+            elif (payment.bank_account and payment.journal.payment_type
                     and payment.journal.payment_type.account_bank == 'other'
                     and payment.journal.payment_type.party not in owners):
                 raise UserError(gettext(
