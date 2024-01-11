@@ -34,8 +34,7 @@ class Journal(metaclass=PoolMeta):
         domain=[
             ('sequence_type', '=', Id('account_payment_sepa_es',
                     'sequence_type_account_payment_group_sepa_core58')),
-            ],
-        depends=['process_method'])
+            ])
 
     @classmethod
     def __register__(cls, module_name):
