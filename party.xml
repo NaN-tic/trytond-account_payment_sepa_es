@@ -12,7 +12,7 @@
         <record model="ir.model.button" id="party_calculate_sepa_creditor_identifier_button">
             <field name="name">calculate_sepa_creditor_identifier</field>
             <field name="string">Calculate SEPA Creditor Identifier</field>
-            <field name="model" search="[('model', '=', 'party.party')]"/>
+            <field name="model">party.party</field>
         </record>
     </data>
 </tryton>
