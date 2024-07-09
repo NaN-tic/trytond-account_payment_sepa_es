@@ -294,6 +294,13 @@ class Payment(metaclass=PoolMeta):
                     and payment.journal.payment_type.account_bank == 'none'):
                 continue
 
+            if (payment.journal.process_method == 'sepa'
+                    and not payment.journal.sepa_bank_account_number):
+                raise UserError(gettext(
+                        'account_payment_sepa_es.msg_missing_sepa_bank_account_number',
+                        journal=payment.journal.rec_name,
+                        ))
+
             owners = payment.bank_account and payment.bank_account.owners or []
             if (payment.bank_account is None
                     and payment.journal.payment_type
