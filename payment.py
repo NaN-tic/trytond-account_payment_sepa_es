@@ -416,4 +416,7 @@ class Message(metaclass=PoolMeta):
         if (not self.origin or isinstance(self.origin, str)
                 or (self.origin.__name__ != 'account.payment.group')):
             return
-        return getattr(self.origin, name[6:])
+        if name == 'group_amount':
+            return getattr(self.origin, 'payment_amount')
+        else:
+            return getattr(self.origin, name[6:])
