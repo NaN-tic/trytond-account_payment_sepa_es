@@ -165,10 +165,6 @@ msgctxt ""
 msgid "Account Payment Group SEPA CORE 58"
 msgstr "Grup de pagament SEPA CORE 58"
 
-msgctxt "model:ir.ui.menu,name:"
-msgid "Configuration"
-msgstr "Configuració"
-
 msgctxt "report:account.payment.sepa.mandate.jreport:"
 msgid "Accont number"
 msgstr "Número de compte"
