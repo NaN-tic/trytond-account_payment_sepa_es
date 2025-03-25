@@ -158,6 +158,9 @@ class Group(metaclass=PoolMeta):
                     cls.save(reload_groups)
 
     def get_sepa_template(self):
+        if self.process_method != 'sepa':
+            return
+
         loader_es = genshi.template.TemplateLoader(
             os.path.join(os.path.dirname(__file__), 'template'),
             auto_reload=True)
