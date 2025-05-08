@@ -212,7 +212,7 @@ class Group(metaclass=PoolMeta):
                     else:
                         new_payments[join_key].amount += payment.amount
                         new_payments[join_key].description += (" / "
-                            + payment.description)
+                            + payment.reference)
                 payments = new_payments.values()
             yield key, payments
 
