@@ -155,13 +155,11 @@ class Group(metaclass=PoolMeta):
                         raise NotImplementedError
                     if not group.sepa_messages:
                         group.sepa_messages = ()
-                    with Transaction().set_context(
-                            sepa_generate_message=group.join or False):
-                        message = tmpl.generate(group=group,
-                            datetime=datetime, normalize=normalize_text,
-                            ).filter(remove_comment).render().encode('utf8')
-                        message = Message(message=message, type='out',
-                            state='waiting', company=group.company)
+                    message = tmpl.generate(group=group,
+                        datetime=datetime, normalize=normalize_text,
+                        ).filter(remove_comment).render().encode('utf8')
+                    message = Message(message=message, type='out',
+                        state='waiting', company=group.company)
                     group.sepa_messages += (message,)
                     cls.save(reload_groups)
 
@@ -181,40 +179,6 @@ class Group(metaclass=PoolMeta):
                 '%s.xml' % self.journal.sepa_receivable_flavor)
         else:
             super(Group, self).get_sepa_template()
-
-    @property
-    def sepa_payments(self):
-        """
-        Ussing the 'join' field definied in the account_payemnt_es,
-        when create SEPA file is created a virtual Payment grouping
-        the payments wiht the same party, bank account and date.
-        The main SEPA Batch Booking is not working as expected with
-        the Spain Banks.
-        """
-        pool = Pool()
-        Payment = pool.get('account.payment')
-
-        for key, payments in super().sepa_payments:
-            sepa_generate_message = Transaction().context.get(
-                'sepa_generate_message', False)
-            if sepa_generate_message and len(payments) > 1:
-                new_payments = {}
-                for payment in payments:
-                    join_key = (payment.party, payment.bank_account,
-                        payment.date)
-                    if join_key not in new_payments:
-                        new_payments[join_key] = Payment()
-                        for fname in Payment._fields.keys():
-                            value = getattr(payment, fname)
-                            if not value or fname == 'xml_id':
-                                continue
-                            setattr(new_payments[join_key], fname, value)
-                    else:
-                        new_payments[join_key].amount += payment.amount
-                        new_payments[join_key].description += (" / "
-                            + payment.reference)
-                payments = new_payments.values()
-            yield key, payments
 
 
 class ProcessPayment(metaclass=PoolMeta):
