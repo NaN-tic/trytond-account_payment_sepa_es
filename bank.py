@@ -12,7 +12,8 @@ class BankAccountNumber(metaclass=PoolMeta):
     __name__ = 'bank.account.number'
 
     sepa_mandates = fields.Function(fields.One2Many(
-        'account.payment.sepa.mandate', None, 'Mandate'), 'get_sepa_mandates')
+            'account.payment.sepa.mandate', None, None, 'Mandate'),
+        'get_sepa_mandates')
 
     @classmethod
     def get_sepa_mandates(cls, numbers, names):
