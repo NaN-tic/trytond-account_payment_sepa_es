@@ -70,7 +70,7 @@ msgid ""
 "Invalid payment date %(payment_date)s for payment \"%(payment)s\". "
 "Payment\\'s date must be greather or equal than today."
 msgstr ""
-"Fecha de pago no vàlida \"%(payment_date)s\". La fecha de pago debe ser "
+"Fecha de pago no vàlida \"%(payment_date)s\" del pago \"%(payment)s\". La fecha de pago debe ser "
 "mayor o igual a la de hoy."
 
 msgctxt "model:ir.message,text:msg_bad_relation_party_bank_account"
