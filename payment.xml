@@ -26,10 +26,10 @@
         <record model="ir.action.report" id="report_mandate">
             <field name="name">Mandate</field>
             <field name="model">account.payment.sepa.mandate</field>
-            <field name="report_name">account.payment.sepa.mandate.jreport</field>
-            <field name="report">account_payment_sepa_es/mandate.jrxml</field>
+            <field name="report_name">account.payment.sepa.mandate.report</field>
+            <field name="report" eval="None"/>
             <field name="extension">pdf</field>
-            <field name="template_extension">jrxml</field>
+            <field name="template_extension">html</field>
         </record>
         <record model="ir.action.keyword" id="report_mandate_keyword">
             <field name="keyword">form_print</field>
