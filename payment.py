@@ -7,16 +7,17 @@ import genshi
 import datetime
 from unidecode import unidecode
 from itertools import groupby
+from dominate.tags import div, footer as footer_tag, p, section
 from trytond.model import fields, dualmethod, ModelView
 from trytond.pool import Pool, PoolMeta
 from trytond.pyson import Eval, If, Bool, Id
 from trytond.transaction import Transaction
-from trytond.modules.jasper_reports.jasper import JasperReport
 from trytond.i18n import gettext
 from trytond.exceptions import UserError
 from trytond.modules.account_payment_sepa.payment import remove_comment
-
-__all__ = ['Journal', 'Group', 'Payment', 'Mandate', 'MandateReport', 'Message']
+from trytond.modules.html_report.dominate_report import DominateReport
+from trytond.modules.html_report.i18n import _
+from trytond.tools import file_open
 
 def normalize_text(text):
     # Function create becasuse not all Banks accept the same chars
@@ -416,8 +417,188 @@ class Mandate(metaclass=PoolMeta):
         return is_valid
 
 
-class MandateReport(JasperReport):
-    __name__ = 'account.payment.sepa.mandate.jreport'
+class MandateReport(DominateReport):
+    __name__ = 'account.payment.sepa.mandate.report'
+    _single = True
+    side_margin = 2
+
+    @classmethod
+    def css(cls, action, data, records):
+        with file_open('account_payment_sepa_es/mandate.css') as f:
+            return f.read()
+
+    @classmethod
+    def language(cls, records):
+        if records:
+            record, = records
+            lang = record.raw.party.lang.code if record.raw.party.lang else None
+            if lang:
+                return lang
+        return super().language(records)
+
+    @staticmethod
+    def _address(party):
+        return party and party.addresses and party.addresses[0] or None
+
+    @staticmethod
+    def _value(value):
+        return '' if value is None else str(value)
+
+    @classmethod
+    def _city_line(cls, postal_code, city, state):
+        return ' - '.join(x for x in [
+                cls._value(postal_code),
+                cls._value(city),
+                cls._value(state),
+                ] if x)
+
+    @classmethod
+    def _field(cls, label, value, value_cls='field-value'):
+        node = div(cls='field')
+        with node:
+            div('%s:' % label, cls='field-label')
+            div(cls._value(value), cls=value_cls)
+        return node
+
+    @classmethod
+    def _section_note(cls, text, extra_cls=None):
+        css_class = 'section-note'
+        if extra_cls:
+            css_class = '%s %s' % (css_class, extra_cls)
+        return div(text, cls=css_class)
+
+    @classmethod
+    def _creditor_message(cls, record):
+        message = _(
+            'By signing this mandate form, you authorise (A) the Creditor '
+            'to send instructions to your bank to debit your account, and '
+            '(B) your bank to debit your account in accordance with the '
+            'instructions from the Creditor.')
+        if record.raw.scheme == 'CORE':
+            extra = _(
+                'As part of your rights, you are entitled to a refund from '
+                'your bank under the terms and conditions of your agreement '
+                'with your bank. A refund must be claimed within 8 weeks '
+                'starting from the date on which your account was debited. '
+                'Your rights regarding this mandate are explained in a '
+                'statement that you can obtain from your bank.')
+        else:
+            extra = _(
+                'This mandate is only intended for business-to-business '
+                'transactions. You are not entitled to a refund from your '
+                'bank after your account has been debited, but you are '
+                'entitled to request your bank not to debit your account in '
+                'accordance with the instructions up until the day on which '
+                'the payment is due. Please contact your bank for detailed '
+                'procedures in such a case.')
+        return '%s\n\n%s' % (message, extra)
+
+    @classmethod
+    def _creditor_box(cls, record):
+        company_party = record.raw.company.party
+        address = cls._address(company_party)
+        tax_identifier = company_party.tax_identifier
+        box = div(cls='mandate-box creditor-box')
+        with box:
+            box.add(cls._field(_('Mandate reference'), record.raw.identification))
+            box.add(cls._field(_('Creditor Identifier'),
+                    tax_identifier.code if tax_identifier else ''))
+            box.add(cls._field(_("Creditor's name"), company_party.name))
+            box.add(cls._field(_('Address'),
+                    address and address.street or ''))
+            box.add(cls._field(
+                    '%s - %s - %s' % (_('Postal Code'), _('City'), _('Town')),
+                    cls._city_line(address and address.postal_code,
+                        address and address.city,
+                        address and address.subdivision and
+                        address.subdivision.rec_name or '')))
+            box.add(cls._field(_('Country'),
+                    address and address.country and address.country.rec_name or ''))
+            box.add(cls._section_note(_('To be completed by the creditor')))
+        return box
+
+    @classmethod
+    def _debtor_box(cls, record):
+        party = record.raw.party
+        address = cls._address(party)
+        tax_identifier = party.tax_identifier
+        signature_date = (
+            record.raw.signature_date.strftime('%d/%m/%Y')
+            if record.raw.signature_date else '')
+        signature_place = ' - '.join(x for x in [
+                signature_date,
+                cls._value(address and address.city),
+                ] if x)
+        payment_type = (_('Recurrent payment')
+            if record.raw.type == 'recurrent'
+            else _('One-off payment'))
+
+        box = div(cls='mandate-box debtor-box')
+        with box:
+            box.add(cls._field(_("Debtor's name"), party.name))
+            box.add(cls._field(_('Debtor Identifier'),
+                    tax_identifier.code if tax_identifier else ''))
+            box.add(cls._field(_("Debtor's address"),
+                    address and address.street or ''))
+            box.add(cls._field(
+                    '%s - %s - %s' % (_('Postal Code'), _('City'), _('Town')),
+                    cls._city_line(address and address.postal_code,
+                        address and address.city,
+                        address and address.subdivision and
+                        address.subdivision.rec_name or '')))
+            box.add(cls._field(_("Debtor's country"),
+                    address and address.country and address.country.rec_name or ''))
+            box.add(cls._field(_('Swift BIC'),
+                    record.raw.account_number.account.bank.bic
+                    if (record.raw.account_number
+                        and record.raw.account_number.account
+                        and record.raw.account_number.account.bank) else ''))
+            box.add(cls._field('%s - %s' % (_('Accont number'), _('IBAN')),
+                    record.raw.account_number.rec_name if record.raw.account_number else ''))
+            box.add(cls._field(_('Type of payment'),
+                    payment_type, value_cls='field-value payment-type'))
+
+            box.add(cls._field(
+                    '%s - %s' % (_('Date'),
+                        _('Location in which you are signing')),
+                    signature_place))
+            box.add(cls._field(_("Debtor's signature"), ''))
+            box.add(cls._section_note(
+                    _('To be completed by the debtor'),
+                    extra_cls='debtor-section-note'))
+        return box
+
+    @classmethod
+    def body(cls, action, data, records):
+        container = div()
+        for record in records:
+            title = _('SEPA Direct Debit Mandate')
+            if record.raw.scheme != 'CORE':
+                title = '%s B2B' % title
+            title_node = div(title, cls='mandate-title')
+            creditor_box = cls._creditor_box(record)
+            message_node = p(cls._creditor_message(record), cls='message-box')
+            debtor_box = cls._debtor_box(record)
+            page = section(cls='mandate-page')
+            page.add(title_node)
+            page.add(creditor_box)
+            page.add(message_node)
+            page.add(debtor_box)
+            container.add(page)
+        return container
+
+    @classmethod
+    def header(cls, action, data, records):
+        pass
+
+    @classmethod
+    def footer(cls, action, data, records):
+        footer = div()
+        with footer:
+            with footer_tag(id='footer', align='center'):
+                p(_('ONCE THIS MANDATE HAS BEEN SIGNED MUST BE SENT TO '
+                'CREDITOR FOR STORAGE'))
+        return footer
 
 
 class Message(metaclass=PoolMeta):

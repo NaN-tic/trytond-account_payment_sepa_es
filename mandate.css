@@ -1,0 +1,88 @@
+@page {
+    size: A4;
+}
+
+body {
+    color: #111;
+    font-family: "DejaVu Sans", sans-serif;
+    font-size: 8.5pt;
+    line-height: 1.12;
+}
+
+.mandate-page {
+    box-sizing: border-box;
+    page-break-after: always;
+}
+
+.mandate-page:last-child {
+    page-break-after: auto;
+}
+
+.mandate-title {
+    margin: 0 0 4mm;
+    font-size: 14pt;
+    font-weight: 700;
+    text-align: center;
+}
+
+.mandate-box {
+    border: 1px solid #111;
+    box-sizing: border-box;
+    margin-bottom: 3mm;
+    padding: 3mm 4mm 2.5mm;
+}
+
+.mandate-box.creditor-box {
+    min-height: 57mm;
+}
+
+.mandate-box.debtor-box {
+    min-height: 102mm;
+}
+
+.field {
+    margin-bottom: 1.8mm;
+}
+
+.field-label {
+    font-size: 8.5pt;
+    font-weight: 700;
+    margin-bottom: 0.3mm;
+}
+
+.field-value {
+    min-height: 3.2mm;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+.message-box {
+    margin: 0 0 3mm;
+    font-size: 7.6pt;
+    text-align: justify;
+    white-space: pre-line;
+}
+
+.payment-type {
+    min-height: 4mm;
+}
+
+footer {
+  position: fixed;
+  width: 17cm !important;
+  bottom: 0;
+  text-align: center;
+  font-size: 8px;
+  margin-bottom: 0.2cm;
+}
+
+.section-note {
+    color: #111;
+    font-size: 7pt;
+    margin-top: 2mm;
+    text-align: right;
+}
+
+.debtor-section-note {
+    margin-top: 12mm;
+}
