@@ -233,7 +233,7 @@ class Payment(metaclass=PoolMeta):
     @classmethod
     def write(cls, *args):
         actions = iter(args)
-        for payments, _ in zip(actions, actions):
+        for payments, x in zip(actions, actions):
             for payment in payments:
                 if (payment.sepa_mandate and
                         payment.sepa_mandate.state == 'cancelled'):
