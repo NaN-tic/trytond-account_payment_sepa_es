@@ -2,6 +2,9 @@
 # This file is part of Tryton.  The COPYRIGHT file at the top level of
 # this repository contains the full copyright notices and license terms.
 
+from trytond.modules.account_payment_sepa.tests.test_module import (
+    setup_accounts, setup_environment, setup_mandate)
+from trytond.modules.company.tests import set_company
 from trytond.pool import Pool
 from trytond.transaction import Transaction
 from trytond.tests.test_tryton import ModuleTestCase, with_transaction
@@ -50,6 +53,26 @@ class AccountPaymentSepaEsTestCase(CompanyTestMixin, ModuleTestCase):
             party = Party(party.id)
             self.assertEqual(party.sepa_creditor_identifier_used,
                 '47690558N001')
+
+    @with_transaction()
+    def test_sepa_mandate_report_execute(self):
+        'Test sepa mandate dominate report'
+        pool = Pool()
+        Report = pool.get('account.payment.sepa.mandate.report', type='report')
+
+        environment = setup_environment()
+        company = environment['company']
+        bank = environment['bank']
+        customer = environment['customer']
+
+        with set_company(company):
+            _, customer_account = setup_accounts(bank, company, customer)
+            mandate = setup_mandate(company, customer, customer_account)
+
+            oext, content, _, _ = Report.execute([mandate.id], {})
+
+            self.assertEqual(oext, 'pdf')
+            self.assertTrue(content)
 
 
 del ModuleTestCase
