@@ -10,6 +10,7 @@ from configparser import ConfigParser
 MODULE = 'account_payment_sepa_es'
 PREFIX = 'nantic'
 MODULE2PREFIX = {
+    'xgettext': 'nantic',
     'account_bank': 'nantic',
     'html_report': 'nantic',
 }

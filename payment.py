@@ -1,3 +1,4 @@
+
 # coding: utf-8
 # This file is part of account_payment_sepa_es module for Tryton.
 # The COPYRIGHT file at the top level of this repository contains
@@ -16,14 +17,14 @@ from trytond.i18n import gettext
 from trytond.exceptions import UserError
 from trytond.modules.account_payment_sepa.payment import remove_comment
 from trytond.modules.html_report.dominate_report import DominateReport
-from trytond.modules.html_report.i18n import _
+from trytond.modules.xgettext import _
+
 from trytond.tools import file_open
 
 def normalize_text(text):
     # Function create becasuse not all Banks accept the same chars
     # so it's needed to 'normalize' the textto be accepted
     return unidecode(text).replace('_', '-').replace('(', '').replace(')', '')
-
 
 class Journal(metaclass=PoolMeta):
     __name__ = 'account.payment.journal'
@@ -63,7 +64,6 @@ class Journal(metaclass=PoolMeta):
     @staticmethod
     def default_sepa_receivable_flavor():
         return 'pain.008.001.02'
-
 
 class Group(metaclass=PoolMeta):
     __name__ = 'account.payment.group'
@@ -181,7 +181,6 @@ class Group(metaclass=PoolMeta):
         else:
             super(Group, self).get_sepa_template()
 
-
 class ProcessPayment(metaclass=PoolMeta):
     __name__ = 'account.payment.process'
 
@@ -194,7 +193,6 @@ class ProcessPayment(metaclass=PoolMeta):
         # values and it's domains, like account or Mandate.
         Payment._check_payment(payments)
         return super().do_process(action)
-
 
 class Payment(metaclass=PoolMeta):
     __name__ = 'account.payment'
@@ -381,7 +379,6 @@ class Payment(metaclass=PoolMeta):
                             rec_name),
                         ))
 
-
 class Mandate(metaclass=PoolMeta):
     __name__ = 'account.payment.sepa.mandate'
 
@@ -415,7 +412,6 @@ class Mandate(metaclass=PoolMeta):
                 or not self.account_number.account.active):
             return False
         return is_valid
-
 
 class MandateReport(DominateReport):
     __name__ = 'account.payment.sepa.mandate.report'
@@ -599,7 +595,6 @@ class MandateReport(DominateReport):
                 p(_('ONCE THIS MANDATE HAS BEEN SIGNED MUST BE SENT TO '
                 'CREDITOR FOR STORAGE'))
         return footer
-
 
 class Message(metaclass=PoolMeta):
     __name__ = 'account.payment.sepa.message'
