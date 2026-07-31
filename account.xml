@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!-- This file is part of account_payment_sepa_es module for Tryton.
+The COPYRIGHT file at the top level of this repository contains the full
+copyright notices and license terms. -->
+<tryton>
+    <data>
+        <record model="ir.action.act_window.domain"
+            id="account_payment_sepa.act_move_line_form_domain_receivable_mandate">
+            <field name="domain"
+                eval="['AND', ['OR', ('debit', '&gt;', 0), ('credit', '&lt;', 0)], ('party.sepa_mandates.state', '=', 'validated'), ('payment_type.kind', 'in', ['receivable', 'both']), ('payment_type.account_bank', '=', 'party')]"
+                pyson="1"/>
+        </record>
+    </data>
+</tryton>
