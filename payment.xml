@@ -48,10 +48,6 @@
         <record model="ir.sequence.type" id="sequence_type_account_payment_group_sepa_core58">
             <field name="name">Account Payment Group SEPA CORE 58</field>
         </record>
-        <record model="ir.sequence.type-res.group" id="sequence_type_account_payment_group_sepa_core58_group_admin">
-            <field name="sequence_type" ref="sequence_type_account_payment_group_sepa_core58"/>
-            <field name="group" ref="res.group_admin"/>
-        </record>
         <record model="ir.sequence.type-res.group" id="sequence_type_account_payment_group_sepa_core58_group_account_admin">
             <field name="sequence_type" ref="sequence_type_account_payment_group_sepa_core58"/>
             <field name="group" ref="account.group_account_admin"/>
