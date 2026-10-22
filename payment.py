@@ -390,6 +390,7 @@ class Mandate(metaclass=PoolMeta):
         return [tuple(('identification',)) + tuple(clause[1:])]
 
     @classmethod
+    @ModelView.button
     def cancel(cls, mandates):
         pool = Pool()
         Payment = pool.get('account.payment')
