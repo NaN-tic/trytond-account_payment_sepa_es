@@ -1,0 +1,296 @@
+#
+msgid ""
+msgstr ""
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgctxt "field:account.payment.group,process_method:"
+msgid "Process Method"
+msgstr "处理方式"
+
+msgctxt "field:account.payment.journal,core58_sequence:"
+msgid "SEPA CORE 58 Sequence"
+msgstr "SEPA CORE 58 编号序列"
+
+msgctxt "field:account.payment.process.start,process_method:"
+msgid "Process Method"
+msgstr "处理方式"
+
+msgctxt "field:account.payment.sepa.message,group_amount:"
+msgid "Amount"
+msgstr "数额"
+
+msgctxt "field:account.payment.sepa.message,group_number:"
+msgid "Number"
+msgstr "编号"
+
+msgctxt "field:account.payment.sepa.message,group_planned_date:"
+msgid "Planned Date"
+msgstr "计划日期"
+
+msgctxt "field:bank.account.number,sepa_mandates:"
+msgid "Mandate"
+msgstr "授权书"
+
+msgctxt "model:ir.action,name:report_mandate"
+msgid "Mandate"
+msgstr "授权书"
+
+msgctxt "model:ir.action.act_window.domain,name:"
+msgid "Payable with Mandate"
+msgstr "凭授权书付款"
+
+#, python-format
+msgctxt ""
+"model:ir.message,text:bad_relation_mandate_number_vs_bank_account_numbers"
+msgid ""
+"The mandate \"%(mandate)s\" for payment \"%(payment)s\" of party "
+"\"%(party)s\" with amount \"%(amount)s\" is not for the move line bank "
+"accounts \"%(bank_account_numbers)s\"."
+msgstr ""
+"往来单位“%(party)s”的付款“%(payment)s”（金额为“%(amount)s”）所用授权书“%(mandate)s”不适用于会计分录的银行账户“%(bank_account_numbers)s”。"
+
+#, python-format
+msgctxt "model:ir.message,text:cancel_with_processing_payments"
+msgid ""
+"Mandate \"%(mandate)s\" can not be canceled because it is linked to payment "
+"\"%(payment)s\" which is still in process."
+msgstr "无法取消授权书“%(mandate)s”，因为其关联的付款“%(payment)s”仍在处理中。"
+
+#, python-format
+msgctxt "model:ir.message,text:canceled_mandate"
+msgid ""
+"Payment \"%(payment)s\" can not be modified because its mandate "
+"\"%(mandate)s\" is canceled."
+msgstr "无法修改付款“%(payment)s”，因为其授权书“%(mandate)s”已取消。"
+
+#, python-format
+msgctxt "model:ir.message,text:invalid_payment_date"
+msgid ""
+"Invalid payment date %(payment_date)s for payment \"%(payment)s\". "
+"Payment\\'s date must be greather or equal than today."
+msgstr "付款“%(payment)s”的付款日期 %(payment_date)s 无效。付款日期必须为今天或之后。"
+
+#, python-format
+msgctxt "model:ir.message,text:msg_bad_relation_party_bank_account"
+msgid ""
+"The line of party \"%(party)s\" with amount \"%(amount)s\" has a bank "
+"account \"%(account)s\" with a different owner."
+msgstr "往来单位“%(party)s”的分录（金额为“%(amount)s”）所用银行账户“%(account)s”属于其他所有者。"
+
+#, python-format
+msgctxt "model:ir.message,text:msg_mandate_not_correct"
+msgid ""
+"The line of party \"%(party)s\" with amount \"%(amount)s\" and bank account "
+"\"%(account)s\" has a Mandate \"%(mandate)s\" with and incorrect account "
+"\"%(mandate_account)s\"."
+msgstr ""
+"往来单位“%(party)s”的分录（金额为“%(amount)s”，银行账户为“%(account)s”）所用授权书“%(mandate)s”的账户“%(mandate_account)s”不正确。"
+
+#, python-format
+msgctxt "model:ir.message,text:msg_mandate_state_not_valid"
+msgid ""
+"The line of party \"%(party)s\" with amount \"%(amount)s\" and bank account "
+"\"%(account)s\" has an invalid Mandate \"%(mandate)s\"."
+msgstr ""
+"往来单位“%(party)s”的分录（金额为“%(amount)s”，银行账户为“%(account)s”）所用授权书“%(mandate)s”无效。"
+
+#, python-format
+msgctxt "model:ir.message,text:msg_missing_sepa_bank_account_number"
+msgid ""
+"Process method from journal \"%(journal)s\" is \"sepa\" but is missing the "
+"bank account number."
+msgstr "日记账“%(journal)s”的处理方式为“sepa”，但缺少银行账号。"
+
+#, python-format
+msgctxt "model:ir.message,text:msg_payment_without_bank_account"
+msgid ""
+"The line of party \"%(party)s\" with amount \"%(amount)s\" has not bank "
+"account."
+msgstr "往来单位“%(party)s”的分录（金额为“%(amount)s”）没有银行账户。"
+
+#, python-format
+msgctxt "model:ir.message,text:msg_payment_without_mandate"
+msgid ""
+"The line of party \"%(party)s\" with amount \"%(amount)s\" and bank account "
+"\"%(account)s\" has not found Mandate."
+msgstr "未找到往来单位“%(party)s”的分录（金额为“%(amount)s”，银行账户为“%(account)s”）的授权书。"
+
+#, python-format
+msgctxt "model:ir.message,text:no_bank_account"
+msgid ""
+"Payment \"%(payment)s\" of party \"%(party)s\" with amount \"%(amount)s\" "
+"hasn't bank account."
+msgstr "往来单位“%(party)s”的付款“%(payment)s”（金额为“%(amount)s”）没有银行账户。"
+
+#, python-format
+msgctxt "model:ir.message,text:no_creditor_identifier"
+msgid "No creditor identifier for party \"%(party)s\"."
+msgstr "往来单位“%(party)s”没有债权人标识。"
+
+#, python-format
+msgctxt "model:ir.message,text:no_mandate_for_party"
+msgid ""
+"No valid mandate for payment \"%(payment)s\" of party \"%(party)s\" with "
+"amount \"%(amount)s\"."
+msgstr "往来单位“%(party)s”的付款“%(payment)s”（金额为“%(amount)s”）没有有效的授权书。"
+
+msgctxt ""
+"model:ir.model.button,string:party_calculate_sepa_creditor_identifier_button"
+msgid "Calculate SEPA Creditor Identifier"
+msgstr "计算 SEPA 债权人标识"
+
+msgctxt "model:ir.sequence,name:sequence_account_payment_group_sepa_core58"
+msgid "Default Account Payment Group SEPA CORE 58"
+msgstr "默认 SEPA CORE 58 付款批次账户"
+
+msgctxt "model:ir.sequence,name:sequence_mandate"
+msgid "Mandate"
+msgstr "授权书"
+
+msgctxt "model:ir.sequence.type,name:"
+msgid "Mandate"
+msgstr "授权书"
+
+msgctxt ""
+"model:ir.sequence.type,name:sequence_type_account_payment_group_sepa_core58"
+msgid "Account Payment Group SEPA CORE 58"
+msgstr "SEPA CORE 58 付款批次"
+
+msgctxt "xgettext:x:"
+msgid "Accont number"
+msgstr "账号"
+
+msgctxt "xgettext:x:"
+msgid "Address"
+msgstr "地址"
+
+msgctxt "xgettext:x:"
+msgid ""
+"As part of your rights, you are entitled to a refund from your bank under "
+"the terms and conditions of your agreement with your bank. A refund must be "
+"claimed within 8 weeks starting from the date on which your account was "
+"debited. Your rights regarding this mandate are explained in a statement "
+"that you can obtain from your bank."
+msgstr ""
+"根据您与银行签订的协议条款，您有权向银行申请退款。退款申请必须在账户扣款之日起 8 周内提出。您可向银行索取说明文件，了解您在此授权书项下的权利。"
+
+msgctxt "xgettext:x:"
+msgid ""
+"By signing this mandate form, you authorise (A) the Creditor to send "
+"instructions to your bank to debit your account, and (B) your bank to debit "
+"your account in accordance with the instructions from the Creditor."
+msgstr "签署此授权书即表示您授权：(A) 债权人向您的银行发送从您账户扣款的指令；(B) 您的银行按照债权人的指令从您的账户扣款。"
+
+msgctxt "xgettext:x:"
+msgid "City"
+msgstr "城市"
+
+msgctxt "xgettext:x:"
+msgid "Country"
+msgstr "国家"
+
+msgctxt "xgettext:x:"
+msgid "Creditor Identifier"
+msgstr "债权人标识"
+
+msgctxt "xgettext:x:"
+msgid "Creditor's name"
+msgstr "债权人名称"
+
+msgctxt "xgettext:x:"
+msgid "Date"
+msgstr "日期"
+
+msgctxt "xgettext:x:"
+msgid "Debtor Identifier"
+msgstr "债务人标识"
+
+msgctxt "xgettext:x:"
+msgid "Debtor's address"
+msgstr "债务人地址"
+
+msgctxt "xgettext:x:"
+msgid "Debtor's country"
+msgstr "债务人国家"
+
+msgctxt "xgettext:x:"
+msgid "Debtor's name"
+msgstr "债务人名称"
+
+msgctxt "xgettext:x:"
+msgid "Debtor's signature"
+msgstr "债务人签名"
+
+msgctxt "xgettext:x:"
+msgid "IBAN"
+msgstr "IBAN"
+
+msgctxt "xgettext:x:"
+msgid "Location in which you are signing"
+msgstr "签署地点"
+
+msgctxt "xgettext:x:"
+msgid "Mandate reference"
+msgstr "授权书参考"
+
+msgctxt "xgettext:x:"
+msgid "ONCE THIS MANDATE HAS BEEN SIGNED MUST BE SENT TO CREDITOR FOR STORAGE"
+msgstr "此授权书签署后必须发送给债权人保存"
+
+msgctxt "xgettext:x:"
+msgid "One-off payment"
+msgstr "一次性付款"
+
+msgctxt "xgettext:x:"
+msgid "Postal Code"
+msgstr "邮政编码"
+
+msgctxt "xgettext:x:"
+msgid "Recurrent payment"
+msgstr "定期付款"
+
+msgctxt "xgettext:x:"
+msgid "SEPA Direct Debit Mandate"
+msgstr "SEPA 直接借记授权书"
+
+msgctxt "xgettext:x:"
+msgid "Swift BIC"
+msgstr "Swift BIC"
+
+msgctxt "xgettext:x:"
+msgid ""
+"This mandate is only intended for business-to-business transactions. You are"
+" not entitled to a refund from your bank after your account has been "
+"debited, but you are entitled to request your bank not to debit your account"
+" in accordance with the instructions up until the day on which the payment "
+"is due. Please contact your bank for detailed procedures in such a case."
+msgstr ""
+"此授权书仅适用于企业对企业交易。账户扣款后，您无权向银行申请退款，但在付款到期日之前，您有权要求银行不要按照指令从您的账户扣款。具体办理流程请咨询您的银行。"
+
+msgctxt "xgettext:x:"
+msgid "To be completed by the creditor"
+msgstr "由债权人填写"
+
+msgctxt "xgettext:x:"
+msgid "To be completed by the debtor"
+msgstr "由债务人填写"
+
+msgctxt "xgettext:x:"
+msgid "Town"
+msgstr "城镇"
+
+msgctxt "xgettext:x:"
+msgid "Type of payment"
+msgstr "付款类型"
+
+msgctxt "view:party.party:"
+msgid "Calculate"
+msgstr "计算"
+
+msgctxt "view:party.party:"
+msgid "Calculate SEPA Creditor Identifier"
+msgstr "计算 SEPA 债权人标识"
