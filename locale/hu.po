@@ -1,0 +1,327 @@
+#
+msgid ""
+msgstr ""
+"Language: hu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgctxt "field:account.payment.group,process_method:"
+msgid "Process Method"
+msgstr "Feldolgozási módszer"
+
+msgctxt "field:account.payment.journal,core58_sequence:"
+msgid "SEPA CORE 58 Sequence"
+msgstr "SEPA CORE 58 számsorozat"
+
+msgctxt "field:account.payment.process.start,process_method:"
+msgid "Process Method"
+msgstr "Feldolgozási módszer"
+
+msgctxt "field:account.payment.sepa.message,group_amount:"
+msgid "Amount"
+msgstr "Összeg"
+
+msgctxt "field:account.payment.sepa.message,group_number:"
+msgid "Number"
+msgstr "Szám"
+
+msgctxt "field:account.payment.sepa.message,group_planned_date:"
+msgid "Planned Date"
+msgstr "Tervezett dátum"
+
+msgctxt "field:bank.account.number,sepa_mandates:"
+msgid "Mandate"
+msgstr "Felhatalmazás"
+
+msgctxt "model:ir.action,name:report_mandate"
+msgid "Mandate"
+msgstr "Felhatalmazás"
+
+msgctxt "model:ir.action.act_window.domain,name:"
+msgid "Payable with Mandate"
+msgstr "Kötelezettség felhatalmazással"
+
+#, python-format
+msgctxt ""
+"model:ir.message,text:bad_relation_mandate_number_vs_bank_account_numbers"
+msgid ""
+"The mandate \"%(mandate)s\" for payment \"%(payment)s\" of party "
+"\"%(party)s\" with amount \"%(amount)s\" is not for the move line bank "
+"accounts \"%(bank_account_numbers)s\"."
+msgstr ""
+"A(z) „%(party)s” partner „%(amount)s” összegű „%(payment)s” fizetésének "
+"„%(mandate)s” felhatalmazása nem a könyvelési sor „%(bank_account_numbers)s”"
+" bankszámláira vonatkozik."
+
+#, python-format
+msgctxt "model:ir.message,text:cancel_with_processing_payments"
+msgid ""
+"Mandate \"%(mandate)s\" can not be canceled because it is linked to payment "
+"\"%(payment)s\" which is still in process."
+msgstr ""
+"A(z) „%(mandate)s” felhatalmazás nem vonható vissza, mert a még feldolgozás "
+"alatt álló „%(payment)s” fizetéshez kapcsolódik."
+
+#, python-format
+msgctxt "model:ir.message,text:canceled_mandate"
+msgid ""
+"Payment \"%(payment)s\" can not be modified because its mandate "
+"\"%(mandate)s\" is canceled."
+msgstr ""
+"A(z) „%(payment)s” fizetés nem módosítható, mert a(z) „%(mandate)s” "
+"felhatalmazását visszavonták."
+
+#, python-format
+msgctxt "model:ir.message,text:invalid_payment_date"
+msgid ""
+"Invalid payment date %(payment_date)s for payment \"%(payment)s\". "
+"Payment\\'s date must be greather or equal than today."
+msgstr ""
+"A(z) „%(payment)s” fizetés %(payment_date)s dátuma érvénytelen. A fizetési "
+"dátum nem lehet korábbi a mai napnál."
+
+#, python-format
+msgctxt "model:ir.message,text:msg_bad_relation_party_bank_account"
+msgid ""
+"The line of party \"%(party)s\" with amount \"%(amount)s\" has a bank "
+"account \"%(account)s\" with a different owner."
+msgstr ""
+"A(z) „%(party)s” partner „%(amount)s” összegű tételének „%(account)s” "
+"bankszámlája más tulajdonoshoz tartozik."
+
+#, python-format
+msgctxt "model:ir.message,text:msg_mandate_not_correct"
+msgid ""
+"The line of party \"%(party)s\" with amount \"%(amount)s\" and bank account "
+"\"%(account)s\" has a Mandate \"%(mandate)s\" with and incorrect account "
+"\"%(mandate_account)s\"."
+msgstr ""
+"A(z) „%(party)s” partner „%(amount)s” összegű, „%(account)s” bankszámlájú "
+"tételének „%(mandate)s” felhatalmazásán hibás „%(mandate_account)s” számla "
+"szerepel."
+
+#, python-format
+msgctxt "model:ir.message,text:msg_mandate_state_not_valid"
+msgid ""
+"The line of party \"%(party)s\" with amount \"%(amount)s\" and bank account "
+"\"%(account)s\" has an invalid Mandate \"%(mandate)s\"."
+msgstr ""
+"A(z) „%(party)s” partner „%(amount)s” összegű, „%(account)s” bankszámlájú "
+"tételének „%(mandate)s” felhatalmazása érvénytelen."
+
+#, python-format
+msgctxt "model:ir.message,text:msg_missing_sepa_bank_account_number"
+msgid ""
+"Process method from journal \"%(journal)s\" is \"sepa\" but is missing the "
+"bank account number."
+msgstr ""
+"A(z) „%(journal)s” napló feldolgozási módja „sepa”, de hiányzik a "
+"bankszámlaszám."
+
+#, python-format
+msgctxt "model:ir.message,text:msg_payment_without_bank_account"
+msgid ""
+"The line of party \"%(party)s\" with amount \"%(amount)s\" has not bank "
+"account."
+msgstr ""
+"A(z) „%(party)s” partner „%(amount)s” összegű tételéhez nincs bankszámla."
+
+#, python-format
+msgctxt "model:ir.message,text:msg_payment_without_mandate"
+msgid ""
+"The line of party \"%(party)s\" with amount \"%(amount)s\" and bank account "
+"\"%(account)s\" has not found Mandate."
+msgstr ""
+"A(z) „%(party)s” partner „%(amount)s” összegű, „%(account)s” bankszámlájú "
+"tételéhez nem található felhatalmazás."
+
+#, python-format
+msgctxt "model:ir.message,text:no_bank_account"
+msgid ""
+"Payment \"%(payment)s\" of party \"%(party)s\" with amount \"%(amount)s\" "
+"hasn't bank account."
+msgstr ""
+"A(z) „%(party)s” partner „%(amount)s” összegű „%(payment)s” fizetéséhez "
+"nincs bankszámla."
+
+#, python-format
+msgctxt "model:ir.message,text:no_creditor_identifier"
+msgid "No creditor identifier for party \"%(party)s\"."
+msgstr "A(z) „%(party)s” partnernek nincs beszedőazonosítója."
+
+#, python-format
+msgctxt "model:ir.message,text:no_mandate_for_party"
+msgid ""
+"No valid mandate for payment \"%(payment)s\" of party \"%(party)s\" with "
+"amount \"%(amount)s\"."
+msgstr ""
+"Nincs érvényes felhatalmazás a(z) „%(party)s” partner „%(payment)s” "
+"fizetéséhez, amelynek összege „%(amount)s”."
+
+msgctxt ""
+"model:ir.model.button,string:party_calculate_sepa_creditor_identifier_button"
+msgid "Calculate SEPA Creditor Identifier"
+msgstr "SEPA-beszedőazonosító kiszámítása"
+
+msgctxt "model:ir.sequence,name:sequence_account_payment_group_sepa_core58"
+msgid "Default Account Payment Group SEPA CORE 58"
+msgstr "Alapértelmezett SEPA CORE 58 fizetési csoport számlája"
+
+msgctxt "model:ir.sequence,name:sequence_mandate"
+msgid "Mandate"
+msgstr "Felhatalmazás"
+
+msgctxt "model:ir.sequence.type,name:"
+msgid "Mandate"
+msgstr "Felhatalmazás"
+
+msgctxt ""
+"model:ir.sequence.type,name:sequence_type_account_payment_group_sepa_core58"
+msgid "Account Payment Group SEPA CORE 58"
+msgstr "SEPA CORE 58 fizetési csoport"
+
+msgctxt "xgettext:x:"
+msgid "Accont number"
+msgstr "Számlaszám"
+
+msgctxt "xgettext:x:"
+msgid "Address"
+msgstr "Cím"
+
+msgctxt "xgettext:x:"
+msgid ""
+"As part of your rights, you are entitled to a refund from your bank under "
+"the terms and conditions of your agreement with your bank. A refund must be "
+"claimed within 8 weeks starting from the date on which your account was "
+"debited. Your rights regarding this mandate are explained in a statement "
+"that you can obtain from your bank."
+msgstr ""
+"A bankjával kötött megállapodás feltételei szerint Ön jogosult "
+"visszatérítést kérni bankjától. A visszatérítést a számla megterhelésének "
+"napjától számított 8 héten belül kell kérni. A felhatalmazással kapcsolatos "
+"jogait a bankjától kérhető tájékoztató ismerteti."
+
+msgctxt "xgettext:x:"
+msgid ""
+"By signing this mandate form, you authorise (A) the Creditor to send "
+"instructions to your bank to debit your account, and (B) your bank to debit "
+"your account in accordance with the instructions from the Creditor."
+msgstr ""
+"E felhatalmazás aláírásával Ön felhatalmazza (A) a beszedőt, hogy utasítást "
+"küldjön bankjának számlája megterhelésére, és (B) bankját, hogy a beszedő "
+"utasításainak megfelelően megterhelje számláját."
+
+msgctxt "xgettext:x:"
+msgid "City"
+msgstr "Város"
+
+msgctxt "xgettext:x:"
+msgid "Country"
+msgstr "Ország"
+
+msgctxt "xgettext:x:"
+msgid "Creditor Identifier"
+msgstr "Beszedő azonosítója"
+
+msgctxt "xgettext:x:"
+msgid "Creditor's name"
+msgstr "Beszedő neve"
+
+msgctxt "xgettext:x:"
+msgid "Date"
+msgstr "Dátum"
+
+msgctxt "xgettext:x:"
+msgid "Debtor Identifier"
+msgstr "Kötelezett azonosítója"
+
+msgctxt "xgettext:x:"
+msgid "Debtor's address"
+msgstr "Kötelezett címe"
+
+msgctxt "xgettext:x:"
+msgid "Debtor's country"
+msgstr "Kötelezett országa"
+
+msgctxt "xgettext:x:"
+msgid "Debtor's name"
+msgstr "Kötelezett neve"
+
+msgctxt "xgettext:x:"
+msgid "Debtor's signature"
+msgstr "Kötelezett aláírása"
+
+msgctxt "xgettext:x:"
+msgid "IBAN"
+msgstr "IBAN"
+
+msgctxt "xgettext:x:"
+msgid "Location in which you are signing"
+msgstr "Aláírás helye"
+
+msgctxt "xgettext:x:"
+msgid "Mandate reference"
+msgstr "Felhatalmazás hivatkozása"
+
+msgctxt "xgettext:x:"
+msgid "ONCE THIS MANDATE HAS BEEN SIGNED MUST BE SENT TO CREDITOR FOR STORAGE"
+msgstr "AZ ALÁÍRT FELHATALMAZÁST MEGŐRZÉSRE EL KELL KÜLDENI A BESZEDŐNEK"
+
+msgctxt "xgettext:x:"
+msgid "One-off payment"
+msgstr "Egyszeri fizetés"
+
+msgctxt "xgettext:x:"
+msgid "Postal Code"
+msgstr "Irányítószám"
+
+msgctxt "xgettext:x:"
+msgid "Recurrent payment"
+msgstr "Ismétlődő fizetés"
+
+msgctxt "xgettext:x:"
+msgid "SEPA Direct Debit Mandate"
+msgstr "SEPA-beszedési felhatalmazás"
+
+msgctxt "xgettext:x:"
+msgid "Swift BIC"
+msgstr "SWIFT BIC"
+
+msgctxt "xgettext:x:"
+msgid ""
+"This mandate is only intended for business-to-business transactions. You are"
+" not entitled to a refund from your bank after your account has been "
+"debited, but you are entitled to request your bank not to debit your account"
+" in accordance with the instructions up until the day on which the payment "
+"is due. Please contact your bank for detailed procedures in such a case."
+msgstr ""
+"Ez a felhatalmazás kizárólag vállalatok közötti ügyletekre szolgál. A számla"
+" megterhelése után nem jogosult visszatérítést kérni bankjától, de a fizetés"
+" esedékességének napjáig kérheti bankjától, hogy ne terhelje meg számláját "
+"az utasítások szerint. A részletes eljárásról érdeklődjön bankjánál."
+
+msgctxt "xgettext:x:"
+msgid "To be completed by the creditor"
+msgstr "A beszedő tölti ki"
+
+msgctxt "xgettext:x:"
+msgid "To be completed by the debtor"
+msgstr "A kötelezett tölti ki"
+
+msgctxt "xgettext:x:"
+msgid "Town"
+msgstr "Település"
+
+msgctxt "xgettext:x:"
+msgid "Type of payment"
+msgstr "Fizetés típusa"
+
+msgctxt "view:party.party:"
+msgid "Calculate"
+msgstr "Számítás"
+
+msgctxt "view:party.party:"
+msgid "Calculate SEPA Creditor Identifier"
+msgstr "SEPA-beszedőazonosító kiszámítása"
