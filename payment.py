@@ -12,7 +12,7 @@ from dominate.tags import div, footer as footer_tag, p, section
 from trytond.model import fields, dualmethod, ModelView
 from trytond.pool import Pool, PoolMeta
 from trytond.pyson import Eval, If, Bool, Id
-from trytond.transaction import Transaction
+from trytond.transaction import Transaction, without_check_access
 from trytond.i18n import gettext
 from trytond.exceptions import UserError
 from trytond.modules.account_payment_sepa.payment import remove_comment
@@ -244,18 +244,22 @@ class Payment(metaclass=PoolMeta):
 
     @classmethod
     def create(cls, vlist):
-        pool = Pool()
-        Mandate = pool.get('account.payment.sepa.mandate')
-
         vlist = [v.copy() for v in vlist]
         for values in vlist:
-            mandate = values.get('sepa_mandate', None)
-            if mandate:
-                mandate = Mandate.browse([mandate])[0]
-            if not values.get('sepa_mandate_sequence_type') and mandate:
-                values['sepa_mandate_sequence_type'] = (mandate.sequence_type
-                    or None)
-        return super(Payment, cls).create(vlist)
+            values.pop('sepa_mandate_sequence_type', None)
+
+        payments = super(Payment, cls).create(vlist)
+
+        to_save = []
+        for payment in payments:
+            if payment.sepa_mandate:
+                payment.sepa_mandate_sequence_type = (
+                    payment.sepa_mandate.sequence_type or None)
+                to_save.append(payment)
+        with without_check_access():
+            cls.save(to_save)
+
+        return payments
 
     @classmethod
     def get_sepa_mandates(cls, payments):
