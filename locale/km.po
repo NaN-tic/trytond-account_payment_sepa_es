@@ -1,0 +1,330 @@
+#
+msgid ""
+msgstr ""
+"Language: km\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgctxt "field:account.payment.group,process_method:"
+msgid "Process Method"
+msgstr "វិធីដំណើរការ"
+
+msgctxt "field:account.payment.journal,core58_sequence:"
+msgid "SEPA CORE 58 Sequence"
+msgstr "លំដាប់លេខ SEPA CORE 58"
+
+msgctxt "field:account.payment.process.start,process_method:"
+msgid "Process Method"
+msgstr "វិធីដំណើរការ"
+
+msgctxt "field:account.payment.sepa.message,group_amount:"
+msgid "Amount"
+msgstr "ចំនួនទឹកប្រាក់"
+
+msgctxt "field:account.payment.sepa.message,group_number:"
+msgid "Number"
+msgstr "លេខ"
+
+msgctxt "field:account.payment.sepa.message,group_planned_date:"
+msgid "Planned Date"
+msgstr "កាលបរិច្ឆេទដែលបានគ្រោង"
+
+msgctxt "field:bank.account.number,sepa_mandates:"
+msgid "Mandate"
+msgstr "លិខិតអនុញ្ញាត"
+
+msgctxt "model:ir.action,name:report_mandate"
+msgid "Mandate"
+msgstr "លិខិតអនុញ្ញាត"
+
+msgctxt "model:ir.action.act_window.domain,name:"
+msgid "Payable with Mandate"
+msgstr "គណនីត្រូវទូទាត់ដែលមានលិខិតអនុញ្ញាត"
+
+#, python-format
+msgctxt ""
+"model:ir.message,text:bad_relation_mandate_number_vs_bank_account_numbers"
+msgid ""
+"The mandate \"%(mandate)s\" for payment \"%(payment)s\" of party "
+"\"%(party)s\" with amount \"%(amount)s\" is not for the move line bank "
+"accounts \"%(bank_account_numbers)s\"."
+msgstr ""
+"លិខិតអនុញ្ញាត «%(mandate)s» សម្រាប់ការទូទាត់ «%(payment)s» របស់ភាគី "
+"«%(party)s» ក្នុងចំនួនទឹកប្រាក់ «%(amount)s» "
+"មិនត្រូវនឹងគណនីធនាគារនៃបន្ទាត់កំណត់ត្រា «%(bank_account_numbers)s»។"
+
+#, python-format
+msgctxt "model:ir.message,text:cancel_with_processing_payments"
+msgid ""
+"Mandate \"%(mandate)s\" can not be canceled because it is linked to payment "
+"\"%(payment)s\" which is still in process."
+msgstr ""
+"មិនអាចបោះបង់លិខិតអនុញ្ញាត «%(mandate)s» បានទេ ព្រោះវាភ្ជាប់ទៅការទូទាត់ "
+"«%(payment)s» ដែលកំពុងដំណើរការ។"
+
+#, python-format
+msgctxt "model:ir.message,text:canceled_mandate"
+msgid ""
+"Payment \"%(payment)s\" can not be modified because its mandate "
+"\"%(mandate)s\" is canceled."
+msgstr ""
+"មិនអាចកែប្រែការទូទាត់ «%(payment)s» បានទេ ព្រោះលិខិតអនុញ្ញាត «%(mandate)s» "
+"របស់វាត្រូវបានបោះបង់។"
+
+#, python-format
+msgctxt "model:ir.message,text:invalid_payment_date"
+msgid ""
+"Invalid payment date %(payment_date)s for payment \"%(payment)s\". "
+"Payment\\'s date must be greather or equal than today."
+msgstr ""
+"កាលបរិច្ឆេទទូទាត់ %(payment_date)s មិនត្រឹមត្រូវសម្រាប់ការទូទាត់ "
+"«%(payment)s»។ កាលបរិច្ឆេទទូទាត់ត្រូវចាប់ពីថ្ងៃនេះតទៅ។"
+
+#, python-format
+msgctxt "model:ir.message,text:msg_bad_relation_party_bank_account"
+msgid ""
+"The line of party \"%(party)s\" with amount \"%(amount)s\" has a bank account"
+" \"%(account)s\" with a different owner."
+msgstr ""
+"បន្ទាត់របស់ភាគី «%(party)s» ក្នុងចំនួនទឹកប្រាក់ «%(amount)s» មានគណនីធនាគារ "
+"«%(account)s» ដែលមានម្ចាស់ផ្សេង។"
+
+#, python-format
+msgctxt "model:ir.message,text:msg_mandate_not_correct"
+msgid ""
+"The line of party \"%(party)s\" with amount \"%(amount)s\" and bank account "
+"\"%(account)s\" has a Mandate \"%(mandate)s\" with and incorrect account "
+"\"%(mandate_account)s\"."
+msgstr ""
+"បន្ទាត់របស់ភាគី «%(party)s» ក្នុងចំនួនទឹកប្រាក់ «%(amount)s» និងគណនីធនាគារ "
+"«%(account)s» មានលិខិតអនុញ្ញាត «%(mandate)s» ដែលមានគណនីមិនត្រឹមត្រូវ "
+"«%(mandate_account)s»។"
+
+#, python-format
+msgctxt "model:ir.message,text:msg_mandate_state_not_valid"
+msgid ""
+"The line of party \"%(party)s\" with amount \"%(amount)s\" and bank account "
+"\"%(account)s\" has an invalid Mandate \"%(mandate)s\"."
+msgstr ""
+"បន្ទាត់របស់ភាគី «%(party)s» ក្នុងចំនួនទឹកប្រាក់ «%(amount)s» និងគណនីធនាគារ "
+"«%(account)s» មានលិខិតអនុញ្ញាត «%(mandate)s» ដែលមិនមានសុពលភាព។"
+
+#, python-format
+msgctxt "model:ir.message,text:msg_missing_sepa_bank_account_number"
+msgid ""
+"Process method from journal \"%(journal)s\" is \"sepa\" but is missing the "
+"bank account number."
+msgstr ""
+"វិធីដំណើរការនៃទិនានុប្បវត្តិ «%(journal)s» គឺ «sepa» "
+"ប៉ុន្តែខ្វះលេខគណនីធនាគារ។"
+
+#, python-format
+msgctxt "model:ir.message,text:msg_payment_without_bank_account"
+msgid ""
+"The line of party \"%(party)s\" with amount \"%(amount)s\" has not bank "
+"account."
+msgstr ""
+"បន្ទាត់របស់ភាគី «%(party)s» ក្នុងចំនួនទឹកប្រាក់ «%(amount)s» "
+"មិនមានគណនីធនាគារ។"
+
+#, python-format
+msgctxt "model:ir.message,text:msg_payment_without_mandate"
+msgid ""
+"The line of party \"%(party)s\" with amount \"%(amount)s\" and bank account "
+"\"%(account)s\" has not found Mandate."
+msgstr ""
+"រកមិនឃើញលិខិតអនុញ្ញាតសម្រាប់បន្ទាត់របស់ភាគី «%(party)s» ក្នុងចំនួនទឹកប្រាក់ "
+"«%(amount)s» និងគណនីធនាគារ «%(account)s»។"
+
+#, python-format
+msgctxt "model:ir.message,text:no_bank_account"
+msgid ""
+"Payment \"%(payment)s\" of party \"%(party)s\" with amount \"%(amount)s\" "
+"hasn't bank account."
+msgstr ""
+"ការទូទាត់ «%(payment)s» របស់ភាគី «%(party)s» ក្នុងចំនួនទឹកប្រាក់ «%(amount)s»"
+" មិនមានគណនីធនាគារ។"
+
+#, python-format
+msgctxt "model:ir.message,text:no_creditor_identifier"
+msgid "No creditor identifier for party \"%(party)s\"."
+msgstr "គ្មានលេខសម្គាល់ម្ចាស់បំណុលសម្រាប់ភាគី «%(party)s»។"
+
+#, python-format
+msgctxt "model:ir.message,text:no_mandate_for_party"
+msgid ""
+"No valid mandate for payment \"%(payment)s\" of party \"%(party)s\" with "
+"amount \"%(amount)s\"."
+msgstr ""
+"គ្មានលិខិតអនុញ្ញាតត្រឹមត្រូវសម្រាប់ការទូទាត់ «%(payment)s» របស់ភាគី "
+"«%(party)s» ក្នុងចំនួនទឹកប្រាក់ «%(amount)s»។"
+
+msgctxt ""
+"model:ir.model.button,string:party_calculate_sepa_creditor_identifier_button"
+msgid "Calculate SEPA Creditor Identifier"
+msgstr "គណនាលេខសម្គាល់ម្ចាស់បំណុល SEPA"
+
+msgctxt "model:ir.sequence,name:sequence_account_payment_group_sepa_core58"
+msgid "Default Account Payment Group SEPA CORE 58"
+msgstr "ក្រុមការទូទាត់គណនីលំនាំដើម SEPA CORE 58"
+
+msgctxt "model:ir.sequence,name:sequence_mandate"
+msgid "Mandate"
+msgstr "លិខិតអនុញ្ញាត"
+
+msgctxt "model:ir.sequence.type,name:"
+msgid "Mandate"
+msgstr "លិខិតអនុញ្ញាត"
+
+msgctxt ""
+"model:ir.sequence.type,name:sequence_type_account_payment_group_sepa_core58"
+msgid "Account Payment Group SEPA CORE 58"
+msgstr "ក្រុមការទូទាត់គណនី SEPA CORE 58"
+
+msgctxt "xgettext:x:"
+msgid "Accont number"
+msgstr "លេខគណនី"
+
+msgctxt "xgettext:x:"
+msgid "Address"
+msgstr "អាសយដ្ឋាន"
+
+msgctxt "xgettext:x:"
+msgid ""
+"As part of your rights, you are entitled to a refund from your bank under the"
+" terms and conditions of your agreement with your bank. A refund must be "
+"claimed within 8 weeks starting from the date on which your account was "
+"debited. Your rights regarding this mandate are explained in a statement that"
+" you can obtain from your bank."
+msgstr ""
+"អ្នកមានសិទ្ធិទទួលប្រាក់សងវិញពីធនាគាររបស់អ្នក "
+"តាមលក្ខខណ្ឌនៃកិច្ចព្រមព្រៀងរបស់អ្នកជាមួយធនាគារ។ ត្រូវស្នើសុំសំណងក្នុងរយៈពេល 8"
+" សប្តាហ៍ ចាប់ពីថ្ងៃដែលគណនីរបស់អ្នកត្រូវបានដកប្រាក់។ "
+"សិទ្ធិរបស់អ្នកទាក់ទងនឹងលិខិតអនុញ្ញាតនេះមានបកស្រាយក្នុងឯកសារដែលអ្នកអាចស្នើសុំពីធនាគាររបស់អ្នក។"
+
+msgctxt "xgettext:x:"
+msgid ""
+"By signing this mandate form, you authorise (A) the Creditor to send "
+"instructions to your bank to debit your account, and (B) your bank to debit "
+"your account in accordance with the instructions from the Creditor."
+msgstr ""
+"តាមរយៈការចុះហត្ថលេខាលើលិខិតអនុញ្ញាតនេះ អ្នកអនុញ្ញាតឱ្យ (A) "
+"ម្ចាស់បំណុលផ្ញើសេចក្តីណែនាំទៅធនាគាររបស់អ្នកឱ្យដកប្រាក់ពីគណនីរបស់អ្នក និង (B) "
+"ធនាគាររបស់អ្នកដកប្រាក់ពីគណនីរបស់អ្នកតាមសេចក្តីណែនាំរបស់ម្ចាស់បំណុល។"
+
+msgctxt "xgettext:x:"
+msgid "City"
+msgstr "ទីក្រុង"
+
+msgctxt "xgettext:x:"
+msgid "Country"
+msgstr "ប្រទេស"
+
+msgctxt "xgettext:x:"
+msgid "Creditor Identifier"
+msgstr "លេខសម្គាល់ម្ចាស់បំណុល"
+
+msgctxt "xgettext:x:"
+msgid "Creditor's name"
+msgstr "ឈ្មោះម្ចាស់បំណុល"
+
+msgctxt "xgettext:x:"
+msgid "Date"
+msgstr "កាលបរិច្ឆេទ"
+
+msgctxt "xgettext:x:"
+msgid "Debtor Identifier"
+msgstr "លេខសម្គាល់កូនបំណុល"
+
+msgctxt "xgettext:x:"
+msgid "Debtor's address"
+msgstr "អាសយដ្ឋានកូនបំណុល"
+
+msgctxt "xgettext:x:"
+msgid "Debtor's country"
+msgstr "ប្រទេសរបស់កូនបំណុល"
+
+msgctxt "xgettext:x:"
+msgid "Debtor's name"
+msgstr "ឈ្មោះកូនបំណុល"
+
+msgctxt "xgettext:x:"
+msgid "Debtor's signature"
+msgstr "ហត្ថលេខាកូនបំណុល"
+
+msgctxt "xgettext:x:"
+msgid "IBAN"
+msgstr "IBAN"
+
+msgctxt "xgettext:x:"
+msgid "Location in which you are signing"
+msgstr "ទីកន្លែងចុះហត្ថលេខា"
+
+msgctxt "xgettext:x:"
+msgid "Mandate reference"
+msgstr "ឯកសារយោងលិខិតអនុញ្ញាត"
+
+msgctxt "xgettext:x:"
+msgid "ONCE THIS MANDATE HAS BEEN SIGNED MUST BE SENT TO CREDITOR FOR STORAGE"
+msgstr ""
+"បន្ទាប់ពីចុះហត្ថលេខារួច ត្រូវផ្ញើលិខិតអនុញ្ញាតនេះទៅម្ចាស់បំណុលដើម្បីរក្សាទុក។"
+
+msgctxt "xgettext:x:"
+msgid "One-off payment"
+msgstr "ការទូទាត់ម្ដងតែប៉ុណ្ណោះ"
+
+msgctxt "xgettext:x:"
+msgid "Postal Code"
+msgstr "លេខកូដប្រៃសណីយ៍"
+
+msgctxt "xgettext:x:"
+msgid "Recurrent payment"
+msgstr "ការទូទាត់កើតឡើងម្ដងហើយម្ដងទៀត"
+
+msgctxt "xgettext:x:"
+msgid "SEPA Direct Debit Mandate"
+msgstr "លិខិតអនុញ្ញាតឱ្យដកប្រាក់ដោយផ្ទាល់ SEPA"
+
+msgctxt "xgettext:x:"
+msgid "Swift BIC"
+msgstr "លេខកូដ SWIFT BIC"
+
+msgctxt "xgettext:x:"
+msgid ""
+"This mandate is only intended for business-to-business transactions. You are "
+"not entitled to a refund from your bank after your account has been debited, "
+"but you are entitled to request your bank not to debit your account in "
+"accordance with the instructions up until the day on which the payment is "
+"due. Please contact your bank for detailed procedures in such a case."
+msgstr ""
+"លិខិតអនុញ្ញាតនេះប្រើសម្រាប់តែប្រតិបត្តិការរវាងអាជីវកម្ម។ "
+"ក្រោយពីដកប្រាក់ពីគណនី អ្នកមិនមានសិទ្ធិស្នើឱ្យធនាគារសងប្រាក់វិញទេ "
+"ប៉ុន្តែអ្នកមានសិទ្ធិស្នើឱ្យធនាគារមិនដកប្រាក់តាមសេចក្តីណែនាំ "
+"រហូតដល់ថ្ងៃដល់កំណត់ទូទាត់។ ក្នុងករណីនេះ "
+"សូមទាក់ទងធនាគាររបស់អ្នកសម្រាប់នីតិវិធីលម្អិត។"
+
+msgctxt "xgettext:x:"
+msgid "To be completed by the creditor"
+msgstr "សម្រាប់ម្ចាស់បំណុលបំពេញ"
+
+msgctxt "xgettext:x:"
+msgid "To be completed by the debtor"
+msgstr "សម្រាប់កូនបំណុលបំពេញ"
+
+msgctxt "xgettext:x:"
+msgid "Town"
+msgstr "ទីប្រជុំជន"
+
+msgctxt "xgettext:x:"
+msgid "Type of payment"
+msgstr "ប្រភេទការទូទាត់"
+
+msgctxt "view:party.party:"
+msgid "Calculate"
+msgstr "គណនា"
+
+msgctxt "view:party.party:"
+msgid "Calculate SEPA Creditor Identifier"
+msgstr "គណនាលេខសម្គាល់ម្ចាស់បំណុល SEPA"
